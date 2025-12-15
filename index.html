@@ -2,77 +2,89 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Datos para Pagos</title>
+<title>Pagos | Elvis Sánchez</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
   body{
-    font-family: Arial, sans-serif;
-    background:#f4f6f8;
-    padding:20px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: radial-gradient(circle at top, #111 0%, #000 60%);
+    padding:30px 15px;
+    color:#fff;
   }
   .card{
     max-width:420px;
     margin:auto;
-    background:#fff;
-    padding:20px;
-    border-radius:14px;
-    box-shadow:0 6px 20px rgba(0,0,0,.12);
+    background:#0f0f0f;
+    padding:22px;
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(0,0,0,.9);
+    animation: fadeIn .6s ease;
+  }
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateY(12px);}
+    to{opacity:1; transform:translateY(0);}
   }
   .logo{
     text-align:center;
-    margin-bottom:10px;
+    margin-bottom:14px;
   }
   .logo img{
-    width:90px;
-    height:90px;
+    width:96px;
+    height:96px;
     border-radius:50%;
     object-fit:cover;
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
+    border:2px solid #1e90ff;
+    box-shadow:0 0 15px rgba(30,144,255,.6);
   }
   h1{
     text-align:center;
-    margin:10px 0 6px;
+    margin:8px 0 4px;
+    font-size:22px;
+    letter-spacing:.5px;
   }
   .info{
     text-align:center;
-    color:#555;
-    margin-bottom:20px;
+    font-size:14px;
+    color:#aaa;
+    margin-bottom:22px;
   }
   .copy-link{
-    color:#007bff;
-    font-weight:bold;
+    color:#1e90ff;
+    font-weight:600;
     cursor:pointer;
   }
-  .copy-link:active{
-    color:#0056b3;
-  }
   .bank{
-    border:1px solid #ddd;
-    border-radius:12px;
+    background:linear-gradient(145deg,#121212,#0a0a0a);
+    border-radius:16px;
     padding:14px;
     margin-bottom:14px;
+    border:1px solid #1a1a1a;
   }
   .bank h3{
     margin:0 0 6px;
+    font-size:16px;
   }
   .number{
     font-size:18px;
-    font-weight:bold;
+    font-weight:700;
     margin-bottom:10px;
+    color:#eaeaea;
   }
   button{
     width:100%;
     padding:11px;
     border:none;
-    border-radius:10px;
-    background:#007bff;
+    border-radius:14px;
+    background:linear-gradient(135deg,#1e90ff,#005eff);
     color:#fff;
     font-size:15px;
     cursor:pointer;
+    transition:.2s;
+    box-shadow:0 4px 15px rgba(0,94,255,.4);
   }
   button:active{
-    background:#0056b3;
+    transform:scale(.97);
   }
 </style>
 </head>
@@ -81,14 +93,13 @@
 
 <div class="card">
 
-  <!-- LOGO / FOTO -->
+  <!-- LOGO -->
   <div class="logo">
     <img src="logo.png" alt="Logo">
   </div>
 
-  <h1>Datos para Pagos</h1>
+  <h1>DATOS PARA PAGOS</h1>
 
-  <!-- INFO -->
   <div class="info">
     <strong>Elvis Sánchez</strong><br>
     Cédula:
@@ -97,21 +108,18 @@
     </span>
   </div>
 
-  <!-- BANCO POPULAR -->
   <div class="bank">
     <h3>🏦 Banco Popular</h3>
     <div class="number">813665445</div>
     <button onclick="copiar('813665445')">Copiar cuenta</button>
   </div>
 
-  <!-- QIK -->
   <div class="bank">
     <h3>🏦 Qik Digital</h3>
     <div class="number">1000536958</div>
     <button onclick="copiar('1000536958')">Copiar cuenta</button>
   </div>
 
-  <!-- BANRESERVAS -->
   <div class="bank">
     <h3>🏦 Banreservas</h3>
     <div class="number">9608844071</div>
@@ -120,28 +128,23 @@
 
 </div>
 
-<!-- SCRIPT COPIAR -->
 <script>
 function copiar(texto){
   navigator.clipboard.writeText(texto);
-
-  const aviso = document.createElement("div");
-  aviso.innerText = "Copiado ✔️";
-  aviso.style.position = "fixed";
-  aviso.style.bottom = "20px";
-  aviso.style.left = "50%";
-  aviso.style.transform = "translateX(-50%)";
-  aviso.style.background = "#28a745";
-  aviso.style.color = "#fff";
-  aviso.style.padding = "10px 18px";
-  aviso.style.borderRadius = "20px";
-  aviso.style.fontSize = "14px";
-  aviso.style.boxShadow = "0 4px 10px rgba(0,0,0,.2)";
+  const aviso=document.createElement("div");
+  aviso.innerText="Copiado ✔️";
+  aviso.style.position="fixed";
+  aviso.style.bottom="20px";
+  aviso.style.left="50%";
+  aviso.style.transform="translateX(-50%)";
+  aviso.style.background="#1e90ff";
+  aviso.style.color="#fff";
+  aviso.style.padding="10px 18px";
+  aviso.style.borderRadius="20px";
+  aviso.style.fontSize="14px";
+  aviso.style.boxShadow="0 0 15px rgba(30,144,255,.7)";
   document.body.appendChild(aviso);
-
-  setTimeout(() => {
-    aviso.remove();
-  }, 1500);
+  setTimeout(()=>aviso.remove(),1500);
 }
 </script>
 
