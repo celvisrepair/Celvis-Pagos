@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Datos para Pagos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
   body{
     font-family: Arial, sans-serif;
@@ -15,37 +16,56 @@
     margin:auto;
     background:#fff;
     padding:20px;
-    border-radius:12px;
-    box-shadow:0 6px 18px rgba(0,0,0,.1);
+    border-radius:14px;
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
+  }
+  .logo{
+    text-align:center;
+    margin-bottom:10px;
+  }
+  .logo img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
   }
   h1{
     text-align:center;
-    margin-bottom:8px;
+    margin:10px 0 6px;
   }
   .info{
     text-align:center;
     color:#555;
     margin-bottom:20px;
   }
+  .copy-link{
+    color:#007bff;
+    font-weight:bold;
+    cursor:pointer;
+  }
+  .copy-link:active{
+    color:#0056b3;
+  }
   .bank{
     border:1px solid #ddd;
-    border-radius:10px;
-    padding:12px;
-    margin-bottom:12px;
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:14px;
   }
   .bank h3{
-    margin:0 0 5px;
+    margin:0 0 6px;
   }
   .number{
     font-size:18px;
     font-weight:bold;
-    margin-bottom:8px;
+    margin-bottom:10px;
   }
   button{
     width:100%;
-    padding:10px;
+    padding:11px;
     border:none;
-    border-radius:8px;
+    border-radius:10px;
     background:#007bff;
     color:#fff;
     font-size:15px;
@@ -58,36 +78,70 @@
 </head>
 
 <body>
-  <div class="card">
-    <h1>Datos para Pagos</h1>
-    <div class="info">
-      <strong>Elvis Sánchez</strong><br>
-      Cédula: 40230729457
-    </div>
 
-    <div class="bank">
-      <h3>🏦 Banco Popular</h3>
-      <div class="number">813665445</div>
-      <button onclick="copiar('813665445')">Copiar cuenta</button>
-    </div>
+<div class="card">
 
-    <div class="bank">
-      <h3>🏦 Qik Digital</h3>
-      <div class="number">1000536958</div>
-      <button onclick="copiar('1000536958')">Copiar cuenta</button>
-    </div>
-
-    <div class="bank">
-      <h3>🏦 Banreservas</h3>
-      <div class="number">9608844071</div>
-      <button onclick="copiar('9608844071')">Copiar cuenta</button>
-    </div>
+  <!-- LOGO / FOTO -->
+  <div class="logo">
+    <img src="logo.png" alt="Logo">
   </div>
 
+  <h1>Datos para Pagos</h1>
+
+  <!-- INFO -->
+  <div class="info">
+    <strong>Elvis Sánchez</strong><br>
+    Cédula:
+    <span class="copy-link" onclick="copiar('40230729457')">
+      40230729457 📋
+    </span>
+  </div>
+
+  <!-- BANCO POPULAR -->
+  <div class="bank">
+    <h3>🏦 Banco Popular</h3>
+    <div class="number">813665445</div>
+    <button onclick="copiar('813665445')">Copiar cuenta</button>
+  </div>
+
+  <!-- QIK -->
+  <div class="bank">
+    <h3>🏦 Qik Digital</h3>
+    <div class="number">1000536958</div>
+    <button onclick="copiar('1000536958')">Copiar cuenta</button>
+  </div>
+
+  <!-- BANRESERVAS -->
+  <div class="bank">
+    <h3>🏦 Banreservas</h3>
+    <div class="number">9608844071</div>
+    <button onclick="copiar('9608844071')">Copiar cuenta</button>
+  </div>
+
+</div>
+
+<!-- SCRIPT COPIAR -->
 <script>
 function copiar(texto){
   navigator.clipboard.writeText(texto);
-  alert("Número copiado ✔️");
+
+  const aviso = document.createElement("div");
+  aviso.innerText = "Copiado ✔️";
+  aviso.style.position = "fixed";
+  aviso.style.bottom = "20px";
+  aviso.style.left = "50%";
+  aviso.style.transform = "translateX(-50%)";
+  aviso.style.background = "#28a745";
+  aviso.style.color = "#fff";
+  aviso.style.padding = "10px 18px";
+  aviso.style.borderRadius = "20px";
+  aviso.style.fontSize = "14px";
+  aviso.style.boxShadow = "0 4px 10px rgba(0,0,0,.2)";
+  document.body.appendChild(aviso);
+
+  setTimeout(() => {
+    aviso.remove();
+  }, 1500);
 }
 </script>
 
