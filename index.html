@@ -6,86 +6,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  body{
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: radial-gradient(circle at top, #111 0%, #000 60%);
-    padding:30px 15px;
-    color:#fff;
-  }
-  .card{
-    max-width:420px;
-    margin:auto;
-    background:#0f0f0f;
-    padding:22px;
-    border-radius:20px;
-    box-shadow:0 0 30px rgba(0,0,0,.9);
-    animation: fadeIn .6s ease;
-  }
-  @keyframes fadeIn{
-    from{opacity:0; transform:translateY(12px);}
-    to{opacity:1; transform:translateY(0);}
-  }
-  .logo{
-    text-align:center;
-    margin-bottom:14px;
-  }
-  .logo img{
-    width:96px;
-    height:96px;
-    border-radius:50%;
-    object-fit:cover;
-    border:2px solid #1e90ff;
-    box-shadow:0 0 15px rgba(30,144,255,.6);
-  }
-  h1{
-    text-align:center;
-    margin:8px 0 4px;
-    font-size:22px;
-    letter-spacing:.5px;
-  }
-  .info{
-    text-align:center;
-    font-size:14px;
-    color:#aaa;
-    margin-bottom:22px;
-  }
-  .copy-link{
-    color:#1e90ff;
-    font-weight:600;
-    cursor:pointer;
-  }
-  .bank{
-    background:linear-gradient(145deg,#121212,#0a0a0a);
-    border-radius:16px;
-    padding:14px;
-    margin-bottom:14px;
-    border:1px solid #1a1a1a;
-  }
-  .bank h3{
-    margin:0 0 6px;
-    font-size:16px;
-  }
-  .number{
-    font-size:18px;
-    font-weight:700;
-    margin-bottom:10px;
-    color:#eaeaea;
-  }
-  button{
-    width:100%;
-    padding:11px;
-    border:none;
-    border-radius:14px;
-    background:linear-gradient(135deg,#1e90ff,#005eff);
-    color:#fff;
-    font-size:15px;
-    cursor:pointer;
-    transition:.2s;
-    box-shadow:0 4px 15px rgba(0,94,255,.4);
-  }
-  button:active{
-    transform:scale(.97);
-  }
+body{
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: radial-gradient(circle at top, #111 0%, #000 65%);
+  padding:30px 15px;
+  color:#fff;
+}
+
+.card{
+  max-width:420px;
+  margin:auto;
+  background:#0b0b0b;
+  padding:24px;
+  border-radius:22px;
+  box-shadow:0 0 40px rgba(0,0,0,.9);
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:14px;
+}
+.logo img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:2px solid #1e90ff;
+  box-shadow:0 0 18px rgba(30,144,255,.6);
+}
+
+h1{
+  text-align:center;
+  font-size:22px;
+  margin:10px 0 6px;
+}
+
+.info{
+  text-align:center;
+  font-size:14px;
+  color:#ccc;
+  margin-bottom:24px;
+}
+
+.copy-text{
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.bank{
+  background:linear-gradient(145deg,#151515,#0f0f0f);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:16px;
+  border:1px solid #222;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+}
+
+.bank-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:6px;
+}
+
+.bank-title img{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:#fff;
+  padding:4px;
+}
+
+.bank-title span{
+  font-size:16px;
+  font-weight:600;
+}
+
+.number{
+  font-size:18px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:10px;
+}
+
+button{
+  width:100%;
+  padding:11px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#1e90ff,#005eff);
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 4px 15px rgba(0,94,255,.45);
+}
+button:active{transform:scale(.97);}
 </style>
 </head>
 
@@ -93,9 +108,8 @@
 
 <div class="card">
 
-  <!-- LOGO -->
   <div class="logo">
-    <img src="logo.png" alt="Logo">
+    <img src="logo.png">
   </div>
 
   <h1>DATOS PARA PAGOS</h1>
@@ -103,25 +117,34 @@
   <div class="info">
     <strong>Elvis Sánchez</strong><br>
     Cédula:
-    <span class="copy-link" onclick="copiar('40230729457')">
+    <span class="copy-text" onclick="copiar('40230729457')">
       40230729457 📋
     </span>
   </div>
 
   <div class="bank">
-    <h3>🏦 Banco Popular</h3>
+    <div class="bank-title">
+      <img src="popular.png">
+      <span>Banco Popular</span>
+    </div>
     <div class="number">813665445</div>
     <button onclick="copiar('813665445')">Copiar cuenta</button>
   </div>
 
   <div class="bank">
-    <h3>🏦 Qik Digital</h3>
+    <div class="bank-title">
+      <img src="qik.png">
+      <span>Qik Digital</span>
+    </div>
     <div class="number">1000536958</div>
     <button onclick="copiar('1000536958')">Copiar cuenta</button>
   </div>
 
   <div class="bank">
-    <h3>🏦 Banreservas</h3>
+    <div class="bank-title">
+      <img src="banreservas.png">
+      <span>Banreservas</span>
+    </div>
     <div class="number">9608844071</div>
     <button onclick="copiar('9608844071')">Copiar cuenta</button>
   </div>
@@ -138,7 +161,6 @@ function copiar(texto){
   aviso.style.left="50%";
   aviso.style.transform="translateX(-50%)";
   aviso.style.background="#1e90ff";
-  aviso.style.color="#fff";
   aviso.style.padding="10px 18px";
   aviso.style.borderRadius="20px";
   aviso.style.fontSize="14px";
