@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Datos para Pagos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    padding:20px;
+  }
+  .card{
+    max-width:420px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,.1);
+  }
+  h1{
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .info{
+    text-align:center;
+    color:#555;
+    margin-bottom:20px;
+  }
+  .bank{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:12px;
+  }
+  .bank h3{
+    margin:0 0 5px;
+  }
+  .number{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:8px;
+  }
+  button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#007bff;
+    color:#fff;
+    font-size:15px;
+    cursor:pointer;
+  }
+  button:active{
+    background:#0056b3;
+  }
+</style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Datos para Pagos</h1>
+    <div class="info">
+      <strong>Elvis Sánchez</strong><br>
+      Cédula: 40230729457
+    </div>
+
+    <div class="bank">
+      <h3>🏦 Banco Popular</h3>
+      <div class="number">813665445</div>
+      <button onclick="copiar('813665445')">Copiar cuenta</button>
+    </div>
+
+    <div class="bank">
+      <h3>🏦 Qik Digital</h3>
+      <div class="number">1000536958</div>
+      <button onclick="copiar('1000536958')">Copiar cuenta</button>
+    </div>
+
+    <div class="bank">
+      <h3>🏦 Banreservas</h3>
+      <div class="number">9608844071</div>
+      <button onclick="copiar('9608844071')">Copiar cuenta</button>
+    </div>
+  </div>
+
+<script>
+function copiar(texto){
+  navigator.clipboard.writeText(texto);
+  alert("Número copiado ✔️");
+}
+</script>
+
+</body>
+</html>
