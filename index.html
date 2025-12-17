@@ -16,7 +16,6 @@ body{
 
 *{ -webkit-tap-highlight-color: transparent; }
 
-/* ================= ANIMACIONES ================= */
 @keyframes copyShake{
   0%{transform:translateX(0)}
   25%{transform:translateX(-7px)}
@@ -25,7 +24,6 @@ body{
   100%{transform:translateX(0)}
 }
 
-/* ================= CARD ================= */
 .card{
   max-width:420px;
   margin:auto;
@@ -35,7 +33,6 @@ body{
   box-shadow:0 0 40px rgba(0,0,0,.9);
 }
 
-/* ================= LOGO ================= */
 .logo{
   display:flex;
   justify-content:center;
@@ -56,7 +53,6 @@ body{
   transform:scale(1.3);
 }
 
-/* ================= INFO ================= */
 h1{
   text-align:center;
   font-size:22px;
@@ -68,12 +64,7 @@ h1{
   color:#ccc;
   margin-bottom:26px;
 }
-.copy-text{
-  color:#fff;
-  font-weight:600;
-}
 
-/* ================= BANK ================= */
 .bank{
   background:#0a0a0a;
   border-radius:18px;
@@ -84,15 +75,8 @@ h1{
   align-items:center;
   gap:16px;
 }
-.bank.copiado{
-  animation:copyShake .28s ease;
-}
-.bank.popular.copiado{ box-shadow:0 0 26px rgba(0,86,170,.9) }
-.bank.qik.copiado{ box-shadow:0 0 26px rgba(0,200,255,.9) }
-.bank.banreservas.copiado{ box-shadow:0 0 26px rgba(255,145,0,.9) }
-.bank.apap.copiado{ box-shadow:0 0 26px rgba(255,215,80,.9) }
+.bank.copiado{ animation:copyShake .28s ease; }
 
-/* ================= ICONOS ================= */
 .bank-icon{
   width:58px;
   height:58px;
@@ -106,12 +90,7 @@ h1{
   height:100%;
   object-fit:cover;
 }
-.bank.popular .bank-icon{ background:#0a3f7d }
-.bank.qik .bank-icon{ background:#fff }
-.bank.banreservas .bank-icon img{ transform:scale(1.5) }
-.bank.apap .bank-icon img{ transform:scale(1.3) }
 
-/* ================= BOTÓN ================= */
 .copy-btn{
   flex:1;
   padding:12px 14px;
@@ -125,7 +104,6 @@ h1{
 }
 .copy-btn:active{ transform:scale(.96); }
 
-/* ================= TOAST ================= */
 .toast{
   position:fixed;
   bottom:20px;
@@ -147,7 +125,6 @@ h1{
   transform:translate(-50%,0);
 }
 
-/* ================= FOOTER ================= */
 .footer-text{
   margin-top:22px;
   text-align:center;
@@ -179,7 +156,7 @@ h1{
   <div class="bank popular">
     <div class="bank-icon"><img src="popular.png"></div>
     <button class="copy-btn"
-      onclick="copiar('785242512',this.closest('.bank'),'popular://')">
+      onclick="copiar('785242512',this.closest('.bank'),'popular')">
       Copiar cuenta
     </button>
   </div>
@@ -188,7 +165,7 @@ h1{
   <div class="bank qik">
     <div class="bank-icon"><img src="qik.png"></div>
     <button class="copy-btn"
-      onclick="copiar('1008613083',this.closest('.bank'),'qik://')">
+      onclick="copiar('1008613083',this.closest('.bank'),'qik')">
       Copiar cuenta
     </button>
   </div>
@@ -197,7 +174,7 @@ h1{
   <div class="bank banreservas">
     <div class="bank-icon"><img src="banreservas.png"></div>
     <button class="copy-btn"
-      onclick="copiar('9604018382',this.closest('.bank'),'banreservas://')">
+      onclick="copiar('9604018382',this.closest('.bank'),'banreservas')">
       Copiar cuenta
     </button>
   </div>
@@ -206,12 +183,11 @@ h1{
   <div class="bank apap">
     <div class="bank-icon"><img src="apap.png"></div>
     <button class="copy-btn"
-      onclick="copiar('1033521752',this.closest('.bank'),'apap://')">
+      onclick="copiar('1033521752',this.closest('.bank'),'apap')">
       Copiar cuenta
     </button>
   </div>
 
-  <!-- FOOTER -->
   <div class="footer-text">
     🔒 Transfiere rápido y seguro con un solo toque
   </div>
@@ -219,7 +195,7 @@ h1{
 </div>
 
 <script>
-function copiar(texto, el, appUrl){
+function copiar(texto, el, banco){
   navigator.clipboard.writeText(texto);
 
   el.classList.remove("copiado");
@@ -227,17 +203,26 @@ function copiar(texto, el, appUrl){
   el.classList.add("copiado");
   setTimeout(()=>el.classList.remove("copiado"),300);
 
+  let mensaje = "✅ Cuenta copiada. ";
+
+  if(banco === "popular"){
+    mensaje += "Abriendo tu banco para realizar el pago…";
+    setTimeout(()=>window.location.href="popular://",500);
+  }
+  else if(banco === "qik"){
+    mensaje += "Abriendo tu banco para realizar el pago…";
+    setTimeout(()=>window.location.href="qik://",500);
+  }
+  else{
+    mensaje += "Abre tu banco para hacer el pago.";
+  }
+
   let toast = document.createElement("div");
   toast.className = "toast";
-  toast.innerText =
-    "✅ Cuenta copiada. Abriendo tu banco para realizar el pago…";
+  toast.innerText = mensaje;
   document.body.appendChild(toast);
 
   setTimeout(()=>toast.classList.add("show"),10);
-
-  setTimeout(()=>{
-    window.location.href = appUrl;
-  },500);
 
   setTimeout(()=>{
     toast.classList.remove("show");
