@@ -132,6 +132,28 @@ h1{
   cursor:pointer;
 }
 .copy-btn:active{ transform:scale(.96); }
+
+/* ================= TOAST ================= */
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translate(-50%,20px);
+  background:#111;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:16px;
+  font-size:14px;
+  text-align:center;
+  box-shadow:0 0 20px rgba(0,0,0,.8);
+  opacity:0;
+  transition:all .35s ease;
+  z-index:9999;
+}
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
 </style>
 </head>
 
@@ -225,10 +247,24 @@ h1{
 <script>
 function copiar(texto, el){
   navigator.clipboard.writeText(texto);
+
   el.classList.remove("copiado");
   void el.offsetWidth;
   el.classList.add("copiado");
   setTimeout(()=>el.classList.remove("copiado"),300);
+
+  let toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText =
+    "✅ Cuenta copiada. Ahora puedes tocar el logo de tu banco para pagar.";
+  document.body.appendChild(toast);
+
+  setTimeout(()=>toast.classList.add("show"),10);
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+    setTimeout(()=>toast.remove(),300);
+  },3000);
 }
 
 function abrirApp(appUrl, playStore, appStore){
@@ -236,15 +272,22 @@ function abrirApp(appUrl, playStore, appStore){
   const isAndroid = ua.includes("android");
   const isIOS = /iphone|ipad|ipod/.test(ua);
 
-  const start = Date.now();
+  let appAbierta = false;
+
+  const onVisibilityChange = () => {
+    if (document.hidden) appAbierta = true;
+  };
+
+  document.addEventListener("visibilitychange", onVisibilityChange);
   window.location = appUrl;
 
   setTimeout(()=>{
-    if(Date.now() - start < 1500){
-      if(isAndroid) window.location = playStore;
-      if(isIOS) window.location = appStore;
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+    if(!appAbierta){
+      if(isAndroid) window.location.href = playStore;
+      if(isIOS) window.location.href = appStore;
     }
-  },1000);
+  },1200);
 }
 </script>
 
