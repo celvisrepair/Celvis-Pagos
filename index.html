@@ -16,27 +16,25 @@ body{
 
 *{ -webkit-tap-highlight-color: transparent; }
 
-/* ================= ANIMACIONES ================= */
-@keyframes copyShake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-7px)}
-  50%{transform:translateX(7px)}
-  75%{transform:translateX(-4px)}
-  100%{transform:translateX(0)}
-}
-
 /* ================= CARD ================= */
 .card{
   max-width:420px;
-  margin:auto;
+  margin:0 auto;
   background:#0b0b0b;
   padding:24px;
   border-radius:22px;
   box-shadow:0 0 40px rgba(0,0,0,.9);
+  display:flex;
+  flex-direction:column;
+  align-items:center; /* CENTRADO REAL */
 }
 
 /* ================= HEADER ================= */
 .header{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center; /* CENTRA TODO */
   text-align:center;
   margin-bottom:22px;
 }
@@ -44,11 +42,11 @@ body{
 .logo-circle{
   width:110px;
   height:110px;
-  margin:0 auto 12px;
   border-radius:50%;
   border:2px solid #fff;
   box-shadow:0 0 18px rgba(255,255,255,.4);
   overflow:hidden;
+  margin-bottom:12px;
 }
 .logo-circle img{
   width:100%;
@@ -59,13 +57,12 @@ body{
 
 .header h1{
   font-size:22px;
-  margin:6px 0 4px;
+  margin:6px 0 6px;
 }
 
 .header .name{
   font-size:15px;
   font-weight:600;
-  color:#fff;
 }
 
 .header .cedula{
@@ -75,6 +72,7 @@ body{
 
 /* ================= BANK ================= */
 .bank{
+  width:100%;
   background:#0a0a0a;
   border-radius:18px;
   padding:14px 16px;
@@ -83,9 +81,6 @@ body{
   display:flex;
   align-items:center;
   gap:16px;
-}
-.bank.copiado{
-  animation:copyShake .28s ease;
 }
 
 .bank-icon{
@@ -120,22 +115,18 @@ body{
   position:fixed;
   bottom:20px;
   left:50%;
-  transform:translate(-50%,20px);
+  transform:translateX(-50%);
   background:#111;
   color:#fff;
   padding:12px 18px;
   border-radius:16px;
   font-size:14px;
-  text-align:center;
   box-shadow:0 0 20px rgba(0,0,0,.8);
   opacity:0;
-  transition:all .35s ease;
+  transition:opacity .3s ease;
   z-index:9999;
 }
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
+.toast.show{ opacity:1; }
 
 /* ================= FOOTER ================= */
 .footer-text{
@@ -152,7 +143,7 @@ body{
 
 <div class="card">
 
-  <!-- HEADER CENTRADO -->
+  <!-- HEADER -->
   <div class="header">
     <div class="logo-circle">
       <img src="logo.JPG">
@@ -166,7 +157,7 @@ body{
   <div class="bank">
     <div class="bank-icon"><img src="popular.png"></div>
     <button class="copy-btn"
-      onclick="copiar('785242512',this.closest('.bank'),'popular')">
+      onclick="copiar('785242512','popular')">
       Copiar cuenta
     </button>
   </div>
@@ -175,7 +166,7 @@ body{
   <div class="bank">
     <div class="bank-icon"><img src="qik.png"></div>
     <button class="copy-btn"
-      onclick="copiar('1008613083',this.closest('.bank'),'qik')">
+      onclick="copiar('1008613083','qik')">
       Copiar cuenta
     </button>
   </div>
@@ -184,7 +175,7 @@ body{
   <div class="bank">
     <div class="bank-icon"><img src="banreservas.png"></div>
     <button class="copy-btn"
-      onclick="copiar('9604018382',this.closest('.bank'),'banreservas')">
+      onclick="copiar('9604018382','banreservas')">
       Copiar cuenta
     </button>
   </div>
@@ -193,7 +184,7 @@ body{
   <div class="bank">
     <div class="bank-icon"><img src="apap.png"></div>
     <button class="copy-btn"
-      onclick="copiar('1033521752',this.closest('.bank'),'apap')">
+      onclick="copiar('1033521752','apap')">
       Copiar cuenta
     </button>
   </div>
@@ -205,13 +196,8 @@ body{
 </div>
 
 <script>
-function copiar(texto, el, banco){
+function copiar(texto, banco){
   navigator.clipboard.writeText(texto);
-
-  el.classList.remove("copiado");
-  void el.offsetWidth;
-  el.classList.add("copiado");
-  setTimeout(()=>el.classList.remove("copiado"),300);
 
   let mensaje = "✅ Cuenta copiada. ";
 
@@ -233,7 +219,6 @@ function copiar(texto, el, banco){
   document.body.appendChild(toast);
 
   setTimeout(()=>toast.classList.add("show"),10);
-
   setTimeout(()=>{
     toast.classList.remove("show");
     setTimeout(()=>toast.remove(),300);
