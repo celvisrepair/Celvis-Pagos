@@ -16,6 +16,7 @@ body{
 
 *{ -webkit-tap-highlight-color: transparent; }
 
+/* ================= ANIMACIONES ================= */
 @keyframes copyShake{
   0%{transform:translateX(0)}
   25%{transform:translateX(-7px)}
@@ -24,6 +25,7 @@ body{
   100%{transform:translateX(0)}
 }
 
+/* ================= CARD ================= */
 .card{
   max-width:420px;
   margin:auto;
@@ -33,14 +35,16 @@ body{
   box-shadow:0 0 40px rgba(0,0,0,.9);
 }
 
-.logo{
-  display:flex;
-  justify-content:center;
-  margin-bottom:18px;
+/* ================= HEADER ================= */
+.header{
+  text-align:center;
+  margin-bottom:22px;
 }
+
 .logo-circle{
   width:110px;
   height:110px;
+  margin:0 auto 12px;
   border-radius:50%;
   border:2px solid #fff;
   box-shadow:0 0 18px rgba(255,255,255,.4);
@@ -53,18 +57,23 @@ body{
   transform:scale(1.3);
 }
 
-h1{
-  text-align:center;
+.header h1{
   font-size:22px;
-  margin:10px 0 6px;
-}
-.info{
-  text-align:center;
-  font-size:14px;
-  color:#ccc;
-  margin-bottom:26px;
+  margin:6px 0 4px;
 }
 
+.header .name{
+  font-size:15px;
+  font-weight:600;
+  color:#fff;
+}
+
+.header .cedula{
+  font-size:14px;
+  color:#ccc;
+}
+
+/* ================= BANK ================= */
 .bank{
   background:#0a0a0a;
   border-radius:18px;
@@ -75,7 +84,9 @@ h1{
   align-items:center;
   gap:16px;
 }
-.bank.copiado{ animation:copyShake .28s ease; }
+.bank.copiado{
+  animation:copyShake .28s ease;
+}
 
 .bank-icon{
   width:58px;
@@ -104,6 +115,7 @@ h1{
 }
 .copy-btn:active{ transform:scale(.96); }
 
+/* ================= TOAST ================= */
 .toast{
   position:fixed;
   bottom:20px;
@@ -125,6 +137,7 @@ h1{
   transform:translate(-50%,0);
 }
 
+/* ================= FOOTER ================= */
 .footer-text{
   margin-top:22px;
   text-align:center;
@@ -139,21 +152,18 @@ h1{
 
 <div class="card">
 
-  <div class="logo">
+  <!-- HEADER CENTRADO -->
+  <div class="header">
     <div class="logo-circle">
       <img src="logo.JPG">
     </div>
-  </div>
-
-  <h1>DATOS DE PAGOS</h1>
-
-  <div class="info">
-    <strong>Adonys Ureña Sánchez</strong><br>
-    Cédula: 40223126968
+    <h1>DATOS DE PAGOS</h1>
+    <div class="name">Adonys Ureña Sánchez</div>
+    <div class="cedula">Cédula: 40223126968</div>
   </div>
 
   <!-- POPULAR -->
-  <div class="bank popular">
+  <div class="bank">
     <div class="bank-icon"><img src="popular.png"></div>
     <button class="copy-btn"
       onclick="copiar('785242512',this.closest('.bank'),'popular')">
@@ -162,7 +172,7 @@ h1{
   </div>
 
   <!-- QIK -->
-  <div class="bank qik">
+  <div class="bank">
     <div class="bank-icon"><img src="qik.png"></div>
     <button class="copy-btn"
       onclick="copiar('1008613083',this.closest('.bank'),'qik')">
@@ -171,7 +181,7 @@ h1{
   </div>
 
   <!-- BANRESERVAS -->
-  <div class="bank banreservas">
+  <div class="bank">
     <div class="bank-icon"><img src="banreservas.png"></div>
     <button class="copy-btn"
       onclick="copiar('9604018382',this.closest('.bank'),'banreservas')">
@@ -180,7 +190,7 @@ h1{
   </div>
 
   <!-- APAP -->
-  <div class="bank apap">
+  <div class="bank">
     <div class="bank-icon"><img src="apap.png"></div>
     <button class="copy-btn"
       onclick="copiar('1033521752',this.closest('.bank'),'apap')">
