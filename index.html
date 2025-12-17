@@ -48,9 +48,6 @@ body{
   border:2px solid #fff;
   box-shadow:0 0 18px rgba(255,255,255,.4);
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 .logo-circle img{
   width:100%;
@@ -74,7 +71,6 @@ h1{
 .copy-text{
   color:#fff;
   font-weight:600;
-  cursor:pointer;
 }
 
 /* ================= BANK ================= */
@@ -102,12 +98,8 @@ h1{
   height:58px;
   border-radius:50%;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
   flex-shrink:0;
-  cursor:pointer;
 }
 .bank-icon img{
   width:100%;
@@ -171,73 +163,41 @@ h1{
 
   <div class="info">
     <strong>Adonys Ureña Sánchez</strong><br>
-    Cédula:
-    <span class="copy-text"
-          onclick="copiar('40223126968',this.closest('.card'))">
-      40223126968
-    </span>
+    Cédula: 40223126968
   </div>
 
   <!-- POPULAR -->
   <div class="bank popular">
-    <div class="bank-icon"
-         onclick="abrirApp(
-           'popular://',
-           'https://play.google.com/store/search?q=banco+popular+rd',
-           'https://apps.apple.com/do/search?term=banco+popular'
-         )">
-      <img src="popular.png">
-    </div>
+    <div class="bank-icon"><img src="popular.png"></div>
     <button class="copy-btn"
-            onclick="copiar('785242512',this.closest('.bank'))">
+      onclick="copiar('785242512',this.closest('.bank'),'popular://')">
       Copiar cuenta
     </button>
   </div>
 
   <!-- QIK -->
   <div class="bank qik">
-    <div class="bank-icon"
-         onclick="abrirApp(
-           'qik://',
-           'https://play.google.com/store/search?q=qik+banco',
-           'https://apps.apple.com/do/search?term=qik'
-         )">
-      <img src="qik.png">
-    </div>
+    <div class="bank-icon"><img src="qik.png"></div>
     <button class="copy-btn"
-            onclick="copiar('1008613083',this.closest('.bank'))">
+      onclick="copiar('1008613083',this.closest('.bank'),'qik://')">
       Copiar cuenta
     </button>
   </div>
 
   <!-- BANRESERVAS -->
   <div class="bank banreservas">
-    <div class="bank-icon"
-         onclick="abrirApp(
-           'banreservas://',
-           'https://play.google.com/store/search?q=banreservas',
-           'https://apps.apple.com/do/search?term=banreservas'
-         )">
-      <img src="banreservas.png">
-    </div>
+    <div class="bank-icon"><img src="banreservas.png"></div>
     <button class="copy-btn"
-            onclick="copiar('9604018382',this.closest('.bank'))">
+      onclick="copiar('9604018382',this.closest('.bank'),'banreservas://')">
       Copiar cuenta
     </button>
   </div>
 
   <!-- APAP -->
   <div class="bank apap">
-    <div class="bank-icon"
-         onclick="abrirApp(
-           'apap://',
-           'https://play.google.com/store/search?q=apap+banco',
-           'https://apps.apple.com/do/search?term=apap'
-         )">
-      <img src="apap.png">
-    </div>
+    <div class="bank-icon"><img src="apap.png"></div>
     <button class="copy-btn"
-            onclick="copiar('1033521752',this.closest('.bank'))">
+      onclick="copiar('1033521752',this.closest('.bank'),'apap://')">
       Copiar cuenta
     </button>
   </div>
@@ -245,7 +205,7 @@ h1{
 </div>
 
 <script>
-function copiar(texto, el){
+function copiar(texto, el, appUrl){
   navigator.clipboard.writeText(texto);
 
   el.classList.remove("copiado");
@@ -256,38 +216,19 @@ function copiar(texto, el){
   let toast = document.createElement("div");
   toast.className = "toast";
   toast.innerText =
-    "✅ Cuenta copiada. Ahora puedes tocar el logo de tu banco para pagar.";
+    "✅ Cuenta copiada. Abriendo tu banco para realizar el pago…";
   document.body.appendChild(toast);
 
   setTimeout(()=>toast.classList.add("show"),10);
 
   setTimeout(()=>{
+    window.location.href = appUrl;
+  },500);
+
+  setTimeout(()=>{
     toast.classList.remove("show");
     setTimeout(()=>toast.remove(),300);
   },3000);
-}
-
-function abrirApp(appUrl, playStore, appStore){
-  const ua = navigator.userAgent.toLowerCase();
-  const isAndroid = ua.includes("android");
-  const isIOS = /iphone|ipad|ipod/.test(ua);
-
-  let appAbierta = false;
-
-  const onVisibilityChange = () => {
-    if (document.hidden) appAbierta = true;
-  };
-
-  document.addEventListener("visibilitychange", onVisibilityChange);
-  window.location = appUrl;
-
-  setTimeout(()=>{
-    document.removeEventListener("visibilitychange", onVisibilityChange);
-    if(!appAbierta){
-      if(isAndroid) window.location.href = playStore;
-      if(isIOS) window.location.href = appStore;
-    }
-  },1200);
 }
 </script>
 
