@@ -2,17 +2,30 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pagos | Elvis Sánchez</title>
+<title>Pagos | Adonys Ureña Sánchez</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
-  font-family:'Segoe UI',Arial,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",
+               "Segoe UI",Roboto,Arial,sans-serif;
   background:radial-gradient(circle at top,#111 0%,#000 65%);
   padding:30px 15px;
   color:#fff;
 }
 
+*{ -webkit-tap-highlight-color: transparent; }
+
+/* ================= ANIMACIONES ================= */
+@keyframes copyShake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-7px)}
+  50%{transform:translateX(7px)}
+  75%{transform:translateX(-4px)}
+  100%{transform:translateX(0)}
+}
+
+/* ================= CARD ================= */
 .card{
   max-width:420px;
   margin:auto;
@@ -22,89 +35,103 @@ body{
   box-shadow:0 0 40px rgba(0,0,0,.9);
 }
 
+/* ================= LOGO ================= */
 .logo{
-  text-align:center;
-  margin-bottom:14px;
+  display:flex;
+  justify-content:center;
+  margin-bottom:18px;
 }
-.logo img{
-  width:90px;
-  height:90px;
+.logo-circle{
+  width:110px;
+  height:110px;
   border-radius:50%;
-  border:2px solid #1e90ff;
-  box-shadow:0 0 18px rgba(30,144,255,.6);
+  border:2px solid #fff;
+  box-shadow:0 0 18px rgba(255,255,255,.4);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.logo-circle img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.3);
 }
 
+/* ================= INFO ================= */
 h1{
   text-align:center;
   font-size:22px;
   margin:10px 0 6px;
 }
-
 .info{
   text-align:center;
   font-size:14px;
   color:#ccc;
-  margin-bottom:24px;
+  margin-bottom:26px;
+}
+.copy-text{
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
 }
 
+/* ================= BANK ================= */
 .bank{
-  background:linear-gradient(145deg,#161616,#0f0f0f);
+  background:#0a0a0a;
   border-radius:18px;
-  padding:16px;
-  margin-bottom:16px;
+  padding:14px 16px;
+  margin-bottom:14px;
   border:1px solid #242424;
-}
-
-.bank.copiado{
-  animation:glow 1.2s ease;
-}
-
-@keyframes glow{
-  0%{box-shadow:0 0 0 rgba(30,144,255,0);}
-  40%{box-shadow:0 0 24px rgba(30,144,255,.9);}
-  100%{box-shadow:0 0 0 rgba(30,144,255,0);}
-}
-
-.bank-title{
   display:flex;
   align-items:center;
-  gap:10px;
-  margin-bottom:6px;
+  gap:16px;
 }
+.bank.copiado{
+  animation:copyShake .28s ease;
+}
+.bank.popular.copiado{ box-shadow:0 0 26px rgba(0,86,170,.9) }
+.bank.qik.copiado{ box-shadow:0 0 26px rgba(0,200,255,.9) }
+.bank.banreservas.copiado{ box-shadow:0 0 26px rgba(255,145,0,.9) }
+.bank.apap.copiado{ box-shadow:0 0 26px rgba(255,215,80,.9) }
 
-.bank-title img{
-  width:32px;
-  height:32px;
+/* ================= ICONOS ================= */
+.bank-icon{
+  width:58px;
+  height:58px;
   border-radius:50%;
-  background:#fff;
-  padding:4px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+  flex-shrink:0;
   cursor:pointer;
 }
-
-.bank-title span{
-  font-size:16px;
-  font-weight:600;
-}
-
-.number{
-  font-size:18px;
-  font-weight:700;
-  color:#fff;
-  margin-bottom:10px;
-}
-
-button{
+.bank-icon img{
   width:100%;
-  padding:11px;
+  height:100%;
+  object-fit:cover;
+}
+.bank.popular .bank-icon{ background:#0a3f7d }
+.bank.qik .bank-icon{ background:#fff }
+.bank.banreservas .bank-icon img{ transform:scale(1.5) }
+.bank.apap .bank-icon img{ transform:scale(1.3) }
+
+/* ================= BOTÓN ================= */
+.copy-btn{
+  flex:1;
+  padding:12px 14px;
   border:none;
   border-radius:14px;
-  background:linear-gradient(135deg,#1e90ff,#005eff);
-  color:#fff;
+  background:#fff;
+  color:#000;
   font-size:15px;
+  font-weight:700;
   cursor:pointer;
-  box-shadow:0 4px 15px rgba(0,94,255,.45);
 }
-button:active{transform:scale(.94);}
+.copy-btn:active{ transform:scale(.96); }
 </style>
 </head>
 
@@ -113,96 +140,95 @@ button:active{transform:scale(.94);}
 <div class="card">
 
   <div class="logo">
-    <img src="logo.png">
+    <div class="logo-circle">
+      <img src="logo.JPG">
+    </div>
   </div>
 
-  <h1>DATOS PARA PAGOS</h1>
+  <h1>DATOS DE PAGOS</h1>
 
   <div class="info">
-    <strong>Elvis Sánchez</strong><br>
+    <strong>Adonys Ureña Sánchez</strong><br>
     Cédula:
-    <span onclick="copiar('40230729457', this.closest('.card'))" style="cursor:pointer;">
-      40230729457 📋
+    <span class="copy-text"
+          onclick="copiar('40223126968',this.closest('.card'))">
+      40223126968
     </span>
   </div>
 
-  <!-- BANCO POPULAR -->
-  <div class="bank">
-    <div class="bank-title">
-      <img src="popular.png"
-           onclick="abrirApp(
-             'popular://',
-             'https://play.google.com/store/search?q=banco%20popular%20rd',
-             'https://apps.apple.com/do/search?term=banco+popular'
-           )">
-      <span>Banco Popular</span>
+  <!-- POPULAR -->
+  <div class="bank popular">
+    <div class="bank-icon"
+         onclick="abrirApp(
+           'popular://',
+           'https://play.google.com/store/search?q=banco+popular+rd',
+           'https://apps.apple.com/do/search?term=banco+popular'
+         )">
+      <img src="popular.png">
     </div>
-    <div class="number">813665445</div>
-    <button onclick="copiar('813665445', this.closest('.bank'))">Copiar cuenta</button>
+    <button class="copy-btn"
+            onclick="copiar('785242512',this.closest('.bank'))">
+      Copiar cuenta
+    </button>
   </div>
 
   <!-- QIK -->
-  <div class="bank">
-    <div class="bank-title">
-      <img src="qik.png"
-           onclick="abrirApp(
-             'qik://',
-             'https://play.google.com/store/search?q=qik%20banco',
-             'https://apps.apple.com/do/search?term=qik'
-           )">
-      <span>Qik Digital</span>
+  <div class="bank qik">
+    <div class="bank-icon"
+         onclick="abrirApp(
+           'qik://',
+           'https://play.google.com/store/search?q=qik+banco',
+           'https://apps.apple.com/do/search?term=qik'
+         )">
+      <img src="qik.png">
     </div>
-    <div class="number">1000536958</div>
-    <button onclick="copiar('1000536958', this.closest('.bank'))">Copiar cuenta</button>
+    <button class="copy-btn"
+            onclick="copiar('1008613083',this.closest('.bank'))">
+      Copiar cuenta
+    </button>
   </div>
 
   <!-- BANRESERVAS -->
-  <div class="bank">
-    <div class="bank-title">
-      <img src="banreservas.png"
-           onclick="abrirApp(
-             'banreservas://',
-             'https://play.google.com/store/search?q=banreservas',
-             'https://apps.apple.com/do/search?term=banreservas'
-           )">
-      <span>Banreservas</span>
+  <div class="bank banreservas">
+    <div class="bank-icon"
+         onclick="abrirApp(
+           'banreservas://',
+           'https://play.google.com/store/search?q=banreservas',
+           'https://apps.apple.com/do/search?term=banreservas'
+         )">
+      <img src="banreservas.png">
     </div>
-    <div class="number">9608844071</div>
-    <button onclick="copiar('9608844071', this.closest('.bank'))">Copiar cuenta</button>
+    <button class="copy-btn"
+            onclick="copiar('9604018382',this.closest('.bank'))">
+      Copiar cuenta
+    </button>
+  </div>
+
+  <!-- APAP -->
+  <div class="bank apap">
+    <div class="bank-icon"
+         onclick="abrirApp(
+           'apap://',
+           'https://play.google.com/store/search?q=apap+banco',
+           'https://apps.apple.com/do/search?term=apap'
+         )">
+      <img src="apap.png">
+    </div>
+    <button class="copy-btn"
+            onclick="copiar('1033521752',this.closest('.bank'))">
+      Copiar cuenta
+    </button>
   </div>
 
 </div>
 
 <script>
-function copiar(texto, elemento){
+function copiar(texto, el){
   navigator.clipboard.writeText(texto);
-  elemento.classList.add("copiado");
-  setTimeout(()=>elemento.classList.remove("copiado"),1200);
-
-  const aviso=document.createElement("div");
-  aviso.innerText="Copiado ✔️";
-  aviso.style.position="fixed";
-  aviso.style.bottom="14px";
-  aviso.style.left="50%";
-  aviso.style.transform="translate(-50%,20px)";
-  aviso.style.background="linear-gradient(135deg,#1e90ff,#005eff)";
-  aviso.style.color="#fff";
-  aviso.style.padding="10px 18px";
-  aviso.style.borderRadius="20px";
-  aviso.style.opacity="0";
-  aviso.style.transition="all .3s ease";
-  document.body.appendChild(aviso);
-
-  setTimeout(()=>{
-    aviso.style.opacity="1";
-    aviso.style.transform="translate(-50%,0)";
-  },10);
-
-  setTimeout(()=>{
-    aviso.style.opacity="0";
-    aviso.style.transform="translate(-50%,-10px)";
-    setTimeout(()=>aviso.remove(),300);
-  },1300);
+  el.classList.remove("copiado");
+  void el.offsetWidth;
+  el.classList.add("copiado");
+  setTimeout(()=>el.classList.remove("copiado"),300);
 }
 
 function abrirApp(appUrl, playStore, appStore){
@@ -210,11 +236,11 @@ function abrirApp(appUrl, playStore, appStore){
   const isAndroid = ua.includes("android");
   const isIOS = /iphone|ipad|ipod/.test(ua);
 
-  const now = Date.now();
+  const start = Date.now();
   window.location = appUrl;
 
   setTimeout(()=>{
-    if(Date.now() - now < 1500){
+    if(Date.now() - start < 1500){
       if(isAndroid) window.location = playStore;
       if(isIOS) window.location = appStore;
     }
