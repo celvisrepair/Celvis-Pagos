@@ -26,7 +26,7 @@ body{
   box-shadow:0 0 40px rgba(0,0,0,.9);
   display:flex;
   flex-direction:column;
-  align-items:center; /* CENTRADO REAL */
+  align-items:center;
 }
 
 /* ================= HEADER ================= */
@@ -34,7 +34,7 @@ body{
   width:100%;
   display:flex;
   flex-direction:column;
-  align-items:center; /* CENTRA TODO */
+  align-items:center;
   text-align:center;
   margin-bottom:22px;
 }
@@ -67,6 +67,11 @@ body{
 
 .header .cedula{
   font-size:14px;
+  color:#aaa;              /* GRIS */
+  cursor:pointer;
+}
+.header .cedula span{
+  font-weight:600;
   color:#ccc;
 }
 
@@ -150,14 +155,18 @@ body{
     </div>
     <h1>DATOS DE PAGOS</h1>
     <div class="name">Adonys Ureña Sánchez</div>
-    <div class="cedula">Cédula: 40223126968</div>
+
+    <!-- CÉDULA COPIABLE -->
+    <div class="cedula" onclick="copiarCedula('40223126968')">
+      Cédula: <span>40223126968</span> 📋
+    </div>
   </div>
 
   <!-- POPULAR -->
   <div class="bank">
     <div class="bank-icon"><img src="popular.png"></div>
     <button class="copy-btn"
-      onclick="copiar('785242512','popular')">
+      onclick="copiarCuenta('785242512','popular')">
       Copiar cuenta
     </button>
   </div>
@@ -166,7 +175,7 @@ body{
   <div class="bank">
     <div class="bank-icon"><img src="qik.png"></div>
     <button class="copy-btn"
-      onclick="copiar('1008613083','qik')">
+      onclick="copiarCuenta('1008613083','qik')">
       Copiar cuenta
     </button>
   </div>
@@ -175,7 +184,7 @@ body{
   <div class="bank">
     <div class="bank-icon"><img src="banreservas.png"></div>
     <button class="copy-btn"
-      onclick="copiar('9604018382','banreservas')">
+      onclick="copiarCuenta('9604018382','banreservas')">
       Copiar cuenta
     </button>
   </div>
@@ -184,7 +193,7 @@ body{
   <div class="bank">
     <div class="bank-icon"><img src="apap.png"></div>
     <button class="copy-btn"
-      onclick="copiar('1033521752','apap')">
+      onclick="copiarCuenta('1033521752','apap')">
       Copiar cuenta
     </button>
   </div>
@@ -196,33 +205,38 @@ body{
 </div>
 
 <script>
-function copiar(texto, banco){
-  navigator.clipboard.writeText(texto);
-
-  let mensaje = "✅ Cuenta copiada. ";
-
-  if(banco === "popular"){
-    mensaje += "Abriendo tu banco para realizar el pago…";
-    setTimeout(()=>window.location.href="popular://",500);
-  }
-  else if(banco === "qik"){
-    mensaje += "Abriendo tu banco para realizar el pago…";
-    setTimeout(()=>window.location.href="qik://",500);
-  }
-  else{
-    mensaje += "Abre tu banco para hacer el pago.";
-  }
-
-  let toast = document.createElement("div");
-  toast.className = "toast";
-  toast.innerText = mensaje;
+function mostrarToast(texto){
+  const toast=document.createElement("div");
+  toast.className="toast";
+  toast.innerText=texto;
   document.body.appendChild(toast);
-
   setTimeout(()=>toast.classList.add("show"),10);
   setTimeout(()=>{
     toast.classList.remove("show");
     setTimeout(()=>toast.remove(),300);
-  },3000);
+  },2500);
+}
+
+function copiarCedula(cedula){
+  navigator.clipboard.writeText(cedula);
+  mostrarToast("🆔 Cédula copiada");
+}
+
+function copiarCuenta(cuenta,banco){
+  navigator.clipboard.writeText(cuenta);
+
+  let mensaje="✅ Cuenta copiada. ";
+  if(banco==="popular"){
+    mensaje+="Abriendo tu banco para realizar el pago…";
+    setTimeout(()=>window.location.href="popular://",500);
+  }else if(banco==="qik"){
+    mensaje+="Abriendo tu banco para realizar el pago…";
+    setTimeout(()=>window.location.href="qik://",500);
+  }else{
+    mensaje+="Abre tu banco para hacer el pago.";
+  }
+
+  mostrarToast(mensaje);
 }
 </script>
 
