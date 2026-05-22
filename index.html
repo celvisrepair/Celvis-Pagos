@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Datos de Pagos</title>
+<title>Pagos | Grupo Bydemes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -12,6 +12,7 @@ body{
   padding:30px 15px;
   color:#fff;
 }
+
 *{ -webkit-tap-highlight-color: transparent; }
 
 @keyframes copyShake{
@@ -36,6 +37,7 @@ body{
   justify-content:center;
   margin-bottom:18px;
 }
+
 .logo-circle{
   width:110px;
   height:110px;
@@ -47,11 +49,12 @@ body{
   align-items:center;
   justify-content:center;
 }
+
 .logo-circle img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transform:scale(1.3);
+  transform:scale(1.2);
 }
 
 h1{
@@ -59,17 +62,18 @@ h1{
   font-size:22px;
   margin:10px 0 6px;
 }
+
 .info{
   text-align:center;
   font-size:14px;
   color:#ccc;
   margin-bottom:26px;
 }
+
 .copy-text{
   color:#aaa !important;
   font-weight:600;
   text-decoration:none !important;
-  border-bottom:none !important;
   cursor:pointer;
 }
 
@@ -83,12 +87,14 @@ h1{
   align-items:center;
   gap:16px;
 }
-.bank.copiado{ animation:copyShake .28s ease; }
 
-.bank.popular.copiado{ box-shadow:0 0 26px rgba(0,86,170,.9); }
-.bank.qik.copiado{ box-shadow:0 0 26px rgba(0,200,255,.9); }
-.bank.banreservas.copiado{ box-shadow:0 0 26px rgba(255,145,0,.9); }
-.bank.apap.copiado{ box-shadow:0 0 26px rgba(255,215,80,.9); }
+.bank.copiado{
+  animation:copyShake .28s ease;
+}
+
+.bank.santacruz.copiado{
+  box-shadow:0 0 26px rgba(0,130,85,.9);
+}
 
 .bank-icon{
   width:58px;
@@ -100,15 +106,14 @@ h1{
   justify-content:center;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
   flex-shrink:0;
+  background:#fff;
 }
+
 .bank-icon img{
   width:100%;
   height:100%;
   object-fit:cover;
-}
-
-.bank.banreservas .bank-icon img{
-  transform:scale(1.4);
+  transform:scale(1.15);
 }
 
 .copy-btn{
@@ -122,7 +127,10 @@ h1{
   font-weight:700;
   cursor:pointer;
 }
-.copy-btn:active{ transform:scale(.96); }
+
+.copy-btn:active{
+  transform:scale(.96);
+}
 
 .toast{
   position:fixed;
@@ -139,6 +147,7 @@ h1{
   transition:opacity .3s ease;
   z-index:9999;
 }
+
 .toast.show{ opacity:1; }
 
 .footer-text{
@@ -164,31 +173,18 @@ h1{
   <h1>DATOS DE PAGOS</h1>
 
   <div class="info">
-    <strong>NOMBRE AQUÍ</strong><br>
-    Cédula:
-    <span class="copy-text" onclick="copiar('CEDULA_AQUI',this.closest('.card'))">
-      CEDULA_AQUI
+    <strong>GRUPO BYDEMES LAMINADOS Y SERV RD SRL</strong><br>
+    RNC:
+    <span class="copy-text" onclick="copiar('133162326',this.closest('.card'),'rnc')">
+      133-16232-6
     </span>
   </div>
 
-  <div class="bank popular">
-    <div class="bank-icon"><img src="popular.png"></div>
-    <button class="copy-btn" onclick="copiar('CUENTA_POPULAR','popular','popular')">
-      Copiar cuenta
-    </button>
-  </div>
-
-  <div class="bank qik">
-    <div class="bank-icon"><img src="qik.png"></div>
-    <button class="copy-btn" onclick="copiar('CUENTA_QIK','qik','qik')">
-      Copiar cuenta
-    </button>
-  </div>
-
-  <div class="bank banreservas">
-    <div class="bank-icon"><img src="banreservas.png"></div>
-    <button class="copy-btn" onclick="copiar('CUENTA_BANRESERVAS','banreservas','banreservas')">
-      Copiar cuenta
+  <div class="bank santacruz">
+    <div class="bank-icon"><img src="santacruz.png"></div>
+    <button class="copy-btn"
+      onclick="copiar('11432010015511',this.closest('.bank'),'santacruz')">
+      Copiar cuenta corriente
     </button>
   </div>
 
@@ -199,33 +195,23 @@ h1{
 </div>
 
 <script>
-function copiar(texto,banco){
+function copiar(texto, el, tipo){
   navigator.clipboard.writeText(texto);
 
-  let el = document.querySelector("." + banco);
-  if(el){
-    el.classList.remove("copiado");
-    void el.offsetWidth;
-    el.classList.add("copiado");
-    setTimeout(()=>el.classList.remove("copiado"),300);
+  el.classList.remove("copiado");
+  void el.offsetWidth;
+  el.classList.add("copiado");
+  setTimeout(()=>el.classList.remove("copiado"),300);
+
+  let mensaje = "¡Copiado! ";
+
+  if(tipo === "rnc"){
+    mensaje += "RNC copiado correctamente.";
+  }else{
+    mensaje += "Cuenta copiada. Abre tu banco para realizar el pago.";
   }
 
-  let mensaje = "Cuenta copiada. ";
-
-  if(banco === "popular"){
-    mensaje += "Abriendo tu banco para realizar el pago.";
-    mostrarToast(mensaje);
-    setTimeout(()=>window.location.href="popular://",500);
-  }
-  else if(banco === "qik"){
-    mensaje += "Abriendo tu banco para realizar el pago.";
-    mostrarToast(mensaje);
-    setTimeout(()=>window.location.href="qik://",500);
-  }
-  else{
-    mensaje += "Abre tu banco para realizar el pago.";
-    mostrarToast(mensaje);
-  }
+  mostrarToast(mensaje);
 }
 
 function mostrarToast(texto){
