@@ -2,195 +2,134 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Laminados RD</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laminados RD</title>
 
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Arial,sans-serif;
-  background:radial-gradient(circle at top,#123f78 0%,#06101f 38%,#020712 100%);
-  padding:28px 14px;
-  color:#fff;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
-@keyframes copyShake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-7px)}
-  50%{transform:translateX(7px)}
-  75%{transform:translateX(-4px)}
-  100%{transform:translateX(0)}
+body{
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial;
+background:linear-gradient(180deg,#0a1325,#000);
+padding:25px 15px;
+color:white;
 }
 
 .card{
-  max-width:430px;
-  margin:auto;
-  padding:22px;
-  border-radius:26px;
-  background:rgba(2,10,25,.82);
-  border:1px solid rgba(70,140,255,.35);
-  box-shadow:0 0 45px rgba(0,0,0,.75);
+max-width:420px;
+margin:auto;
+background:#08111f;
+padding:25px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.1);
+box-shadow:0 0 35px rgba(0,0,0,.7);
 }
 
-.logo{display:flex;justify-content:center;margin-bottom:16px;}
-
-.logo-circle{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:#fff;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.logo{
+display:flex;
+justify-content:center;
+margin-bottom:15px;
 }
 
-.logo-circle img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform:scale(1.18);
+.logo img{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+background:white;
 }
 
-.subtitle{
-  text-align:center;
-  margin:8px 0 20px;
-  font-size:26px;
-  font-weight:900;
-}
-
-.info{
-  border:1px solid rgba(90,150,255,.45);
-  border-radius:20px;
-  padding:18px;
-  margin-bottom:18px;
-  background:rgba(4,18,40,.72);
-}
-
-.info-row{margin-bottom:14px;}
-.info-row:last-child{margin-bottom:0;}
-
-.label{
-  color:#1684ff;
-  font-weight:800;
-  font-size:14px;
-  text-transform:uppercase;
-}
-
-.value{
-  margin-top:4px;
-  color:#fff;
-  font-size:15px;
-  font-weight:700;
+h1{
+text-align:center;
+margin-bottom:20px;
+font-size:28px;
 }
 
 .bank{
-  border:1px solid rgba(120,170,255,.45);
-  border-radius:20px;
-  padding:16px;
-  margin-bottom:14px;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  background:rgba(5,16,35,.86);
+background:#101927;
+padding:18px;
+border-radius:20px;
+margin-bottom:15px;
+text-align:center;
+border:1px solid rgba(255,255,255,.08);
+transition:.3s;
 }
 
-.bank.copiado{animation:copyShake .28s ease;}
-.bank.santacruz.copiado{box-shadow:0 0 26px rgba(0,110,255,.95);}
-.bank.banesco.copiado{box-shadow:0 0 26px rgba(0,190,90,.95);}
+.bank.copiado{
+transform:scale(1.03);
+}
 
 .bank-logo{
-  width:92px;
-  min-width:92px;
-  text-align:center;
+width:70px;
+height:70px;
+margin:auto;
+margin-bottom:12px;
+border-radius:50%;
+overflow:hidden;
+background:white;
+padding:8px;
 }
 
 .bank-logo img{
-  width:78px;
-  height:78px;
-  object-fit:contain;
+width:100%;
+height:100%;
+object-fit:contain;
 }
 
-.bank-logo strong{
-  display:block;
-  margin-top:4px;
-  font-size:14px;
+.type{
+font-size:13px;
+color:#4fa8ff;
+font-weight:bold;
+margin-bottom:10px;
 }
 
-.bank-content{
-  flex:1;
-  text-align:center;
+.number{
+font-size:24px;
+font-weight:900;
+margin-bottom:15px;
 }
 
-.account-type{
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:9px;
-  font-size:13px;
-  font-weight:800;
-  margin-bottom:8px;
+.btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:15px;
+font-size:15px;
+font-weight:700;
+color:white;
+cursor:pointer;
 }
 
-.santacruz .account-type{background:#075fd1;}
-.banesco .account-type{background:#008c48;}
-
-.account-label{
-  font-size:12px;
-  color:#b9c4d4;
-  font-weight:800;
-  letter-spacing:.4px;
+.santa{
+background:#0068ff;
 }
 
-.account-number{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:1px;
-  margin:5px 0 10px;
+.banesco{
+background:#008a45;
 }
-
-.copy-btn{
-  width:100%;
-  border:none;
-  border-radius:12px;
-  padding:11px;
-  color:#fff;
-  font-size:13px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.santacruz .copy-btn{background:#075fd1;}
-.banesco .copy-btn{background:#008c48;}
-
-.copy-btn:active{transform:scale(.96);}
 
 .toast{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#101827;
-  color:#fff;
-  padding:12px 18px;
-  border-radius:16px;
-  font-size:14px;
-  box-shadow:0 0 20px rgba(0,0,0,.8);
-  opacity:0;
-  transition:opacity .3s ease;
-  z-index:9999;
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translateX(-50%);
+background:#111;
+padding:14px 18px;
+border-radius:20px;
+opacity:0;
+transition:.3s;
 }
 
-.toast.show{opacity:1;}
-
-.footer-text{
-  margin-top:20px;
-  text-align:center;
-  font-size:13px;
-  color:#d7dce5;
-  opacity:.9;
+.toast.show{
+opacity:1;
 }
+
 </style>
 </head>
 
@@ -198,93 +137,100 @@ body{
 
 <div class="card">
 
-  <div class="logo">
-    <div class="logo-circle">
-      <img src="logo.png" alt="Logo Laminados RD">
-    </div>
-  </div>
+<div class="logo">
+<img src="logo.png">
+</div>
 
-  <div class="subtitle">LAMINADOS RD</div>
+<h1>LAMINADOS RD</h1>
 
-  <div class="info">
-    <div class="info-row">
-      <div class="label">Empresa:</div>
-      <div class="value">GRUPO BYDEMES LAMINADOS Y SERV RD SRL</div>
-    </div>
+<div class="bank santa-card">
 
-    <div class="info-row">
-      <div class="label">RNC:</div>
-      <div class="value">133-16232-6</div>
-    </div>
-  </div>
+<div class="bank-logo">
+<img src="santacruz.png">
+</div>
 
-  <div class="bank santacruz">
-    <div class="bank-logo">
-      <img src="santacruz.png" alt="Banco Santa Cruz">
-      <strong>Santa Cruz</strong>
-    </div>
+<div class="type">
+CUENTA CORRIENTE
+</div>
 
-    <div class="bank-content">
-      <div class="account-type">CUENTA CORRIENTE</div>
-      <div class="account-label">NÚMERO DE CUENTA</div>
-      <div class="account-number">11432010015511</div>
-      <button class="copy-btn" onclick="copiar('11432010015511','santacruz')">
-        COPIAR NÚMERO DE CUENTA
-      </button>
-    </div>
-  </div>
+<div class="number">
+11432010015511
+</div>
 
-  <div class="bank banesco">
-    <div class="bank-logo">
-      <img src="banesco.png" alt="Banesco">
-      <strong>Banesco</strong>
-    </div>
+<button class="btn santa"
+onclick="copiar('11432010015511','santa-card')">
 
-    <div class="bank-content">
-      <div class="account-type">CUENTA DE AHORROS</div>
-      <div class="account-label">AHORRO COMERCIAL</div>
-      <div class="account-number">6200054988</div>
-      <button class="copy-btn" onclick="copiar('6200054988','banesco')">
-        COPIAR NÚMERO DE CUENTA
-      </button>
-    </div>
-  </div>
+Copiar cuenta
+</button>
 
-  <div class="footer-text">
-    Gracias por su preferencia.
-  </div>
+</div>
+
+
+<div class="bank banesco-card">
+
+<div class="bank-logo">
+<img src="banesco.png">
+</div>
+
+<div class="type">
+CUENTA AHORRO COMERCIAL
+</div>
+
+<div class="number">
+6200054988
+</div>
+
+<button class="btn banesco"
+onclick="copiar('6200054988','banesco-card')">
+
+Copiar cuenta
+</button>
+
+</div>
 
 </div>
 
 <script>
-function copiar(texto,banco){
-  navigator.clipboard.writeText(texto);
 
-  let el = document.querySelector("." + banco);
+function copiar(numero,clase){
 
-  if(el){
-    el.classList.remove("copiado");
-    void el.offsetWidth;
-    el.classList.add("copiado");
-    setTimeout(()=>el.classList.remove("copiado"),300);
-  }
+navigator.clipboard.writeText(numero);
 
-  mostrarToast("Cuenta copiada: " + texto);
+let card=document.querySelector("." + clase);
+
+card.classList.add("copiado");
+
+setTimeout(()=>{
+card.classList.remove("copiado");
+},300);
+
+mostrarToast("Cuenta copiada ✓");
+
 }
 
 function mostrarToast(texto){
-  const toast = document.createElement("div");
-  toast.className = "toast";
-  toast.innerText = texto;
-  document.body.appendChild(toast);
 
-  setTimeout(()=>toast.classList.add("show"),10);
+const toast=document.createElement("div");
 
-  setTimeout(()=>{
-    toast.classList.remove("show");
-    setTimeout(()=>toast.remove(),300);
-  },2200);
+toast.className="toast";
+
+toast.innerText=texto;
+
+document.body.appendChild(toast);
+
+setTimeout(()=>{
+toast.classList.add("show");
+},50);
+
+setTimeout(()=>{
+toast.classList.remove("show");
+setTimeout(()=>{
+toast.remove();
+},300)
+},2000);
+
 }
+
 </script>
 
 </body>
