@@ -6,7 +6,6 @@
 <title>Laminados RD</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -34,7 +33,7 @@ box-shadow:0 0 35px rgba(0,0,0,.7);
 .logo{
 display:flex;
 justify-content:center;
-margin-bottom:15px;
+margin-bottom:12px;
 }
 
 .logo img{
@@ -47,33 +46,52 @@ background:white;
 
 h1{
 text-align:center;
-margin-bottom:20px;
+margin-bottom:8px;
 font-size:28px;
+}
+
+.rnc{
+text-align:center;
+font-size:15px;
+color:#d6d6d6;
+margin-bottom:22px;
+cursor:pointer;
+}
+
+.rnc span{
+font-weight:800;
+color:#fff;
 }
 
 .bank{
 background:#101927;
-padding:18px;
+padding:16px;
 border-radius:20px;
 margin-bottom:15px;
-text-align:center;
 border:1px solid rgba(255,255,255,.08);
 transition:.3s;
 }
 
-.bank.copiado{
+.bank.copiado,
+.rnc.copiado{
 transform:scale(1.03);
 }
 
+.bank-top{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:14px;
+}
+
 .bank-logo{
-width:70px;
-height:70px;
-margin:auto;
-margin-bottom:12px;
+width:62px;
+height:62px;
 border-radius:50%;
 overflow:hidden;
 background:white;
 padding:8px;
+flex-shrink:0;
 }
 
 .bank-logo img{
@@ -82,17 +100,20 @@ height:100%;
 object-fit:contain;
 }
 
+.bank-info{
+flex:1;
+}
+
 .type{
 font-size:13px;
 color:#4fa8ff;
 font-weight:bold;
-margin-bottom:10px;
+margin-bottom:5px;
 }
 
 .number{
-font-size:24px;
+font-size:22px;
 font-weight:900;
-margin-bottom:15px;
 }
 
 .btn{
@@ -101,17 +122,17 @@ padding:14px;
 border:none;
 border-radius:15px;
 font-size:15px;
-font-weight:700;
+font-weight:800;
 color:white;
 cursor:pointer;
 }
 
-.santa{
-background:#0068ff;
+.santa-btn{
+background:#008a45;
 }
 
-.banesco{
-background:#008a45;
+.banesco-btn{
+background:#0068ff;
 }
 
 .toast{
@@ -124,12 +145,12 @@ padding:14px 18px;
 border-radius:20px;
 opacity:0;
 transition:.3s;
+z-index:999;
 }
 
 .toast.show{
 opacity:1;
 }
-
 </style>
 </head>
 
@@ -143,46 +164,43 @@ opacity:1;
 
 <h1>LAMINADOS RD</h1>
 
+<div class="rnc" onclick="copiarRNC()">
+RNC: <span>133-16232-6</span>
+</div>
+
 <div class="bank santa-card">
 
+<div class="bank-top">
 <div class="bank-logo">
 <img src="santacruz.png">
 </div>
 
-<div class="type">
-CUENTA CORRIENTE
+<div class="bank-info">
+<div class="type">CUENTA CORRIENTE SANTA CRUZ</div>
+<div class="number">11432010015511</div>
+</div>
 </div>
 
-<div class="number">
-11432010015511
-</div>
-
-<button class="btn santa"
-onclick="copiar('11432010015511','santa-card')">
-
+<button class="btn santa-btn" onclick="copiar('11432010015511','santa-card')">
 Copiar cuenta
 </button>
 
 </div>
 
-
 <div class="bank banesco-card">
 
+<div class="bank-top">
 <div class="bank-logo">
 <img src="banesco.png">
 </div>
 
-<div class="type">
-CUENTA AHORRO COMERCIAL
+<div class="bank-info">
+<div class="type">CUENTA AHORRO COMERCIAL BANESCO</div>
+<div class="number">6200054988</div>
+</div>
 </div>
 
-<div class="number">
-6200054988
-</div>
-
-<button class="btn banesco"
-onclick="copiar('6200054988','banesco-card')">
-
+<button class="btn banesco-btn" onclick="copiar('6200054988','banesco-card')">
 Copiar cuenta
 </button>
 
@@ -191,13 +209,10 @@ Copiar cuenta
 </div>
 
 <script>
-
 function copiar(numero,clase){
-
 navigator.clipboard.writeText(numero);
 
 let card=document.querySelector("." + clase);
-
 card.classList.add("copiado");
 
 setTimeout(()=>{
@@ -205,17 +220,25 @@ card.classList.remove("copiado");
 },300);
 
 mostrarToast("Cuenta copiada ✓");
+}
 
+function copiarRNC(){
+navigator.clipboard.writeText("133-16232-6");
+
+let rnc=document.querySelector(".rnc");
+rnc.classList.add("copiado");
+
+setTimeout(()=>{
+rnc.classList.remove("copiado");
+},300);
+
+mostrarToast("RNC copiado ✓");
 }
 
 function mostrarToast(texto){
-
 const toast=document.createElement("div");
-
 toast.className="toast";
-
 toast.innerText=texto;
-
 document.body.appendChild(toast);
 
 setTimeout(()=>{
@@ -226,11 +249,9 @@ setTimeout(()=>{
 toast.classList.remove("show");
 setTimeout(()=>{
 toast.remove();
-},300)
+},300);
 },2000);
-
 }
-
 </script>
 
 </body>
