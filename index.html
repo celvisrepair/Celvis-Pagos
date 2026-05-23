@@ -2,20 +2,16 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Cuentas Bancarias Laminados RD</title>
+<title>Laminados RD</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Arial,sans-serif;
-  background:
-    radial-gradient(circle at top,#123f78 0%,#06101f 38%,#020712 100%);
+  background:radial-gradient(circle at top,#123f78 0%,#06101f 38%,#020712 100%);
   padding:28px 14px;
   color:#fff;
 }
@@ -38,19 +34,13 @@ body{
   box-shadow:0 0 45px rgba(0,0,0,.75);
 }
 
-.logo{
-  display:flex;
-  justify-content:center;
-  margin-bottom:16px;
-}
+.logo{display:flex;justify-content:center;margin-bottom:16px;}
 
 .logo-circle{
   width:120px;
   height:120px;
   border-radius:50%;
   background:#fff;
-  border:3px solid #147bff;
-  box-shadow:0 0 25px rgba(0,120,255,.8);
   overflow:hidden;
   display:flex;
   align-items:center;
@@ -64,25 +54,11 @@ body{
   transform:scale(1.18);
 }
 
-h1{
-  text-align:center;
-  margin:8px 0 0;
-  font-size:27px;
-  line-height:1.05;
-  letter-spacing:.6px;
-}
-
-h1 span{
-  color:#1684ff;
-  display:block;
-  font-size:31px;
-}
-
 .subtitle{
   text-align:center;
-  margin:14px 0 20px;
-  font-size:24px;
-  font-weight:800;
+  margin:8px 0 20px;
+  font-size:26px;
+  font-weight:900;
 }
 
 .info{
@@ -93,13 +69,8 @@ h1 span{
   background:rgba(4,18,40,.72);
 }
 
-.info-row{
-  margin-bottom:14px;
-}
-
-.info-row:last-child{
-  margin-bottom:0;
-}
+.info-row{margin-bottom:14px;}
+.info-row:last-child{margin-bottom:0;}
 
 .label{
   color:#1684ff;
@@ -126,17 +97,9 @@ h1 span{
   background:rgba(5,16,35,.86);
 }
 
-.bank.copiado{
-  animation:copyShake .28s ease;
-}
-
-.bank.santacruz.copiado{
-  box-shadow:0 0 26px rgba(0,110,255,.95);
-}
-
-.bank.banesco.copiado{
-  box-shadow:0 0 26px rgba(0,190,90,.95);
-}
+.bank.copiado{animation:copyShake .28s ease;}
+.bank.santacruz.copiado{box-shadow:0 0 26px rgba(0,110,255,.95);}
+.bank.banesco.copiado{box-shadow:0 0 26px rgba(0,190,90,.95);}
 
 .bank-logo{
   width:92px;
@@ -170,13 +133,8 @@ h1 span{
   margin-bottom:8px;
 }
 
-.santacruz .account-type{
-  background:#075fd1;
-}
-
-.banesco .account-type{
-  background:#008c48;
-}
+.santacruz .account-type{background:#075fd1;}
+.banesco .account-type{background:#008c48;}
 
 .account-label{
   font-size:12px;
@@ -203,17 +161,10 @@ h1 span{
   cursor:pointer;
 }
 
-.santacruz .copy-btn{
-  background:#075fd1;
-}
+.santacruz .copy-btn{background:#075fd1;}
+.banesco .copy-btn{background:#008c48;}
 
-.banesco .copy-btn{
-  background:#008c48;
-}
-
-.copy-btn:active{
-  transform:scale(.96);
-}
+.copy-btn:active{transform:scale(.96);}
 
 .toast{
   position:fixed;
@@ -231,9 +182,7 @@ h1 span{
   z-index:9999;
 }
 
-.toast.show{
-  opacity:1;
-}
+.toast.show{opacity:1;}
 
 .footer-text{
   margin-top:20px;
@@ -241,27 +190,6 @@ h1 span{
   font-size:13px;
   color:#d7dce5;
   opacity:.9;
-}
-
-@media(max-width:390px){
-  .bank{
-    gap:10px;
-    padding:14px;
-  }
-
-  .bank-logo{
-    width:76px;
-    min-width:76px;
-  }
-
-  .bank-logo img{
-    width:64px;
-    height:64px;
-  }
-
-  .account-number{
-    font-size:22px;
-  }
 }
 </style>
 </head>
@@ -276,11 +204,6 @@ h1 span{
     </div>
   </div>
 
-  <h1>
-    CUENTAS BANCARIAS
-    <span>EMPRESARIALES</span>
-  </h1>
-
   <div class="subtitle">LAMINADOS RD</div>
 
   <div class="info">
@@ -292,11 +215,6 @@ h1 span{
     <div class="info-row">
       <div class="label">RNC:</div>
       <div class="value">133-16232-6</div>
-    </div>
-
-    <div class="info-row">
-      <div class="label">Tipo de cuenta:</div>
-      <div class="value">Cuentas empresariales</div>
     </div>
   </div>
 
