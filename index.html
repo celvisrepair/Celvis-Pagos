@@ -2,18 +2,23 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pagos | Grupo Bydemes</title>
+<title>Cuentas Bancarias Laminados RD</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Arial,sans-serif;
-  background:radial-gradient(circle at top,#111 0%,#000 65%);
-  padding:30px 15px;
-  color:#fff;
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-*{ -webkit-tap-highlight-color: transparent; }
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top,#123f78 0%,#06101f 38%,#020712 100%);
+  padding:28px 14px;
+  color:#fff;
+}
 
 @keyframes copyShake{
   0%{transform:translateX(0)}
@@ -24,26 +29,28 @@ body{
 }
 
 .card{
-  max-width:420px;
+  max-width:430px;
   margin:auto;
-  background:#0b0b0b;
-  padding:24px;
-  border-radius:22px;
-  box-shadow:0 0 40px rgba(0,0,0,.9);
+  padding:22px;
+  border-radius:26px;
+  background:rgba(2,10,25,.82);
+  border:1px solid rgba(70,140,255,.35);
+  box-shadow:0 0 45px rgba(0,0,0,.75);
 }
 
 .logo{
   display:flex;
   justify-content:center;
-  margin-bottom:18px;
+  margin-bottom:16px;
 }
 
 .logo-circle{
-  width:110px;
-  height:110px;
+  width:120px;
+  height:120px;
   border-radius:50%;
-  border:2px solid #fff;
-  box-shadow:0 0 18px rgba(255,255,255,.4);
+  background:#fff;
+  border:3px solid #147bff;
+  box-shadow:0 0 25px rgba(0,120,255,.8);
   overflow:hidden;
   display:flex;
   align-items:center;
@@ -54,38 +61,69 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
-  transform:scale(1.2);
+  transform:scale(1.18);
 }
 
 h1{
   text-align:center;
-  font-size:22px;
-  margin:10px 0 6px;
+  margin:8px 0 0;
+  font-size:27px;
+  line-height:1.05;
+  letter-spacing:.6px;
+}
+
+h1 span{
+  color:#1684ff;
+  display:block;
+  font-size:31px;
+}
+
+.subtitle{
+  text-align:center;
+  margin:14px 0 20px;
+  font-size:24px;
+  font-weight:800;
 }
 
 .info{
-  text-align:center;
-  font-size:14px;
-  color:#ccc;
-  margin-bottom:26px;
+  border:1px solid rgba(90,150,255,.45);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:18px;
+  background:rgba(4,18,40,.72);
 }
 
-.copy-text{
-  color:#aaa !important;
-  font-weight:600;
-  text-decoration:none !important;
-  cursor:pointer;
+.info-row{
+  margin-bottom:14px;
+}
+
+.info-row:last-child{
+  margin-bottom:0;
+}
+
+.label{
+  color:#1684ff;
+  font-weight:800;
+  font-size:14px;
+  text-transform:uppercase;
+}
+
+.value{
+  margin-top:4px;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
 }
 
 .bank{
-  background:#0a0a0a;
-  border-radius:18px;
-  padding:14px 16px;
+  border:1px solid rgba(120,170,255,.45);
+  border-radius:20px;
+  padding:16px;
   margin-bottom:14px;
-  border:1px solid #242424;
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:14px;
+  background:rgba(5,16,35,.86);
 }
 
 .bank.copiado{
@@ -93,39 +131,84 @@ h1{
 }
 
 .bank.santacruz.copiado{
-  box-shadow:0 0 26px rgba(0,130,85,.9);
+  box-shadow:0 0 26px rgba(0,110,255,.95);
 }
 
-.bank-icon{
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
-  flex-shrink:0;
-  background:#fff;
+.bank.banesco.copiado{
+  box-shadow:0 0 26px rgba(0,190,90,.95);
 }
 
-.bank-icon img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform:scale(1.15);
+.bank-logo{
+  width:92px;
+  min-width:92px;
+  text-align:center;
+}
+
+.bank-logo img{
+  width:78px;
+  height:78px;
+  object-fit:contain;
+}
+
+.bank-logo strong{
+  display:block;
+  margin-top:4px;
+  font-size:14px;
+}
+
+.bank-content{
+  flex:1;
+  text-align:center;
+}
+
+.account-type{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.santacruz .account-type{
+  background:#075fd1;
+}
+
+.banesco .account-type{
+  background:#008c48;
+}
+
+.account-label{
+  font-size:12px;
+  color:#b9c4d4;
+  font-weight:800;
+  letter-spacing:.4px;
+}
+
+.account-number{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin:5px 0 10px;
 }
 
 .copy-btn{
-  flex:1;
-  padding:12px 14px;
+  width:100%;
   border:none;
-  border-radius:14px;
-  background:#fff;
-  color:#000;
-  font-size:15px;
-  font-weight:700;
+  border-radius:12px;
+  padding:11px;
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
   cursor:pointer;
+}
+
+.santacruz .copy-btn{
+  background:#075fd1;
+}
+
+.banesco .copy-btn{
+  background:#008c48;
 }
 
 .copy-btn:active{
@@ -137,7 +220,7 @@ h1{
   bottom:20px;
   left:50%;
   transform:translateX(-50%);
-  background:#111;
+  background:#101827;
   color:#fff;
   padding:12px 18px;
   border-radius:16px;
@@ -148,14 +231,37 @@ h1{
   z-index:9999;
 }
 
-.toast.show{ opacity:1; }
+.toast.show{
+  opacity:1;
+}
 
 .footer-text{
-  margin-top:22px;
+  margin-top:20px;
   text-align:center;
-  font-size:12px;
-  color:#888;
-  letter-spacing:.3px;
+  font-size:13px;
+  color:#d7dce5;
+  opacity:.9;
+}
+
+@media(max-width:390px){
+  .bank{
+    gap:10px;
+    padding:14px;
+  }
+
+  .bank-logo{
+    width:76px;
+    min-width:76px;
+  }
+
+  .bank-logo img{
+    width:64px;
+    height:64px;
+  }
+
+  .account-number{
+    font-size:22px;
+  }
 }
 </style>
 </head>
@@ -166,64 +272,100 @@ h1{
 
   <div class="logo">
     <div class="logo-circle">
-      <img src="logo.JPG">
+      <img src="logo.png" alt="Logo Laminados RD">
     </div>
   </div>
 
-  <h1>DATOS DE PAGOS</h1>
+  <h1>
+    CUENTAS BANCARIAS
+    <span>EMPRESARIALES</span>
+  </h1>
+
+  <div class="subtitle">LAMINADOS RD</div>
 
   <div class="info">
-    <strong>GRUPO BYDEMES LAMINADOS Y SERV RD SRL</strong><br>
-    RNC:
-    <span class="copy-text" onclick="copiar('133162326',this.closest('.card'),'rnc')">
-      133-16232-6
-    </span>
+    <div class="info-row">
+      <div class="label">Empresa:</div>
+      <div class="value">GRUPO BYDEMES LAMINADOS Y SERV RD SRL</div>
+    </div>
+
+    <div class="info-row">
+      <div class="label">RNC:</div>
+      <div class="value">133-16232-6</div>
+    </div>
+
+    <div class="info-row">
+      <div class="label">Tipo de cuenta:</div>
+      <div class="value">Cuentas empresariales</div>
+    </div>
   </div>
 
   <div class="bank santacruz">
-    <div class="bank-icon"><img src="santacruz.png"></div>
-    <button class="copy-btn"
-      onclick="copiar('11432010015511',this.closest('.bank'),'santacruz')">
-      Copiar cuenta corriente
-    </button>
+    <div class="bank-logo">
+      <img src="santacruz.png" alt="Banco Santa Cruz">
+      <strong>Santa Cruz</strong>
+    </div>
+
+    <div class="bank-content">
+      <div class="account-type">CUENTA CORRIENTE</div>
+      <div class="account-label">NÚMERO DE CUENTA</div>
+      <div class="account-number">11432010015511</div>
+      <button class="copy-btn" onclick="copiar('11432010015511','santacruz')">
+        COPIAR NÚMERO DE CUENTA
+      </button>
+    </div>
+  </div>
+
+  <div class="bank banesco">
+    <div class="bank-logo">
+      <img src="banesco.png" alt="Banesco">
+      <strong>Banesco</strong>
+    </div>
+
+    <div class="bank-content">
+      <div class="account-type">CUENTA DE AHORROS</div>
+      <div class="account-label">AHORRO COMERCIAL</div>
+      <div class="account-number">6200054988</div>
+      <button class="copy-btn" onclick="copiar('6200054988','banesco')">
+        COPIAR NÚMERO DE CUENTA
+      </button>
+    </div>
   </div>
 
   <div class="footer-text">
-    Rápido y seguro con un toque
+    Gracias por su preferencia.
   </div>
 
 </div>
 
 <script>
-function copiar(texto, el, tipo){
+function copiar(texto,banco){
   navigator.clipboard.writeText(texto);
 
-  el.classList.remove("copiado");
-  void el.offsetWidth;
-  el.classList.add("copiado");
-  setTimeout(()=>el.classList.remove("copiado"),300);
+  let el = document.querySelector("." + banco);
 
-  let mensaje = "¡Copiado! ";
-
-  if(tipo === "rnc"){
-    mensaje += "RNC copiado correctamente.";
-  }else{
-    mensaje += "Cuenta copiada. Abre tu banco para realizar el pago.";
+  if(el){
+    el.classList.remove("copiado");
+    void el.offsetWidth;
+    el.classList.add("copiado");
+    setTimeout(()=>el.classList.remove("copiado"),300);
   }
 
-  mostrarToast(mensaje);
+  mostrarToast("Cuenta copiada: " + texto);
 }
 
 function mostrarToast(texto){
-  const toast=document.createElement("div");
-  toast.className="toast";
-  toast.innerText=texto;
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText = texto;
   document.body.appendChild(toast);
+
   setTimeout(()=>toast.classList.add("show"),10);
+
   setTimeout(()=>{
     toast.classList.remove("show");
     setTimeout(()=>toast.remove(),300);
-  },2500);
+  },2200);
 }
 </script>
 
