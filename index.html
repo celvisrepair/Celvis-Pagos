@@ -6,272 +6,367 @@
 <title>Laminados RD</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
-body{
-  min-height:100vh;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:
-    radial-gradient(circle at 20% 10%,rgba(30,184,255,.9),transparent 28%),
-    radial-gradient(circle at 80% 20%,rgba(4,81,199,.85),transparent 30%),
-    linear-gradient(180deg,#031226 0%,#0649b3 45%,#eef4fb 100%);
-  padding:26px 14px;
-  color:white;
-  overflow-x:hidden;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
-  background-size:34px 34px;
-  mask-image:linear-gradient(180deg,#000,transparent 72%);
-  pointer-events:none;
+body{
+min-height:100vh;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+
+background:
+radial-gradient(circle at 20% 10%,rgba(30,184,255,.9),transparent 28%),
+radial-gradient(circle at 80% 20%,rgba(4,81,199,.85),transparent 30%),
+linear-gradient(180deg,#031226 0%,#0451c7 45%,#eef4fb 100%);
+
+padding:26px 14px;
+color:white;
+overflow-x:hidden;
 }
 
 .card{
-  max-width:430px;
-  margin:auto;
-  position:relative;
-  padding:28px 20px 22px;
-  border-radius:36px;
-  background:rgba(255,255,255,.13);
-  border:1px solid rgba(255,255,255,.35);
-  box-shadow:0 25px 60px rgba(0,0,0,.35);
-  backdrop-filter:blur(18px);
-  overflow:hidden;
+
+max-width:430px;
+margin:auto;
+position:relative;
+
+padding:28px 20px 22px;
+
+border-radius:36px;
+
+background:rgba(255,255,255,.13);
+
+border:1px solid rgba(255,255,255,.35);
+
+box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+backdrop-filter:blur(18px);
+
+overflow:hidden;
+
 }
 
 .card::before{
-  content:"";
-  position:absolute;
-  width:260px;
-  height:260px;
-  border-radius:50%;
-  background:rgba(30,184,255,.28);
-  top:-90px;
-  right:-90px;
-  filter:blur(8px);
+
+content:"";
+
+position:absolute;
+
+width:260px;
+height:260px;
+
+border-radius:50%;
+
+background:rgba(30,184,255,.25);
+
+top:-90px;
+right:-90px;
+
+filter:blur(8px);
+
 }
 
 .hero{
-  position:relative;
-  text-align:center;
-  z-index:2;
+
+position:relative;
+
+z-index:2;
+
+text-align:center;
+
 }
 
 .logo-principal{
-  width:124px;
-  height:124px;
-  border-radius:50%;
-  background:white;
-  margin:0 auto 18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  box-shadow:0 15px 35px rgba(0,0,0,.28);
+
+width:125px;
+height:125px;
+
+border-radius:50%;
+
+background:white;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+overflow:hidden;
+
+margin:auto;
+
+margin-bottom:18px;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.25);
+
 }
 
 .logo-principal img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
 }
 
 .badge{
-  display:inline-block;
-  padding:7px 14px;
-  border-radius:999px;
-  background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.28);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.8px;
-  margin-bottom:10px;
+
+display:inline-block;
+
+padding:8px 14px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.15);
+
+font-size:12px;
+
+font-weight:900;
+
+margin-bottom:12px;
+
 }
 
 h1{
-  font-size:31px;
-  font-weight:950;
-  letter-spacing:.5px;
-  margin-bottom:8px;
-  text-shadow:0 8px 20px rgba(0,0,0,.28);
+
+font-size:32px;
+
+font-weight:900;
+
+margin-bottom:10px;
+
 }
 
 .sub{
-  font-size:14px;
-  color:rgba(255,255,255,.78);
-  margin-bottom:18px;
+
+font-size:15px;
+
+color:rgba(255,255,255,.8);
+
+margin-bottom:18px;
+
 }
 
 .rnc{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 14px;
-  border-radius:16px;
-  background:rgba(0,0,0,.22);
-  border:1px solid rgba(255,255,255,.2);
-  cursor:pointer;
-  margin-bottom:24px;
-  font-weight:700;
-}
 
-.rnc span{color:#dff3ff;}
+display:inline-flex;
+
+padding:11px 16px;
+
+border-radius:16px;
+
+background:rgba(0,0,0,.2);
+
+cursor:pointer;
+
+font-weight:700;
+
+margin-bottom:24px;
+
+}
 
 .panel{
-  position:relative;
-  z-index:2;
-  background:rgba(3,18,38,.42);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:28px;
-  padding:18px;
-  margin-bottom:18px;
-}
 
-.panel-title{
-  font-size:13px;
-  letter-spacing:1px;
-  color:#dff3ff;
-  font-weight:900;
-  margin-bottom:14px;
-  text-align:left;
+background:rgba(0,0,0,.18);
+
+padding:18px;
+
+border-radius:28px;
+
 }
 
 .bank{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:12px;
-  border-radius:22px;
-  margin-bottom:14px;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.16);
-  transition:.25s;
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:12px;
+
+border-radius:22px;
+
+margin-bottom:14px;
+
+background:rgba(255,255,255,.12);
+
+transition:.3s;
+
 }
 
-.bank:last-child{margin-bottom:0;}
+.bank:last-child{
 
-.bank.copiado,
-.rnc.copiado{
-  transform:scale(1.025);
-  box-shadow:0 0 28px rgba(30,184,255,.6);
+margin-bottom:0;
+
+}
+
+.bank.copiado{
+
+transform:scale(1.03);
+
+box-shadow:
+0 0 25px rgba(30,184,255,.6);
+
 }
 
 .bank-logo{
-  width:68px;
-  height:68px;
-  border-radius:50%;
-  background:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  flex-shrink:0;
-  box-shadow:0 10px 24px rgba(0,0,0,.25);
+
+width:68px;
+height:68px;
+
+border-radius:50%;
+
+background:white;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+overflow:hidden;
+
+flex-shrink:0;
+
 }
 
 .bank-logo img{
-  width:74%;
-  height:74%;
-  object-fit:contain;
+
+width:75%;
+height:75%;
+
+object-fit:contain;
+
 }
 
 .banesco-logo{
-  background:linear-gradient(135deg,#0451c7,#1eb8ff);
+
+background:linear-gradient(
+135deg,
+#0451c7,
+#1eb8ff
+);
+
 }
 
 .banesco-logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
 }
 
 .bank-info{
-  flex:1;
-  text-align:left;
+
+flex:1;
+
 }
 
 .bank-name{
-  font-size:12px;
-  color:rgba(255,255,255,.72);
-  font-weight:800;
-  margin-bottom:7px;
+
+font-size:13px;
+
+font-weight:700;
+
+margin-bottom:8px;
+
+color:rgba(255,255,255,.8);
+
 }
 
 .btn{
-  width:100%;
-  height:50px;
-  border:none;
-  border-radius:16px;
-  color:white;
-  font-size:15px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 10px 22px rgba(0,0,0,.22);
+
+width:100%;
+height:52px;
+
+border:none;
+
+border-radius:16px;
+
+font-size:15px;
+
+font-weight:900;
+
+color:white;
+
+cursor:pointer;
+
 }
 
-.santa-btn{background:linear-gradient(180deg,#20dc77,#029d4c);}
-.banesco-btn{background:linear-gradient(180deg,#2692ff,#0459e8);}
-.btn:active{transform:scale(.97);}
+.santa-btn{
 
-.security{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:14px;
+background:linear-gradient(
+180deg,
+#22d875,
+#00a84d
+);
+
 }
 
-.security div{
-  padding:12px 10px;
-  border-radius:18px;
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.16);
-  font-size:12px;
-  font-weight:800;
-  color:#eef8ff;
+.banesco-btn{
+
+background:linear-gradient(
+180deg,
+#1f88ff,
+#0067ff
+);
+
 }
 
 .footer{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  color:#075fc5;
-  font-weight:900;
-  font-size:15px;
-  margin-top:14px;
-  background:rgba(255,255,255,.75);
-  border-radius:18px;
-  padding:12px;
+
+margin-top:16px;
+
+text-align:center;
+
+background:rgba(255,255,255,.8);
+
+padding:12px;
+
+border-radius:18px;
+
+font-weight:800;
+
+color:#0451c7;
+
 }
 
 .toast{
-  position:fixed;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#061225;
-  color:white;
-  padding:13px 18px;
-  border-radius:18px;
-  opacity:0;
-  transition:.3s;
-  z-index:9999;
-  box-shadow:0 0 30px rgba(0,0,0,.45);
-  font-weight:800;
+
+position:fixed;
+
+bottom:25px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+background:#071321;
+
+padding:12px 18px;
+
+border-radius:18px;
+
+opacity:0;
+
+transition:.3s;
+
+z-index:9999;
+
 }
 
-.toast.show{opacity:1;}
+.toast.show{
 
-@media(max-width:380px){
-  h1{font-size:27px;}
-  .btn{font-size:14px;}
-  .bank-logo{width:62px;height:62px;}
+opacity:1;
+
 }
+
 </style>
 </head>
 
@@ -279,113 +374,176 @@ h1{
 
 <div class="card">
 
-  <div class="hero">
-    <div class="logo-principal">
-      <img src="logo.png" alt="Laminados RD">
-    </div>
+<div class="hero">
 
-    <div class="badge">PAGOS EMPRESARIALES</div>
+<div class="logo-principal">
 
-    <h1>LAMINADOS RD</h1>
-
-    <div class="sub">Selecciona tu banco y copia la cuenta con un toque</div>
-
-    <div class="rnc" onclick="copiarRNC()">
-      RNC: <span>133-16232-6</span>
-    </div>
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">CUENTAS DISPONIBLES</div>
-
-    <div class="bank santa-card">
-      <div class="bank-logo">
-        <img src="santacruz.png" alt="Banco Santa Cruz">
-      </div>
-
-      <div class="bank-info">
-        <div class="bank-name">Cuenta corriente · Banco Santa Cruz</div>
-        <button class="btn santa-btn" onclick="copiarYabrir('11432010015511','santa-card','santacruz')">
-          Copiar y abrir banco
-        </button>
-      </div>
-    </div>
-
-    <div class="bank banesco-card">
-      <div class="bank-logo banesco-logo">
-        <img src="banesco.png" alt="Banesco">
-      </div>
-
-      <div class="bank-info">
-        <div class="bank-name">Ahorro comercial · Banesco</div>
-        <button class="btn banesco-btn" onclick="copiarYabrir('6200054988','banesco-card','banesco')">
-          Copiar y abrir banco
-        </button>
-      </div>
-    </div>
-
-    <div class="security">
-      <div>✓ RNC copiable</div>
-      <div>✓ Pago seguro</div>
-    </div>
-  </div>
-
-  <div class="footer">
-    Gracias por su preferencia 🔒
-  </div>
+<img src="logo.png">
 
 </div>
 
+<div class="badge">
+
+PAGOS EMPRESARIALES
+
+</div>
+
+<h1>
+
+LAMINADOS RD
+
+</h1>
+
+<div class="sub">
+
+Selecciona tu banco y copia la cuenta
+
+</div>
+
+<div class="rnc" onclick="copiarRNC()">
+
+RNC: 133-16232-6
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="bank santa-card">
+
+<div class="bank-logo">
+
+<img src="santacruz.png">
+
+</div>
+
+<div class="bank-info">
+
+<div class="bank-name">
+
+Cuenta corriente · Banco Santa Cruz
+
+</div>
+
+<button class="btn santa-btn"
+
+onclick="copiarYabrir('11432010015511','santa-card','santacruz')">
+
+Copiar y abrir banco
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="bank banesco-card">
+
+<div class="bank-logo banesco-logo">
+
+<img src="banesco.png">
+
+</div>
+
+<div class="bank-info">
+
+<div class="bank-name">
+
+Ahorro comercial · Banesco
+
+</div>
+
+<button class="btn banesco-btn"
+
+onclick="copiarYabrir('6200054988','banesco-card','banesco')">
+
+Copiar y abrir banco
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+Gracias por su preferencia 🔒
+
+</div>
+
+</div>
+
+
 <script>
+
 function copiarYabrir(numero,clase,banco){
-  navigator.clipboard.writeText(numero);
 
-  let card=document.querySelector("." + clase);
-  card.classList.add("copiado");
+navigator.clipboard.writeText(numero);
 
-  setTimeout(()=>{
-    card.classList.remove("copiado");
-  },350);
+let card=document.querySelector("." + clase);
 
-  mostrarToast("Cuenta copiada ✓ Abriendo banco...");
+card.classList.add("copiado");
 
-  setTimeout(()=>{
-    if(banco==="santacruz"){
-      window.location.href="santacruz://";
-    }
+setTimeout(()=>{
+card.classList.remove("copiado");
+},300);
 
-    if(banco==="banesco"){
-      window.location.href="banesco://";
-    }
-  },700);
+mostrarToast("Cuenta copiada ✓");
+
+setTimeout(()=>{
+
+if(banco==="santacruz"){
+
+window.location.href="https://apps.apple.com/do/app/app-banco-santa-cruz/id1548944631";
+
+}
+
+if(banco==="banesco"){
+
+window.location.href="https://apps.apple.com/do/app/banesco-rd/id1446763614";
+
+}
+
+},700);
+
 }
 
 function copiarRNC(){
-  navigator.clipboard.writeText("133-16232-6");
 
-  let rnc=document.querySelector(".rnc");
-  rnc.classList.add("copiado");
+navigator.clipboard.writeText("133-16232-6");
 
-  setTimeout(()=>{
-    rnc.classList.remove("copiado");
-  },350);
+mostrarToast("RNC copiado ✓");
 
-  mostrarToast("RNC copiado ✓");
 }
 
 function mostrarToast(texto){
-  const toast=document.createElement("div");
-  toast.className="toast";
-  toast.innerText=texto;
-  document.body.appendChild(toast);
 
-  setTimeout(()=>toast.classList.add("show"),50);
+const toast=document.createElement("div");
 
-  setTimeout(()=>{
-    toast.classList.remove("show");
-    setTimeout(()=>toast.remove(),300);
-  },2300);
+toast.className="toast";
+
+toast.innerText=texto;
+
+document.body.appendChild(toast);
+
+setTimeout(()=>toast.classList.add("show"),50);
+
+setTimeout(()=>{
+toast.classList.remove("show");
+
+setTimeout(()=>{
+toast.remove();
+},300);
+
+},2200);
+
 }
+
 </script>
 
 </body>
