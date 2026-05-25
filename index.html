@@ -6,12 +6,7 @@
 <title>Laminados RD</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
 body{
   min-height:100vh;
@@ -126,9 +121,7 @@ h1{
   font-weight:700;
 }
 
-.rnc span{
-  color:#dff3ff;
-}
+.rnc span{color:#dff3ff;}
 
 .panel{
   position:relative;
@@ -161,9 +154,7 @@ h1{
   transition:.25s;
 }
 
-.bank:last-child{
-  margin-bottom:0;
-}
+.bank:last-child{margin-bottom:0;}
 
 .bank.copiado,
 .rnc.copiado{
@@ -224,17 +215,9 @@ h1{
   box-shadow:0 10px 22px rgba(0,0,0,.22);
 }
 
-.santa-btn{
-  background:linear-gradient(180deg,#20dc77,#029d4c);
-}
-
-.banesco-btn{
-  background:linear-gradient(180deg,#2692ff,#0459e8);
-}
-
-.btn:active{
-  transform:scale(.97);
-}
+.santa-btn{background:linear-gradient(180deg,#20dc77,#029d4c);}
+.banesco-btn{background:linear-gradient(180deg,#2692ff,#0459e8);}
+.btn:active{transform:scale(.97);}
 
 .security{
   display:grid;
@@ -282,9 +265,7 @@ h1{
   font-weight:800;
 }
 
-.toast.show{
-  opacity:1;
-}
+.toast.show{opacity:1;}
 
 @media(max-width:380px){
   h1{font-size:27px;}
@@ -324,8 +305,8 @@ h1{
 
       <div class="bank-info">
         <div class="bank-name">Cuenta corriente · Banco Santa Cruz</div>
-        <button class="btn santa-btn" onclick="copiar('11432010015511','santa-card')">
-          Copiar cuenta
+        <button class="btn santa-btn" onclick="copiarYabrir('11432010015511','santa-card','santacruz')">
+          Copiar y abrir banco
         </button>
       </div>
     </div>
@@ -337,8 +318,8 @@ h1{
 
       <div class="bank-info">
         <div class="bank-name">Ahorro comercial · Banesco</div>
-        <button class="btn banesco-btn" onclick="copiar('6200054988','banesco-card')">
-          Copiar cuenta
+        <button class="btn banesco-btn" onclick="copiarYabrir('6200054988','banesco-card','banesco')">
+          Copiar y abrir banco
         </button>
       </div>
     </div>
@@ -356,7 +337,7 @@ h1{
 </div>
 
 <script>
-function copiar(numero,clase){
+function copiarYabrir(numero,clase,banco){
   navigator.clipboard.writeText(numero);
 
   let card=document.querySelector("." + clase);
@@ -366,7 +347,17 @@ function copiar(numero,clase){
     card.classList.remove("copiado");
   },350);
 
-  mostrarToast("Cuenta copiada ✓");
+  mostrarToast("Cuenta copiada ✓ Abriendo banco...");
+
+  setTimeout(()=>{
+    if(banco==="santacruz"){
+      window.location.href="santacruz://";
+    }
+
+    if(banco==="banesco"){
+      window.location.href="banesco://";
+    }
+  },700);
 }
 
 function copiarRNC(){
@@ -393,7 +384,7 @@ function mostrarToast(texto){
   setTimeout(()=>{
     toast.classList.remove("show");
     setTimeout(()=>toast.remove(),300);
-  },2000);
+  },2300);
 }
 </script>
 
