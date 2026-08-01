@@ -7,8 +7,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Evita que Safari convierta las cuentas en teléfonos azules -->
-  <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
+  <!-- Evita que Safari convierta las cuentas en teléfonos -->
+  <meta
+    name="format-detection"
+    content="telephone=no, date=no, email=no, address=no"
+  >
 
   <meta name="theme-color" content="#050505">
 
@@ -21,7 +24,6 @@
     :root{
       --background:#000000;
       --card:#0a0a0c;
-      --secondary:#151518;
       --border:rgba(255,255,255,.10);
       --text:#ffffff;
       --muted:#a8a8ad;
@@ -206,10 +208,13 @@
 
     .copy-id{
       padding:3px 5px;
-      color:#fff !important;
+
+      color:#ffffff !important;
+      -webkit-text-fill-color:#ffffff !important;
+
       font-weight:700;
       text-decoration:none !important;
-      -webkit-text-fill-color:#fff !important;
+
       background:transparent;
       border:0;
       border-bottom:1px dashed rgba(255,255,255,.35);
@@ -337,13 +342,14 @@
 
     .bank-name{
       margin:0 0 5px;
+      color:#ffffff;
       font-size:15px;
       font-weight:750;
     }
 
     /*
-      Mantiene las cuentas blancas y sin raya,
-      incluso cuando Safari intenta detectarlas.
+      Mantiene las cuentas blancas y elimina
+      el azul y el subrayado de Safari.
     */
     .account-number,
     .account-number span,
@@ -352,6 +358,8 @@
       overflow-wrap:anywhere;
 
       color:#ffffff !important;
+      -webkit-text-fill-color:#ffffff !important;
+
       font-size:20px !important;
       font-weight:850 !important;
       letter-spacing:.5px !important;
@@ -359,11 +367,11 @@
 
       text-decoration:none !important;
       text-decoration-line:none !important;
+      -webkit-text-decoration:none !important;
+
       border:0 !important;
       border-bottom:0 !important;
-
-      -webkit-text-fill-color:#ffffff !important;
-      -webkit-text-decoration:none !important;
+      box-shadow:none !important;
     }
 
     a[href^="tel"],
@@ -372,16 +380,17 @@
     [x-apple-data-detectors],
     x-apple-data-detectors{
       color:inherit !important;
+      -webkit-text-fill-color:inherit !important;
+
       font:inherit !important;
 
       text-decoration:none !important;
       text-decoration-line:none !important;
+      -webkit-text-decoration:none !important;
 
       border:0 !important;
       border-bottom:0 !important;
-
-      -webkit-text-fill-color:inherit !important;
-      -webkit-text-decoration:none !important;
+      box-shadow:none !important;
     }
 
     .account-type{
@@ -542,7 +551,6 @@
     <section class="main-card">
 
       <div class="logo-container">
-
         <div class="logo-circle">
 
           <img
@@ -552,13 +560,14 @@
           >
 
         </div>
-
       </div>
 
-      <h1 class="title">DATOS DE PAGOS</h1>
+      <h1 class="title">
+        DATOS DE PAGOS
+      </h1>
 
       <p class="subtitle">
-        Selecciona una cuenta para copiarla automáticamente.
+        Copia la cuenta y abre la aplicación de tu banco.
       </p>
 
       <div class="owner-card">
@@ -572,7 +581,6 @@
         </p>
 
         <div class="id-row">
-
           Cédula:
 
           <button
@@ -583,7 +591,6 @@
           >
             402-3595051-2
           </button>
-
         </div>
 
       </div>
@@ -602,13 +609,11 @@
         >
 
           <div class="bank-icon">
-
             <img
               src="popular.png"
               alt="Banco Popular"
               onerror="mostrarIniciales(this,'POPULAR')"
             >
-
           </div>
 
           <div class="bank-content">
@@ -617,10 +622,7 @@
               Banco Popular
             </h2>
 
-            <p
-              class="account-number"
-              data-account="817783616"
-            >
+            <p class="account-number">
               <span>817783616</span>
             </p>
 
@@ -639,7 +641,7 @@
                 this
               )"
             >
-              Copiar cuenta
+              Copiar y abrir banco
             </button>
 
           </div>
@@ -654,13 +656,11 @@
         >
 
           <div class="bank-icon">
-
             <img
               src="banreservas.png"
               alt="Banreservas"
               onerror="mostrarIniciales(this,'BR')"
             >
-
           </div>
 
           <div class="bank-content">
@@ -669,10 +669,7 @@
               Banreservas
             </h2>
 
-            <p
-              class="account-number"
-              data-account="9604045935"
-            >
+            <p class="account-number">
               <span>9604045935</span>
             </p>
 
@@ -691,7 +688,7 @@
                 this
               )"
             >
-              Copiar cuenta
+              Copiar y abrir banco
             </button>
 
           </div>
@@ -706,13 +703,11 @@
         >
 
           <div class="bank-icon">
-
             <img
               src="bhd.png"
               alt="Banco BHD"
               onerror="mostrarIniciales(this,'BHD')"
             >
-
           </div>
 
           <div class="bank-content">
@@ -721,10 +716,7 @@
               Banco BHD
             </h2>
 
-            <p
-              class="account-number"
-              data-account="27102740011"
-            >
+            <p class="account-number">
               <span>27102740011</span>
             </p>
 
@@ -743,7 +735,7 @@
                 this
               )"
             >
-              Copiar cuenta
+              Copiar y abrir banco
             </button>
 
           </div>
@@ -758,13 +750,11 @@
         >
 
           <div class="bank-icon">
-
             <img
               src="apap.png"
               alt="Asociación Popular de Ahorros y Préstamos"
               onerror="mostrarIniciales(this,'APAP')"
             >
-
           </div>
 
           <div class="bank-content">
@@ -773,10 +763,7 @@
               Asociación Popular · APAP
             </h2>
 
-            <p
-              class="account-number"
-              data-account="1036982106"
-            >
+            <p class="account-number">
               <span>1036982106</span>
             </p>
 
@@ -795,7 +782,7 @@
                 this
               )"
             >
-              Copiar cuenta
+              Copiar y abrir banco
             </button>
 
           </div>
@@ -805,13 +792,8 @@
       </div>
 
       <div class="security-note">
-
         <span class="security-icon">🔒</span>
-
-        <span>
-          Rápido y seguro con un toque
-        </span>
-
+        <span>Rápido y seguro con un toque</span>
       </div>
 
       <div class="footer">
@@ -832,37 +814,31 @@
   <script>
     let toastTimer;
     let buttonTimer;
-    let storeTimer;
 
     /*
-      Los enlaces de App Store sirven como respaldo
-      cuando la aplicación no puede abrirse.
+      Fichas oficiales de las aplicaciones bancarias.
     */
     const bancos = {
       popular:{
         nombre:"Banco Popular",
-        esquema:"popular://",
         appStore:
           "https://apps.apple.com/do/app/banco-popular-dominicano/id583475424"
       },
 
       banreservas:{
         nombre:"Banreservas",
-        esquema:"banreservas://",
         appStore:
           "https://apps.apple.com/do/app/banreservas/id1170610154"
       },
 
       bhd:{
         nombre:"Banco BHD",
-        esquema:"bhd://",
         appStore:
           "https://apps.apple.com/do/app/m%C3%B3vil-banking-personal-bhd/id736887202"
       },
 
       apap:{
         nombre:"APAP",
-        esquema:"apap://",
         appStore:
           "https://apps.apple.com/do/app/m%C3%B3vil-apap/id1073508748"
       }
@@ -935,7 +911,6 @@
       }
 
       vibrar();
-
       animarTarjeta(cardId);
       marcarBoton(boton);
 
@@ -943,13 +918,23 @@
         `Cuenta copiada. Abriendo ${nombreBanco}…`
       );
 
-      /*
-        Se intenta abrir inmediatamente después
-        de completar la copia.
-      */
       setTimeout(()=>{
         abrirBanco(bancoId);
-      },350);
+      },650);
+    }
+
+    function abrirBanco(bancoId){
+      const banco = bancos[bancoId];
+
+      if(!banco){
+        mostrarToast(
+          "No se encontró la aplicación del banco."
+        );
+
+        return;
+      }
+
+      window.location.href = banco.appStore;
     }
 
     function animarTarjeta(cardId){
@@ -975,7 +960,9 @@
       document
         .querySelectorAll(".copy-btn")
         .forEach(btn=>{
-          btn.textContent = "Copiar cuenta";
+          btn.textContent =
+            "Copiar y abrir banco";
+
           btn.classList.remove("success");
         });
 
@@ -988,151 +975,10 @@
 
       buttonTimer = setTimeout(()=>{
         boton.textContent =
-          "Copiar cuenta";
+          "Copiar y abrir banco";
 
         boton.classList.remove("success");
       },2500);
-    }
-
-    function abrirBanco(bancoId){
-      const banco = bancos[bancoId];
-
-      if(!banco){
-        mostrarToast(
-          "No se encontró la aplicación del banco."
-        );
-
-        return;
-      }
-
-      let aplicacionAbierta = false;
-      let intentoTerminado = false;
-
-      const detectarSalida = ()=>{
-        if(document.hidden){
-          aplicacionAbierta = true;
-          intentoTerminado = true;
-          limpiarDetectores();
-        }
-      };
-
-      const detectarDesenfoque = ()=>{
-        aplicacionAbierta = true;
-        intentoTerminado = true;
-        limpiarDetectores();
-      };
-
-      const limpiarDetectores = ()=>{
-        clearTimeout(storeTimer);
-
-        document.removeEventListener(
-          "visibilitychange",
-          detectarSalida
-        );
-
-        window.removeEventListener(
-          "blur",
-          detectarDesenfoque
-        );
-      };
-
-      document.addEventListener(
-        "visibilitychange",
-        detectarSalida
-      );
-
-      window.addEventListener(
-        "blur",
-        detectarDesenfoque
-      );
-
-      /*
-        Un iframe invisible permite intentar el esquema
-        sin reemplazar inmediatamente toda la página.
-      */
-      const marco =
-        document.createElement("iframe");
-
-      marco.style.display = "none";
-      marco.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-      marco.src = banco.esquema;
-
-      document.body.appendChild(marco);
-
-      setTimeout(()=>{
-        marco.remove();
-      },1500);
-
-      /*
-        Si la app no responde, se ofrece abrir
-        la página oficial de App Store.
-      */
-      storeTimer = setTimeout(()=>{
-        if(
-          aplicacionAbierta ||
-          intentoTerminado ||
-          document.hidden
-        ){
-          limpiarDetectores();
-          return;
-        }
-
-        intentoTerminado = true;
-        limpiarDetectores();
-
-        mostrarToast(
-          `${banco.nombre} no abrió. Tocando aquí irás a App Store.`
-        );
-
-        mostrarBotonTienda(banco);
-      },1900);
-    }
-
-    function mostrarBotonTienda(banco){
-      const toast =
-        document.getElementById("toast");
-
-      clearTimeout(toastTimer);
-
-      toast.innerHTML = "";
-
-      const texto =
-        document.createElement("span");
-
-      texto.textContent =
-        `${banco.nombre} no abrió. `;
-
-      const enlace =
-        document.createElement("a");
-
-      enlace.href = banco.appStore;
-      enlace.textContent =
-        "Abrir App Store";
-
-      enlace.style.color = "#ffffff";
-      enlace.style.fontWeight = "800";
-      enlace.style.textDecoration = "underline";
-      enlace.style.marginLeft = "4px";
-      enlace.style.pointerEvents = "auto";
-
-      toast.appendChild(texto);
-      toast.appendChild(enlace);
-
-      toast.style.pointerEvents = "auto";
-      toast.classList.add("show");
-
-      toastTimer = setTimeout(()=>{
-        toast.classList.remove("show");
-        toast.style.pointerEvents = "none";
-
-        setTimeout(()=>{
-          toast.innerHTML = "";
-        },300);
-      },6000);
     }
 
     async function copiarCedula(boton){
@@ -1173,7 +1019,6 @@
 
       clearTimeout(toastTimer);
 
-      toast.style.pointerEvents = "none";
       toast.textContent = mensaje;
       toast.classList.add("show");
 
