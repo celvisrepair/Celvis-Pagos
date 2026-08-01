@@ -7,6 +7,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Evita que Safari convierta las cuentas en teléfonos azules -->
+  <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
+
   <meta name="theme-color" content="#050505">
 
   <meta
@@ -38,6 +41,7 @@
       min-height:100vh;
       margin:0;
       padding:30px 15px;
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -47,7 +51,9 @@
         Roboto,
         Arial,
         sans-serif;
+
       color:var(--text);
+
       background:
         radial-gradient(
           circle at 50% -10%,
@@ -65,6 +71,7 @@
           transparent 35%
         ),
         var(--background);
+
       display:flex;
       justify-content:center;
       align-items:flex-start;
@@ -83,12 +90,15 @@
       position:relative;
       overflow:hidden;
       padding:25px 20px 22px;
+
       background:rgba(10,10,12,.92);
       border:1px solid var(--border);
       border-radius:30px;
+
       box-shadow:
         0 30px 80px rgba(0,0,0,.75),
         inset 0 1px 0 rgba(255,255,255,.05);
+
       backdrop-filter:blur(20px);
       -webkit-backdrop-filter:blur(20px);
     }
@@ -110,7 +120,9 @@
     .logo-container{
       position:relative;
       display:flex;
+      align-items:center;
       justify-content:center;
+      width:100%;
       margin-bottom:17px;
     }
 
@@ -118,12 +130,15 @@
       width:112px;
       height:112px;
       overflow:hidden;
+
       display:flex;
       align-items:center;
       justify-content:center;
+
       border:2px solid rgba(255,255,255,.85);
       border-radius:50%;
       background:#101010;
+
       box-shadow:
         0 0 0 7px rgba(255,255,255,.035),
         0 0 28px rgba(255,255,255,.18);
@@ -160,6 +175,7 @@
       margin:22px 0 20px;
       padding:16px;
       text-align:center;
+
       background:rgba(255,255,255,.045);
       border:1px solid rgba(255,255,255,.08);
       border-radius:20px;
@@ -190,9 +206,10 @@
 
     .copy-id{
       padding:3px 5px;
-      color:#fff;
+      color:#fff !important;
       font-weight:700;
-      text-decoration:none;
+      text-decoration:none !important;
+      -webkit-text-fill-color:#fff !important;
       background:transparent;
       border:0;
       border-bottom:1px dashed rgba(255,255,255,.35);
@@ -218,11 +235,14 @@
 
       position:relative;
       overflow:hidden;
+
       display:grid;
       grid-template-columns:62px minmax(0,1fr);
       gap:14px;
       align-items:center;
+
       padding:15px;
+
       background:
         linear-gradient(
           135deg,
@@ -230,8 +250,10 @@
           rgba(255,255,255,.025) 48%
         ),
         #0b0b0d;
+
       border:1px solid rgba(var(--bank-color),.20);
       border-radius:22px;
+
       transition:
         transform .2s ease,
         border-color .25s ease,
@@ -253,9 +275,11 @@
 
     .bank.copied{
       border-color:rgba(var(--bank-color),.75);
+
       box-shadow:
         0 0 0 1px rgba(var(--bank-color),.14),
         0 0 30px rgba(var(--bank-color),.20);
+
       animation:copyPulse .38s ease;
     }
 
@@ -278,14 +302,18 @@
     .bank-icon{
       position:relative;
       z-index:1;
+
       width:62px;
       height:62px;
       overflow:hidden;
+
       display:flex;
       align-items:center;
       justify-content:center;
+
       border-radius:18px;
       background:#fff;
+
       box-shadow:
         0 7px 18px rgba(0,0,0,.35),
         inset 0 0 0 1px rgba(0,0,0,.06);
@@ -313,15 +341,48 @@
       font-weight:750;
     }
 
-    .account-number{
-    margin:0;
-    overflow-wrap:anywhere;
-    font-size:20px;
-    font-weight:850;
-    letter-spacing:.5px;
-    color:#fff;
-    text-decoration:none !important;
-}
+    /*
+      Mantiene las cuentas blancas y sin raya,
+      incluso cuando Safari intenta detectarlas.
+    */
+    .account-number,
+    .account-number span,
+    .account-number a{
+      margin:0;
+      overflow-wrap:anywhere;
+
+      color:#ffffff !important;
+      font-size:20px !important;
+      font-weight:850 !important;
+      letter-spacing:.5px !important;
+      line-height:1.2 !important;
+
+      text-decoration:none !important;
+      text-decoration-line:none !important;
+      border:0 !important;
+      border-bottom:0 !important;
+
+      -webkit-text-fill-color:#ffffff !important;
+      -webkit-text-decoration:none !important;
+    }
+
+    a[href^="tel"],
+    a[href^="sms"],
+    a[x-apple-data-detectors],
+    [x-apple-data-detectors],
+    x-apple-data-detectors{
+      color:inherit !important;
+      font:inherit !important;
+
+      text-decoration:none !important;
+      text-decoration-line:none !important;
+
+      border:0 !important;
+      border-bottom:0 !important;
+
+      -webkit-text-fill-color:inherit !important;
+      -webkit-text-decoration:none !important;
+    }
 
     .account-type{
       margin:5px 0 11px;
@@ -333,13 +394,16 @@
       width:100%;
       min-height:42px;
       padding:10px 13px;
+
       color:#090909;
       font-size:13px;
       font-weight:800;
+
       background:#fff;
       border:0;
       border-radius:13px;
       cursor:pointer;
+
       transition:
         transform .15s ease,
         opacity .2s ease,
@@ -360,7 +424,9 @@
       align-items:center;
       justify-content:center;
       gap:6px;
+
       margin-top:19px;
+
       color:#85858b;
       font-size:11px;
       text-align:center;
@@ -383,22 +449,29 @@
       left:50%;
       bottom:24px;
       z-index:9999;
+
       width:max-content;
       max-width:calc(100% - 32px);
       padding:13px 17px;
+
       color:#fff;
       font-size:13px;
       font-weight:650;
       text-align:center;
+
       background:rgba(25,25,28,.96);
       border:1px solid rgba(255,255,255,.13);
       border-radius:16px;
+
       box-shadow:0 18px 45px rgba(0,0,0,.65);
+
       opacity:0;
       transform:translate(-50%,20px) scale(.96);
+
       transition:
         opacity .25s ease,
         transform .25s ease;
+
       pointer-events:none;
     }
 
@@ -411,9 +484,11 @@
       0%{
         transform:scale(1);
       }
+
       45%{
         transform:scale(.975);
       }
+
       100%{
         transform:scale(1);
       }
@@ -441,8 +516,9 @@
         border-radius:16px;
       }
 
-      .account-number{
-        font-size:18px;
+      .account-number,
+      .account-number span{
+        font-size:18px !important;
       }
     }
 
@@ -466,13 +542,17 @@
     <section class="main-card">
 
       <div class="logo-container">
+
         <div class="logo-circle">
+
           <img
             src="logo.JPG"
             alt="Logo de la empresa"
             onerror="this.style.display='none'"
           >
+
         </div>
+
       </div>
 
       <h1 class="title">DATOS DE PAGOS</h1>
@@ -483,13 +563,16 @@
 
       <div class="owner-card">
 
-        <span class="owner-label">Titular de las cuentas</span>
+        <span class="owner-label">
+          Titular de las cuentas
+        </span>
 
         <p class="owner-name">
           Sarah Esther Caraballo Jiménez
         </p>
 
         <div class="id-row">
+
           Cédula:
 
           <button
@@ -500,30 +583,46 @@
           >
             402-3595051-2
           </button>
+
         </div>
 
       </div>
 
-      <p class="section-title">Cuentas disponibles</p>
+      <p class="section-title">
+        Cuentas disponibles
+      </p>
 
       <div class="banks">
 
         <!-- BANCO POPULAR -->
-        <article class="bank popular" id="bank-popular">
+
+        <article
+          class="bank popular"
+          id="bank-popular"
+        >
 
           <div class="bank-icon">
+
             <img
               src="popular.png"
               alt="Banco Popular"
               onerror="mostrarIniciales(this,'POPULAR')"
             >
+
           </div>
 
           <div class="bank-content">
 
-            <h2 class="bank-name">Banco Popular</h2>
+            <h2 class="bank-name">
+              Banco Popular
+            </h2>
 
-            <p class="account-number">817783616</p>
+            <p
+              class="account-number"
+              data-account="817783616"
+            >
+              <span>817783616</span>
+            </p>
 
             <p class="account-type">
               Cuenta de ahorros · Débito
@@ -534,6 +633,7 @@
               type="button"
               onclick="copiarCuenta(
                 '817783616',
+                'popular',
                 'Banco Popular',
                 'bank-popular',
                 this
@@ -547,21 +647,34 @@
         </article>
 
         <!-- BANRESERVAS -->
-        <article class="bank banreservas" id="bank-banreservas">
+
+        <article
+          class="bank banreservas"
+          id="bank-banreservas"
+        >
 
           <div class="bank-icon">
+
             <img
               src="banreservas.png"
               alt="Banreservas"
               onerror="mostrarIniciales(this,'BR')"
             >
+
           </div>
 
           <div class="bank-content">
 
-            <h2 class="bank-name">Banreservas</h2>
+            <h2 class="bank-name">
+              Banreservas
+            </h2>
 
-            <p class="account-number">9604045935</p>
+            <p
+              class="account-number"
+              data-account="9604045935"
+            >
+              <span>9604045935</span>
+            </p>
 
             <p class="account-type">
               Cuenta de ahorros · Débito
@@ -572,6 +685,7 @@
               type="button"
               onclick="copiarCuenta(
                 '9604045935',
+                'banreservas',
                 'Banreservas',
                 'bank-banreservas',
                 this
@@ -585,21 +699,34 @@
         </article>
 
         <!-- BANCO BHD -->
-        <article class="bank bhd" id="bank-bhd">
+
+        <article
+          class="bank bhd"
+          id="bank-bhd"
+        >
 
           <div class="bank-icon">
+
             <img
               src="bhd.png"
               alt="Banco BHD"
               onerror="mostrarIniciales(this,'BHD')"
             >
+
           </div>
 
           <div class="bank-content">
 
-            <h2 class="bank-name">Banco BHD</h2>
+            <h2 class="bank-name">
+              Banco BHD
+            </h2>
 
-            <p class="account-number">27102740011</p>
+            <p
+              class="account-number"
+              data-account="27102740011"
+            >
+              <span>27102740011</span>
+            </p>
 
             <p class="account-type">
               Cuenta de ahorros · Débito
@@ -610,6 +737,7 @@
               type="button"
               onclick="copiarCuenta(
                 '27102740011',
+                'bhd',
                 'Banco BHD',
                 'bank-bhd',
                 this
@@ -622,15 +750,21 @@
 
         </article>
 
-        <!-- ASOCIACIÓN POPULAR APAP -->
-        <article class="bank apap" id="bank-apap">
+        <!-- APAP -->
+
+        <article
+          class="bank apap"
+          id="bank-apap"
+        >
 
           <div class="bank-icon">
+
             <img
               src="apap.png"
               alt="Asociación Popular de Ahorros y Préstamos"
               onerror="mostrarIniciales(this,'APAP')"
             >
+
           </div>
 
           <div class="bank-content">
@@ -639,7 +773,12 @@
               Asociación Popular · APAP
             </h2>
 
-            <p class="account-number">1036982106</p>
+            <p
+              class="account-number"
+              data-account="1036982106"
+            >
+              <span>1036982106</span>
+            </p>
 
             <p class="account-type">
               Cuenta de ahorros · Débito
@@ -650,6 +789,7 @@
               type="button"
               onclick="copiarCuenta(
                 '1036982106',
+                'apap',
                 'APAP',
                 'bank-apap',
                 this
@@ -665,8 +805,13 @@
       </div>
 
       <div class="security-note">
+
         <span class="security-icon">🔒</span>
-        <span>Rápido y seguro con un toque</span>
+
+        <span>
+          Rápido y seguro con un toque
+        </span>
+
       </div>
 
       <div class="footer">
@@ -677,11 +822,51 @@
 
   </main>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
 
   <script>
     let toastTimer;
     let buttonTimer;
+    let storeTimer;
+
+    /*
+      Los enlaces de App Store sirven como respaldo
+      cuando la aplicación no puede abrirse.
+    */
+    const bancos = {
+      popular:{
+        nombre:"Banco Popular",
+        esquema:"popular://",
+        appStore:
+          "https://apps.apple.com/do/app/banco-popular-dominicano/id583475424"
+      },
+
+      banreservas:{
+        nombre:"Banreservas",
+        esquema:"banreservas://",
+        appStore:
+          "https://apps.apple.com/do/app/banreservas/id1170610154"
+      },
+
+      bhd:{
+        nombre:"Banco BHD",
+        esquema:"bhd://",
+        appStore:
+          "https://apps.apple.com/do/app/m%C3%B3vil-banking-personal-bhd/id736887202"
+      },
+
+      apap:{
+        nombre:"APAP",
+        esquema:"apap://",
+        appStore:
+          "https://apps.apple.com/do/app/m%C3%B3vil-apap/id1073508748"
+      }
+    };
 
     async function copiarTexto(texto){
       try{
@@ -693,57 +878,100 @@
           return true;
         }
 
-        const temporal = document.createElement("textarea");
+        const temporal =
+          document.createElement("textarea");
 
         temporal.value = texto;
         temporal.setAttribute("readonly","");
+
         temporal.style.position = "fixed";
+        temporal.style.top = "-9999px";
+        temporal.style.left = "-9999px";
         temporal.style.opacity = "0";
 
         document.body.appendChild(temporal);
 
+        temporal.focus();
         temporal.select();
-        temporal.setSelectionRange(0, temporal.value.length);
 
-        const resultado = document.execCommand("copy");
+        temporal.setSelectionRange(
+          0,
+          temporal.value.length
+        );
+
+        const resultado =
+          document.execCommand("copy");
 
         temporal.remove();
 
         return resultado;
       }
       catch(error){
-        console.error("No se pudo copiar:",error);
+        console.error(
+          "No se pudo copiar:",
+          error
+        );
+
         return false;
       }
     }
 
     async function copiarCuenta(
       numero,
-      banco,
+      bancoId,
+      nombreBanco,
       cardId,
       boton
     ){
-      const copiado = await copiarTexto(numero);
+      const copiado =
+        await copiarTexto(numero);
 
       if(!copiado){
         mostrarToast(
-          "No se pudo copiar. Mantén presionado el número de cuenta."
+          "No se pudo copiar. Mantén presionado el número."
         );
+
         return;
       }
 
       vibrar();
 
-      const tarjeta = document.getElementById(cardId);
+      animarTarjeta(cardId);
+      marcarBoton(boton);
+
+      mostrarToast(
+        `Cuenta copiada. Abriendo ${nombreBanco}…`
+      );
+
+      /*
+        Se intenta abrir inmediatamente después
+        de completar la copia.
+      */
+      setTimeout(()=>{
+        abrirBanco(bancoId);
+      },350);
+    }
+
+    function animarTarjeta(cardId){
+      const tarjeta =
+        document.getElementById(cardId);
+
+      if(!tarjeta){
+        return;
+      }
 
       tarjeta.classList.remove("copied");
+
       void tarjeta.offsetWidth;
+
       tarjeta.classList.add("copied");
 
       setTimeout(()=>{
         tarjeta.classList.remove("copied");
       },450);
+    }
 
+    function marcarBoton(boton){
       document
         .querySelectorAll(".copy-btn")
         .forEach(btn=>{
@@ -753,52 +981,205 @@
 
       clearTimeout(buttonTimer);
 
-      boton.textContent = "✓ Cuenta copiada";
+      boton.textContent =
+        "✓ Cuenta copiada";
+
       boton.classList.add("success");
 
       buttonTimer = setTimeout(()=>{
-        boton.textContent = "Copiar cuenta";
-        boton.classList.remove("success");
-      },2200);
+        boton.textContent =
+          "Copiar cuenta";
 
-      mostrarToast(
-        `Cuenta de ${banco} copiada correctamente`
+        boton.classList.remove("success");
+      },2500);
+    }
+
+    function abrirBanco(bancoId){
+      const banco = bancos[bancoId];
+
+      if(!banco){
+        mostrarToast(
+          "No se encontró la aplicación del banco."
+        );
+
+        return;
+      }
+
+      let aplicacionAbierta = false;
+      let intentoTerminado = false;
+
+      const detectarSalida = ()=>{
+        if(document.hidden){
+          aplicacionAbierta = true;
+          intentoTerminado = true;
+          limpiarDetectores();
+        }
+      };
+
+      const detectarDesenfoque = ()=>{
+        aplicacionAbierta = true;
+        intentoTerminado = true;
+        limpiarDetectores();
+      };
+
+      const limpiarDetectores = ()=>{
+        clearTimeout(storeTimer);
+
+        document.removeEventListener(
+          "visibilitychange",
+          detectarSalida
+        );
+
+        window.removeEventListener(
+          "blur",
+          detectarDesenfoque
+        );
+      };
+
+      document.addEventListener(
+        "visibilitychange",
+        detectarSalida
       );
+
+      window.addEventListener(
+        "blur",
+        detectarDesenfoque
+      );
+
+      /*
+        Un iframe invisible permite intentar el esquema
+        sin reemplazar inmediatamente toda la página.
+      */
+      const marco =
+        document.createElement("iframe");
+
+      marco.style.display = "none";
+      marco.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      marco.src = banco.esquema;
+
+      document.body.appendChild(marco);
+
+      setTimeout(()=>{
+        marco.remove();
+      },1500);
+
+      /*
+        Si la app no responde, se ofrece abrir
+        la página oficial de App Store.
+      */
+      storeTimer = setTimeout(()=>{
+        if(
+          aplicacionAbierta ||
+          intentoTerminado ||
+          document.hidden
+        ){
+          limpiarDetectores();
+          return;
+        }
+
+        intentoTerminado = true;
+        limpiarDetectores();
+
+        mostrarToast(
+          `${banco.nombre} no abrió. Tocando aquí irás a App Store.`
+        );
+
+        mostrarBotonTienda(banco);
+      },1900);
+    }
+
+    function mostrarBotonTienda(banco){
+      const toast =
+        document.getElementById("toast");
+
+      clearTimeout(toastTimer);
+
+      toast.innerHTML = "";
+
+      const texto =
+        document.createElement("span");
+
+      texto.textContent =
+        `${banco.nombre} no abrió. `;
+
+      const enlace =
+        document.createElement("a");
+
+      enlace.href = banco.appStore;
+      enlace.textContent =
+        "Abrir App Store";
+
+      enlace.style.color = "#ffffff";
+      enlace.style.fontWeight = "800";
+      enlace.style.textDecoration = "underline";
+      enlace.style.marginLeft = "4px";
+      enlace.style.pointerEvents = "auto";
+
+      toast.appendChild(texto);
+      toast.appendChild(enlace);
+
+      toast.style.pointerEvents = "auto";
+      toast.classList.add("show");
+
+      toastTimer = setTimeout(()=>{
+        toast.classList.remove("show");
+        toast.style.pointerEvents = "none";
+
+        setTimeout(()=>{
+          toast.innerHTML = "";
+        },300);
+      },6000);
     }
 
     async function copiarCedula(boton){
       const cedula = "40235950512";
-      const copiado = await copiarTexto(cedula);
+
+      const copiado =
+        await copiarTexto(cedula);
 
       if(!copiado){
-        mostrarToast("No se pudo copiar la cédula");
+        mostrarToast(
+          "No se pudo copiar la cédula."
+        );
+
         return;
       }
 
       vibrar();
 
-      const textoOriginal = boton.textContent;
+      const textoOriginal =
+        boton.textContent;
 
-      boton.textContent = "✓ Cédula copiada";
+      boton.textContent =
+        "✓ Cédula copiada";
 
       setTimeout(()=>{
-        boton.textContent = textoOriginal;
+        boton.textContent =
+          textoOriginal;
       },1800);
 
-      mostrarToast("Cédula copiada correctamente");
+      mostrarToast(
+        "Cédula copiada correctamente."
+      );
     }
 
     function mostrarToast(mensaje){
-      const toast = document.getElementById("toast");
+      const toast =
+        document.getElementById("toast");
 
       clearTimeout(toastTimer);
 
+      toast.style.pointerEvents = "none";
       toast.textContent = mensaje;
       toast.classList.add("show");
 
       toastTimer = setTimeout(()=>{
         toast.classList.remove("show");
-      },2400);
+      },2600);
     }
 
     function vibrar(){
@@ -807,16 +1188,23 @@
       }
     }
 
-    function mostrarIniciales(imagen,texto){
-      const contenedor = imagen.parentElement;
+    function mostrarIniciales(
+      imagen,
+      texto
+    ){
+      const contenedor =
+        imagen.parentElement;
 
       imagen.remove();
 
       contenedor.textContent = texto;
       contenedor.style.color = "#111";
-      contenedor.style.fontSize = texto.length > 4
-        ? "10px"
-        : "15px";
+
+      contenedor.style.fontSize =
+        texto.length > 4
+          ? "10px"
+          : "15px";
+
       contenedor.style.fontWeight = "900";
       contenedor.style.letterSpacing = ".4px";
     }
