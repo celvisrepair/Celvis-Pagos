@@ -1,11 +1,11 @@
-const CACHE_NAME = "celvis-precios-v2";
+const CACHE_NAME = "celvis-precios-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/apple-touch-icon.png"
+  "./icons/celvis-icon-192-v3.png",
+  "./icons/celvis-icon-512-v3.png",
+  "./icons/celvis-apple-touch-v3.png"
 ];
 
 self.addEventListener("install", event => {
