@@ -1,17 +1,19 @@
-CELVIS PWA - LOGO FINAL
+VERSION SIN CARPETAS
 
-Sube TODO el contenido de esta carpeta a la raíz de tu repositorio GitHub Pages.
+Sube estos 6 archivos directamente a la raíz del repositorio:
 
-Importante:
-- reemplaza index.html
-- reemplaza manifest.webmanifest
-- reemplaza service-worker.js
-- sube la carpeta icons completa
+index.html
+manifest.webmanifest
+service-worker.js
+apple-touch-icon.png
+icon-192.png
+icon-512.png
+
+No necesitas crear ni subir ninguna carpeta.
 
 Después:
-1. Espera a que GitHub Pages actualice.
-2. En iPhone elimina el icono viejo de Celvis.
+1. Espera a que GitHub Pages publique.
+2. Borra el icono viejo de Celvis del iPhone.
 3. Abre la web en Safari.
-4. Recarga la página.
+4. Recarga.
 5. Compartir > Añadir a pantalla de inicio.
-6. Ahora debe aparecer el nuevo icono con tu logo blanco sobre fondo oscuro.
