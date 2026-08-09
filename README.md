@@ -1,32 +1,30 @@
-# Celvis Reparaciones - Lista de precios
+# Celvis Reparaciones PWA
 
-Página web estática preparada para GitHub Pages.
+Sube **todo el contenido de esta carpeta** a la raíz de tu repositorio de GitHub Pages:
 
-## Subir a GitHub
+- index.html
+- manifest.webmanifest
+- service-worker.js
+- carpeta icons/
 
-1. Crea un repositorio nuevo en GitHub.
-2. Sube el archivo `index.html` a la raíz del repositorio.
-3. Entra a **Settings > Pages**.
-4. En **Build and deployment**, selecciona **Deploy from a branch**.
-5. Selecciona la rama `main` y la carpeta `/root`.
-6. Guarda los cambios.
+## Instalar en iPhone
 
-## Editar WhatsApp
+1. Abre la página publicada en **Safari**.
+2. Toca el botón **Compartir**.
+3. Selecciona **Añadir a pantalla de inicio**.
+4. Confirma el nombre “Celvis”.
 
-Dentro de `index.html`, busca:
+La app abrirá en modo independiente, sin la barra normal de Safari.
 
-```js
-const WHATSAPP_NUMBER = "18090000000";
-```
+## Nota sobre actualizaciones
 
-Sustituye ese número por el tuyo, sin espacios, signos ni guiones.
+Si luego modificas mucho la página y el iPhone sigue mostrando una versión anterior,
+cambia en `service-worker.js`:
 
-## Editar precios
+`celvis-precios-v1`
 
-Busca la sección:
+por:
 
-```js
-const repairData = [
-```
+`celvis-precios-v2`
 
-Cada modelo contiene sus servicios, precios y garantía.
+y vuelve a subir los archivos.

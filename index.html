@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#07090d">
   <meta name="description" content="Catálogo de precios y servicios de Celvis Reparaciones.">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Celvis">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
   <title>Lista de precios | Celvis Reparaciones</title>
 
   <style>
@@ -549,6 +556,33 @@
     .modal-service strong{grid-row:1/3;grid-column:2;text-align:right}
 
 
+
+    .install-banner{
+      display:none;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:14px 0 0;
+      padding:14px 15px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:var(--panel);
+      box-shadow:0 12px 35px rgba(0,0,0,.10);
+    }
+    .install-banner.show{display:flex}
+    .install-copy strong{display:block;font-size:.9rem}
+    .install-copy span{display:block;margin-top:3px;color:var(--muted);font-size:.78rem;line-height:1.4}
+    .install-btn{
+      flex:0 0 auto;
+      border:0;
+      border-radius:14px;
+      padding:10px 13px;
+      color:#fff;
+      font-weight:850;
+      cursor:pointer;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    }
+
     .family-wrap{
       margin:10px 0 8px;
       padding:16px;
@@ -676,6 +710,15 @@
       </div>
 
       <div class="chips" id="categoryChips"></div>
+
+
+      <div class="install-banner" id="installBanner">
+        <div class="install-copy">
+          <strong>Instala Celvis en tu iPhone</strong>
+          <span>Ábrela como una app desde tu pantalla de inicio.</span>
+        </div>
+        <button class="install-btn" id="installButton">Instalar</button>
+      </div>
 
       <div class="family-wrap" id="familyWrap">
         <div class="family-head">
@@ -1012,6 +1055,50 @@
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // PWA
+    let deferredInstallPrompt = null;
+    const installBanner = document.getElementById("installBanner");
+    const installButton = document.getElementById("installButton");
+
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      });
+    }
+
+    window.addEventListener("beforeinstallprompt", event => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      if (!isStandalone) installBanner.classList.add("show");
+    });
+
+    if (isIOS && !isStandalone) {
+      installBanner.classList.add("show");
+      installButton.textContent = "Cómo instalar";
+    }
+
+    installButton.addEventListener("click", async () => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        installBanner.classList.remove("show");
+        return;
+      }
+
+      if (isIOS) {
+        alert("En Safari: toca Compartir, luego “Añadir a pantalla de inicio” y confirma.");
+      }
+    });
+
+    window.addEventListener("appinstalled", () => {
+      installBanner.classList.remove("show");
+    });
+
 
     renderChips();
     renderFamilies();
