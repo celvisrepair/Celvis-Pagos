@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07090d">
+  <meta name="description" content="Catálogo de precios y servicios de Celvis Reparaciones.">
+  <title>Lista de precios | Celvis Reparaciones</title>
+
+  <style>
+    :root{
+      --bg:#07090d;
+      --panel:rgba(17,22,30,.82);
+      --panel-solid:#11161e;
+      --panel-2:#171e29;
+      --text:#f7f9fc;
+      --muted:#9aa6b7;
+      --accent:#42a5ff;
+      --accent-2:#785cff;
+      --success:#2bd18b;
+      --warning:#ffbf47;
+      --border:rgba(255,255,255,.09);
+      --shadow:0 24px 70px rgba(0,0,0,.38);
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% -5%, rgba(66,165,255,.20), transparent 30rem),
+        radial-gradient(circle at 105% 18%, rgba(120,92,255,.17), transparent 30rem),
+        var(--bg);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body.light{
+      --bg:#eef3f9;
+      --panel:rgba(255,255,255,.82);
+      --panel-solid:#ffffff;
+      --panel-2:#f4f7fb;
+      --text:#101724;
+      --muted:#697588;
+      --border:rgba(16,23,36,.09);
+      --shadow:0 24px 70px rgba(38,56,82,.15);
+      background:
+        radial-gradient(circle at 10% -5%, rgba(66,165,255,.22), transparent 30rem),
+        radial-gradient(circle at 105% 18%, rgba(120,92,255,.16), transparent 30rem),
+        var(--bg);
+    }
+
+    button,input{font:inherit}
+    button{color:inherit}
+
+    .page{
+      width:min(1180px, calc(100% - 28px));
+      margin:auto;
+      padding:18px 0 112px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:10px;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 14px;
+      border:1px solid var(--border);
+      border-radius:20px;
+      background:var(--panel);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:0 12px 40px rgba(0,0,0,.18);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      min-width:0;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      flex:0 0 44px;
+      display:grid;
+      place-items:center;
+      border-radius:15px;
+      font-weight:900;
+      letter-spacing:-1px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 10px 28px rgba(66,165,255,.28);
+    }
+
+    .brand strong{display:block;font-size:.98rem}
+    .brand span{display:block;color:var(--muted);font-size:.76rem;margin-top:2px}
+
+    .icon-btn{
+      width:44px;
+      height:44px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:var(--panel-2);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      transition:.2s ease;
+    }
+
+    .icon-btn:hover{transform:translateY(-2px)}
+
+    .hero{
+      padding:68px 4px 34px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:var(--panel);
+      color:#bcdcff;
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--success);
+      box-shadow:0 0 18px var(--success);
+    }
+
+    h1{
+      margin:18px 0 14px;
+      max-width:760px;
+      font-size:clamp(2.5rem,7vw,5.3rem);
+      line-height:.94;
+      letter-spacing:-.065em;
+    }
+
+    .gradient{
+      background:linear-gradient(100deg,#fff 5%,#8ac7ff 48%,#a28dff 92%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    body.light .gradient{
+      background:linear-gradient(100deg,#101724 5%,#1686ef 48%,#6946e8 92%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:670px;
+      color:var(--muted);
+      font-size:clamp(1rem,2vw,1.15rem);
+      line-height:1.65;
+    }
+
+    .hero-card{
+      position:relative;
+      overflow:hidden;
+      min-height:290px;
+      padding:26px;
+      border:1px solid var(--border);
+      border-radius:32px;
+      background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      width:210px;height:210px;
+      right:-70px;bottom:-90px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      filter:blur(8px);
+      opacity:.65;
+    }
+
+    .device{
+      position:absolute;
+      right:28px;
+      top:30px;
+      width:116px;
+      height:228px;
+      border:7px solid rgba(255,255,255,.85);
+      border-radius:28px;
+      transform:rotate(8deg);
+      box-shadow:0 24px 60px rgba(0,0,0,.34);
+      background:
+        radial-gradient(circle at 50% 35%,rgba(255,255,255,.25),transparent 28%),
+        linear-gradient(160deg,#14263e,#301f63 58%,#151923);
+    }
+
+    .device::before{
+      content:"";
+      position:absolute;
+      width:42px;height:10px;
+      left:50%;top:7px;
+      transform:translateX(-50%);
+      background:#05070a;
+      border-radius:20px;
+    }
+
+    .metric{
+      position:relative;
+      z-index:2;
+      max-width:180px;
+      margin-bottom:22px;
+    }
+
+    .metric b{display:block;font-size:2.1rem;letter-spacing:-.05em}
+    .metric span{color:var(--muted);font-size:.86rem}
+
+    .controls{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .search{
+      position:relative;
+    }
+
+    .search input{
+      width:100%;
+      min-height:58px;
+      padding:0 18px 0 50px;
+      color:var(--text);
+      border:1px solid var(--border);
+      outline:none;
+      border-radius:18px;
+      background:var(--panel);
+      box-shadow:0 12px 35px rgba(0,0,0,.12);
+    }
+
+    .search input:focus{
+      border-color:rgba(66,165,255,.65);
+      box-shadow:0 0 0 4px rgba(66,165,255,.11);
+    }
+
+    .search::before{
+      content:"⌕";
+      position:absolute;
+      left:18px;
+      top:50%;
+      transform:translateY(-54%);
+      font-size:1.45rem;
+      color:var(--muted);
+    }
+
+    .quote-btn{
+      min-height:58px;
+      padding:0 22px;
+      border:0;
+      border-radius:18px;
+      color:#fff;
+      font-weight:850;
+      cursor:pointer;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 14px 34px rgba(66,165,255,.24);
+      transition:.2s ease;
+    }
+
+    .quote-btn:hover{transform:translateY(-2px)}
+
+    .chips{
+      display:flex;
+      gap:9px;
+      overflow:auto;
+      padding:18px 1px 12px;
+      scrollbar-width:none;
+    }
+
+    .chips::-webkit-scrollbar{display:none}
+
+    .chip{
+      flex:0 0 auto;
+      padding:10px 15px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:var(--panel);
+      cursor:pointer;
+      color:var(--muted);
+      font-weight:750;
+      transition:.2s ease;
+    }
+
+    .chip.active{
+      color:#fff;
+      border-color:transparent;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 8px 24px rgba(66,165,255,.20);
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      margin:25px 2px 16px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:clamp(1.55rem,4vw,2.15rem);
+      letter-spacing:-.04em;
+    }
+
+    .section-head p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .count{
+      color:var(--muted);
+      font-size:.85rem;
+      white-space:nowrap;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      padding:20px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:var(--panel);
+      box-shadow:0 12px 38px rgba(0,0,0,.12);
+      transition:.22s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(66,165,255,.35);
+      box-shadow:var(--shadow);
+    }
+
+    .card-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .model{
+      margin:0;
+      font-size:1.12rem;
+      letter-spacing:-.025em;
+    }
+
+    .category{
+      display:inline-block;
+      margin-top:5px;
+      color:var(--muted);
+      font-size:.76rem;
+    }
+
+    .badge{
+      padding:7px 9px;
+      border-radius:999px;
+      font-size:.68rem;
+      font-weight:900;
+      color:#cce8ff;
+      background:rgba(66,165,255,.12);
+      border:1px solid rgba(66,165,255,.20);
+    }
+
+    .services{
+      display:grid;
+      gap:10px;
+      margin:18px 0 4px;
+    }
+
+    .service{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 13px;
+      border-radius:15px;
+      background:var(--panel-2);
+    }
+
+    .service span{
+      color:var(--muted);
+      font-size:.83rem;
+    }
+
+    .service strong{
+      font-size:.88rem;
+      text-align:right;
+    }
+
+    .card-actions{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:9px;
+      margin-top:15px;
+    }
+
+    .details,.whatsapp{
+      min-height:43px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    .details{
+      border:1px solid var(--border);
+      background:var(--panel-2);
+    }
+
+    .whatsapp{
+      width:45px;
+      border:0;
+      color:#061a10;
+      background:var(--success);
+    }
+
+    .empty{
+      grid-column:1/-1;
+      padding:46px 22px;
+      text-align:center;
+      border:1px dashed var(--border);
+      border-radius:24px;
+      color:var(--muted);
+      background:var(--panel);
+    }
+
+    .notice{
+      margin-top:22px;
+      padding:16px 18px;
+      border:1px solid rgba(255,191,71,.20);
+      border-radius:18px;
+      color:var(--muted);
+      background:rgba(255,191,71,.07);
+      line-height:1.55;
+      font-size:.86rem;
+    }
+
+    footer{
+      padding:38px 4px 0;
+      color:var(--muted);
+      font-size:.82rem;
+      text-align:center;
+    }
+
+    .floating-wa{
+      position:fixed;
+      z-index:60;
+      right:18px;
+      bottom:18px;
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding:14px 17px;
+      border:0;
+      border-radius:999px;
+      color:#071c12;
+      font-weight:900;
+      background:var(--success);
+      box-shadow:0 16px 45px rgba(43,209,139,.30);
+      cursor:pointer;
+    }
+
+    dialog{
+      width:min(620px,calc(100% - 24px));
+      max-height:88vh;
+      padding:0;
+      color:var(--text);
+      border:1px solid var(--border);
+      border-radius:28px;
+      background:var(--panel-solid);
+      box-shadow:var(--shadow);
+    }
+
+    dialog::backdrop{
+      background:rgba(2,5,10,.72);
+      backdrop-filter:blur(7px);
+    }
+
+    .modal-head{
+      position:sticky;
+      top:0;
+      z-index:2;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:19px 20px;
+      border-bottom:1px solid var(--border);
+      background:var(--panel-solid);
+    }
+
+    .modal-head h3{margin:0;font-size:1.25rem}
+
+    .close{
+      width:39px;height:39px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:var(--panel-2);
+      cursor:pointer;
+    }
+
+    .modal-body{padding:20px}
+
+    .modal-service{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px 16px;
+      padding:15px 0;
+      border-bottom:1px solid var(--border);
+    }
+
+    .modal-service:last-child{border-bottom:0}
+    .modal-service span{color:var(--muted);font-size:.82rem}
+    .modal-service strong{grid-row:1/3;grid-column:2;text-align:right}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .hero-card{display:none}
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hero{padding-top:48px}
+    }
+
+    @media(max-width:620px){
+      .page{width:min(100% - 18px,1180px)}
+      .topbar{top:7px}
+      .brand span{display:none}
+      .hero{padding:42px 2px 24px}
+      .controls{grid-template-columns:1fr}
+      .quote-btn{display:none}
+      .grid{grid-template-columns:1fr}
+      .section-head{align-items:start}
+      .floating-wa span{display:none}
+      .floating-wa{width:56px;height:56px;padding:0;justify-content:center;font-size:1.25rem}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">CR</div>
+        <div>
+          <strong>Celvis Reparaciones</strong>
+          <span>Servicio técnico especializado</span>
+        </div>
+      </div>
+      <button class="icon-btn" id="themeButton" aria-label="Cambiar tema">☀️</button>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Catálogo actualizado</span>
+        <h1>Precios claros.<br><span class="gradient">Reparaciones premium.</span></h1>
+        <p>Consulta rápidamente el precio de pantallas, baterías, tapas, Face ID, microsoldadura y otros servicios.</p>
+      </div>
+
+      <aside class="hero-card">
+        <div class="metric">
+          <b>+30</b>
+          <span>Modelos y servicios organizados en un solo lugar.</span>
+        </div>
+        <div class="metric">
+          <b>RD$</b>
+          <span>Precios visibles, rápidos y fáciles de actualizar.</span>
+        </div>
+        <div class="device"></div>
+      </aside>
+    </section>
+
+    <section>
+      <div class="controls">
+        <label class="search">
+          <input id="searchInput" type="search" placeholder="Buscar modelo o servicio..." autocomplete="off">
+        </label>
+        <button class="quote-btn" onclick="openGeneralWhatsApp()">Solicitar cotización</button>
+      </div>
+
+      <div class="chips" id="categoryChips"></div>
+
+      <div class="section-head">
+        <div>
+          <h2>Servicios disponibles</h2>
+          <p>Selecciona un equipo para ver todos los detalles.</p>
+        </div>
+        <span class="count" id="resultCount"></span>
+      </div>
+
+      <div class="grid" id="priceGrid"></div>
+
+      <div class="notice">
+        Los precios pueden variar según la calidad de la pieza, disponibilidad y diagnóstico del equipo. Confirma la cotización antes de llevar el dispositivo.
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Celvis Reparaciones · Santo Domingo, República Dominicana
+    </footer>
+  </main>
+
+  <button class="floating-wa" onclick="openGeneralWhatsApp()" aria-label="Contactar por WhatsApp">
+    ☎ <span>WhatsApp</span>
+  </button>
+
+  <dialog id="detailsModal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Detalles</h3>
+      <button class="close" onclick="detailsModal.close()" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </dialog>
+
+  <script>
+    /* ==========================================================
+       CONFIGURACIÓN RÁPIDA
+       1. Cambia WHATSAPP_NUMBER por tu número con código de país.
+          Ejemplo RD: 18095551234
+       2. Edita los precios dentro de repairData.
+       ========================================================== */
+
+    const WHATSAPP_NUMBER = "18090000000";
+
+    const repairData = [
+      {
+        category:"iPhone",
+        model:"iPhone XR",
+        badge:"Popular",
+        services:[
+          {name:"Pantalla Incell", price:"RD$ 2,500", warranty:"Garantía incluida"},
+          {name:"Batería", price:"RD$ 2,000", warranty:"Instalación incluida"},
+          {name:"Tapa trasera", price:"Desde RD$ 2,500", warranty:"Según color"}
+        ]
+      },
+      {
+        category:"iPhone",
+        model:"iPhone 11",
+        badge:"Popular",
+        services:[
+          {name:"Pantalla Incell", price:"RD$ 2,800", warranty:"Garantía incluida"},
+          {name:"Batería", price:"RD$ 2,200", warranty:"Instalación incluida"},
+          {name:"Face ID", price:"Desde RD$ 3,500", warranty:"Requiere diagnóstico"}
+        ]
+      },
+      {
+        category:"iPhone",
+        model:"iPhone 12 Pro Max",
+        badge:"Recomendado",
+        services:[
+          {name:"Pantalla Soft OLED", price:"RD$ 6,500", warranty:"Garantía incluida"},
+          {name:"Batería Premium", price:"RD$ 3,500", warranty:"Instalación incluida"},
+          {name:"Tapa trasera", price:"Desde RD$ 3,500", warranty:"Según color"}
+        ]
+      },
+      {
+        category:"iPhone",
+        model:"iPhone 13 Pro Max",
+        badge:"Premium",
+        services:[
+          {name:"Pantalla Soft OLED", price:"RD$ 8,000", warranty:"Garantía incluida"},
+          {name:"Batería", price:"RD$ 3,800", warranty:"Instalación incluida"},
+          {name:"Microsoldadura", price:"Desde RD$ 3,500", warranty:"Según diagnóstico"}
+        ]
+      },
+      {
+        category:"iPhone",
+        model:"iPhone 14 Pro Max",
+        badge:"Premium",
+        services:[
+          {name:"Pantalla Soft OLED", price:"RD$ 9,500", warranty:"Garantía incluida"},
+          {name:"Batería", price:"RD$ 4,500", warranty:"Instalación incluida"},
+          {name:"Conversión SIM física", price:"Cotizar", warranty:"Servicio especializado"}
+        ]
+      },
+      {
+        category:"iPhone",
+        model:"iPhone 15 Pro Max",
+        badge:"Nuevo",
+        services:[
+          {name:"Pantalla", price:"Cotizar", warranty:"Varias calidades"},
+          {name:"Tapa trasera", price:"Cotizar", warranty:"Según disponibilidad"},
+          {name:"Conversión SIM física", price:"Desde RD$ 3,500", warranty:"Servicio especializado"}
+        ]
+      },
+      {
+        category:"Samsung",
+        model:"Samsung Galaxy A Series",
+        badge:"Android",
+        services:[
+          {name:"Cambio de pantalla", price:"Desde RD$ 2,500", warranty:"Según modelo"},
+          {name:"Batería", price:"Desde RD$ 1,800", warranty:"Según modelo"},
+          {name:"Centro de carga", price:"Desde RD$ 1,500", warranty:"Requiere diagnóstico"}
+        ]
+      },
+      {
+        category:"MacBook",
+        model:"MacBook",
+        badge:"Laboratorio",
+        services:[
+          {name:"Diagnóstico", price:"Cotizar", warranty:"Evaluación técnica"},
+          {name:"Reparación de placa", price:"Desde RD$ 4,500", warranty:"Según avería"},
+          {name:"Mantenimiento", price:"Desde RD$ 2,500", warranty:"Limpieza y pasta térmica"}
+        ]
+      },
+      {
+        category:"Consolas",
+        model:"PlayStation",
+        badge:"Gaming",
+        services:[
+          {name:"Mantenimiento", price:"Desde RD$ 2,000", warranty:"Limpieza completa"},
+          {name:"Fuente de poder", price:"Cotizar", warranty:"Según modelo"},
+          {name:"Reparación HDMI", price:"Desde RD$ 3,500", warranty:"Requiere diagnóstico"}
+        ]
+      },
+      {
+        category:"Microsoldadura",
+        model:"Reparación de placa",
+        badge:"Especialidad",
+        services:[
+          {name:"Equipo no enciende", price:"Cotizar", warranty:"Diagnóstico previo"},
+          {name:"Falla de carga", price:"Desde RD$ 2,500", warranty:"Según avería"},
+          {name:"Recuperación de datos", price:"Cotizar", warranty:"Sujeto a evaluación"}
+        ]
+      }
+    ];
+
+    const grid = document.getElementById("priceGrid");
+    const chips = document.getElementById("categoryChips");
+    const searchInput = document.getElementById("searchInput");
+    const resultCount = document.getElementById("resultCount");
+    const detailsModal = document.getElementById("detailsModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+
+    let activeCategory = "Todos";
+
+    const categories = ["Todos", ...new Set(repairData.map(item => item.category))];
+
+    function renderChips(){
+      chips.innerHTML = categories.map(category => `
+        <button class="chip ${category === activeCategory ? "active" : ""}"
+          onclick="setCategory('${category.replace(/'/g, "\\'")}')">
+          ${category}
+        </button>
+      `).join("");
+    }
+
+    function setCategory(category){
+      activeCategory = category;
+      renderChips();
+      renderCards();
+    }
+
+    function normalized(value){
+      return value.toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function getFilteredData(){
+      const term = normalized(searchInput.value.trim());
+
+      return repairData.filter(item => {
+        const inCategory = activeCategory === "Todos" || item.category === activeCategory;
+        const searchable = normalized(
+          item.model + " " +
+          item.category + " " +
+          item.services.map(service => service.name).join(" ")
+        );
+        return inCategory && searchable.includes(term);
+      });
+    }
+
+    function renderCards(){
+      const items = getFilteredData();
+      resultCount.textContent = `${items.length} resultado${items.length === 1 ? "" : "s"}`;
+
+      if(!items.length){
+        grid.innerHTML = `<div class="empty">No encontré ese modelo o servicio. Prueba con otro nombre.</div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map((item) => {
+        const originalIndex = repairData.indexOf(item);
+        return `
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h3 class="model">${item.model}</h3>
+                <span class="category">${item.category}</span>
+              </div>
+              <span class="badge">${item.badge}</span>
+            </div>
+
+            <div class="services">
+              ${item.services.slice(0,3).map(service => `
+                <div class="service">
+                  <span>${service.name}</span>
+                  <strong>${service.price}</strong>
+                </div>
+              `).join("")}
+            </div>
+
+            <div class="card-actions">
+              <button class="details" onclick="showDetails(${originalIndex})">Ver detalles</button>
+              <button class="whatsapp" onclick="openWhatsApp(${originalIndex})" aria-label="Cotizar por WhatsApp">↗</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function showDetails(index){
+      const item = repairData[index];
+      modalTitle.textContent = item.model;
+      modalBody.innerHTML = item.services.map(service => `
+        <div class="modal-service">
+          <div>${service.name}</div>
+          <span>${service.warranty}</span>
+          <strong>${service.price}</strong>
+        </div>
+      `).join("") + `
+        <button class="quote-btn" style="width:100%;margin-top:18px"
+          onclick="openWhatsApp(${index})">
+          Consultar por WhatsApp
+        </button>
+      `;
+      detailsModal.showModal();
+    }
+
+    function openWhatsApp(index){
+      const item = repairData[index];
+      const message = `Hola, quisiera cotizar una reparación para ${item.model}.`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+    }
+
+    function openGeneralWhatsApp(){
+      const message = "Hola, quisiera solicitar una cotización de reparación.";
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+    }
+
+    searchInput.addEventListener("input", renderCards);
+
+    document.getElementById("themeButton").addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      const isLight = document.body.classList.contains("light");
+      document.getElementById("themeButton").textContent = isLight ? "🌙" : "☀️";
+      localStorage.setItem("celvis-theme", isLight ? "light" : "dark");
+    });
+
+    if(localStorage.getItem("celvis-theme") === "light"){
+      document.body.classList.add("light");
+      document.getElementById("themeButton").textContent = "🌙";
+    }
+
+    detailsModal.addEventListener("click", event => {
+      const box = detailsModal.getBoundingClientRect();
+      const outside =
+        event.clientX < box.left || event.clientX > box.right ||
+        event.clientY < box.top || event.clientY > box.bottom;
+      if(outside) detailsModal.close();
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    renderChips();
+    renderCards();
+  </script>
+</body>
+</html>
