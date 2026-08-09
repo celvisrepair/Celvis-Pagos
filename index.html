@@ -548,6 +548,70 @@
     .modal-service span{color:var(--muted);font-size:.82rem}
     .modal-service strong{grid-row:1/3;grid-column:2;text-align:right}
 
+
+    .family-wrap{
+      margin:10px 0 8px;
+      padding:16px;
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:var(--panel);
+      box-shadow:0 12px 35px rgba(0,0,0,.10);
+    }
+    .family-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .family-head strong{font-size:.9rem;letter-spacing:-.01em}
+    .family-head span{color:var(--muted);font-size:.75rem}
+    .families{
+      display:flex;
+      gap:10px;
+      overflow:auto;
+      scrollbar-width:none;
+      padding:1px;
+    }
+    .families::-webkit-scrollbar{display:none}
+    .family{
+      min-width:112px;
+      flex:0 0 auto;
+      padding:14px 14px 13px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:var(--panel-2);
+      cursor:pointer;
+      text-align:left;
+      transition:.2s ease;
+    }
+    .family:hover{
+      transform:translateY(-2px);
+      border-color:rgba(66,165,255,.35);
+    }
+    .family.active{
+      color:#fff;
+      border-color:transparent;
+      background:
+        radial-gradient(circle at 85% 15%,rgba(255,255,255,.20),transparent 32%),
+        linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 10px 28px rgba(66,165,255,.22);
+    }
+    .family small{
+      display:block;
+      margin-bottom:5px;
+      opacity:.75;
+      font-size:.67rem;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      font-weight:850;
+    }
+    .family b{
+      display:block;
+      font-size:1rem;
+      letter-spacing:-.03em;
+    }
+
     @media(max-width:900px){
       .hero{grid-template-columns:1fr}
       .hero-card{display:none}
@@ -613,6 +677,14 @@
 
       <div class="chips" id="categoryChips"></div>
 
+      <div class="family-wrap" id="familyWrap">
+        <div class="family-head">
+          <strong>Selecciona la generación</strong>
+          <span>Más rápido que buscar</span>
+        </div>
+        <div class="families" id="modelFamilies"></div>
+      </div>
+
       <div class="section-head">
         <div>
           <h2>Servicios disponibles</h2>
@@ -653,7 +725,7 @@
        2. Edita los precios dentro de repairData.
        ========================================================== */
 
-    const WHATSAPP_NUMBER = "18099319939";
+    const WHATSAPP_NUMBER = "18090000000";
 
     const repairData = [
       {
@@ -762,11 +834,24 @@
     const chips = document.getElementById("categoryChips");
     const searchInput = document.getElementById("searchInput");
     const resultCount = document.getElementById("resultCount");
+    const familyWrap = document.getElementById("familyWrap");
+    const modelFamilies = document.getElementById("modelFamilies");
     const detailsModal = document.getElementById("detailsModal");
     const modalTitle = document.getElementById("modalTitle");
     const modalBody = document.getElementById("modalBody");
 
     let activeCategory = "Todos";
+    let activeFamily = "Todos";
+
+    const familyDefinitions = [
+      {id:"Todos", label:"Todos", hint:"iPhone"},
+      {id:"XR", label:"iPhone XR", hint:"XR"},
+      {id:"11", label:"Serie 11", hint:"11"},
+      {id:"12", label:"Serie 12", hint:"12"},
+      {id:"13", label:"Serie 13", hint:"13"},
+      {id:"14", label:"Serie 14", hint:"14"},
+      {id:"15", label:"Serie 15", hint:"15"}
+    ];
 
     const categories = ["Todos", ...new Set(repairData.map(item => item.category))];
 
@@ -781,8 +866,38 @@
 
     function setCategory(category){
       activeCategory = category;
+      if(category !== "iPhone" && category !== "Todos") activeFamily = "Todos";
       renderChips();
+      renderFamilies();
       renderCards();
+    }
+
+    function renderFamilies(){
+      const visible = activeCategory === "Todos" || activeCategory === "iPhone";
+      familyWrap.style.display = visible ? "block" : "none";
+      if(!visible) return;
+
+      modelFamilies.innerHTML = familyDefinitions.map(family => `
+        <button class="family ${family.id === activeFamily ? "active" : ""}"
+          onclick="setFamily('${family.id}')">
+          <small>${family.hint}</small>
+          <b>${family.label}</b>
+        </button>
+      `).join("");
+    }
+
+    function setFamily(family){
+      activeFamily = family;
+      if(family !== "Todos") activeCategory = "iPhone";
+      renderChips();
+      renderFamilies();
+      renderCards();
+    }
+
+    function matchesFamily(model){
+      if(activeFamily === "Todos") return true;
+      if(activeFamily === "XR") return model.includes("XR");
+      return model.includes(`iPhone ${activeFamily}`);
     }
 
     function normalized(value){
@@ -796,12 +911,13 @@
 
       return repairData.filter(item => {
         const inCategory = activeCategory === "Todos" || item.category === activeCategory;
+        const inFamily = item.category !== "iPhone" ? activeFamily === "Todos" : matchesFamily(item.model);
         const searchable = normalized(
           item.model + " " +
           item.category + " " +
           item.services.map(service => service.name).join(" ")
         );
-        return inCategory && searchable.includes(term);
+        return inCategory && inFamily && searchable.includes(term);
       });
     }
 
@@ -898,6 +1014,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     renderChips();
+    renderFamilies();
     renderCards();
   </script>
 </body>
