@@ -1,11 +1,5 @@
-CELVIS — NUEVA INTERFAZ
+LOGO CELVIS EN EL ENCABEZADO
 
-Reemplaza los tres archivos de este ZIP en la raíz de celvisrepair/Celvis-Pagos. Mantén los archivos del panel privado (admin.html, admin.js, config.js y catalog-api.js) y los iconos actuales.
+Reemplaza/sube los cuatro archivos de este ZIP en la raíz de celvisrepair/Celvis-Pagos. Conserva los archivos del panel y los iconos existentes.
 
-Inicio: buscador, generaciones y lista de modelos sin fotos ni precios. Al tocar el modelo se abre una ficha con su foto, reparaciones y precios. Dentro de la ficha puedes cambiar de modelo.
-
-Tema claro y oscuro. Los precios siguen leyéndose desde Supabase y se editan desde el panel privado. Esta actualización no cambia los precios ni los permisos.
-
-Las imágenes proceden de la página oficial de identificación de iPhone de Apple: https://support.apple.com/en-us/108044 . Se cargan cuando abres el modelo y requieren conexión a Apple. Si una foto no carga, la ficha sigue mostrando servicios y precios.
-
-Comprobaciones: modelos sin fotos en inicio, búsqueda, fichas, fotos asignadas a 30 modelos, precios, WhatsApp y caracteres especiales. Revisión visual en navegador pendiente.
+El símbolo C reemplaza el texto CR. La imagen original se conserva íntegra; el encuadre se hace en la página con CSS. En tema oscuro el símbolo se muestra en blanco. Los precios y el acceso al panel se mantienen.
