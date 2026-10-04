@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react"
 import celvisLogo from "./assets/celvis-logo-transparent.png?url"
 
-type View = "home" | "help" | "model" | "options" | "summary" | "pin" | "admin"
+type View = "home" | "help" | "model" | "options" | "summary"
 type ServiceId =
   | "screen"
   | "display"
@@ -143,9 +143,7 @@ const OPTIONS: Record<OptionId, {
   },
 }
 
-const DATA_SOURCE = import.meta.env.DEV
-  ? "https://celvis-pagos.vercel.app"
-  : window.location.origin
+const DATA_SOURCE = "https://celvis-pagos.vercel.app"
 const WHATSAPP_NUMBER = "18099319939"
 const MODEL_PHOTOS: Record<string, string> = {
   "iPhone XR": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-xr/identify-iphone-xr-colors.jpg",
@@ -441,13 +439,11 @@ function Header({
   onAdmin,
   query,
   onQueryChange,
-  admin = false,
 }: {
   onHome: () => void
   onAdmin: () => void
   query?: string
   onQueryChange?: (value: string) => void
-  admin?: boolean
 }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -463,7 +459,7 @@ function Header({
       <span className="brand-tagline">
         Diagnóstico y reparación sin complicaciones
       </span>
-      {!admin && onQueryChange && (
+      {onQueryChange && (
         <label className="header-search">
           <span>Buscar modelo</span>
           <span className="header-search-control">
@@ -481,42 +477,35 @@ function Header({
         </label>
       )}
       <div className="header-actions">
-        {admin && <span className="demo-badge">Modo demostración</span>}
-        {admin ? (
-          <button className="quiet-button" onClick={onAdmin}>
-            Salir de tienda
+        <div className="header-menu">
+          <button
+            className="menu-trigger"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label="Abrir menú"
+            aria-expanded={menuOpen}
+          >
+            <span />
+            <span />
+            <span />
           </button>
-        ) : (
-          <div className="header-menu">
-            <button
-              className="menu-trigger"
-              onClick={() => setMenuOpen((open) => !open)}
-              aria-label="Abrir menú"
-              aria-expanded={menuOpen}
-            >
-              <span />
-              <span />
-              <span />
-            </button>
-            {menuOpen && (
-              <div className="menu-popover">
-                <span>Opciones</span>
-                <button
-                  onClick={() => {
-                    setMenuOpen(false)
-                    onAdmin()
-                  }}
-                >
-                  <span>
-                    <b>Acceso tienda</b>
-                    <small>Personal autorizado</small>
-                  </span>
-                  <Icon name="arrow" size={17} />
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+          {menuOpen && (
+            <div className="menu-popover">
+              <span>Opciones</span>
+              <button
+                onClick={() => {
+                  setMenuOpen(false)
+                  onAdmin()
+                }}
+              >
+                <span>
+                  <b>Acceso tienda</b>
+                  <small>Personal autorizado</small>
+                </span>
+                <Icon name="arrow" size={17} />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   )
@@ -710,8 +699,6 @@ function App() {
   const [selectedService, setSelectedService] = useState<ServiceId | null>(null)
   const [selectedOption, setSelectedOption] = useState<OptionId | null>(null)
   const [expandedOption, setExpandedOption] = useState<OptionId | null>(null)
-  const [pin, setPin] = useState("")
-  const [pinError, setPinError] = useState("")
   const [config, setConfig] = useState<StoreConfig>({
     prices: {},
     promoPrices: {},
@@ -954,218 +941,8 @@ function App() {
     setSelectedOption(null)
   }
 
-  if (view === "pin") {
-    return (
-      <div className="app precision-theme">
-        <Header onHome={goHome} onAdmin={goHome} />
-        <main className="center-page">
-          <button className="back-link" onClick={goHome}>
-            <Icon name="back" /> Volver al sitio
-          </button>
-          <section className="pin-card">
-            <div className="eyebrow">Área del propietario</div>
-            <h1>Modo tienda</h1>
-            <p>
-              Edita la demostración del catálogo y revisa cómo se verá para tus
-              clientes.
-            </p>
-            <div className="notice">
-              <b>Esto es una simulación.</b> El PIN no ofrece seguridad real ni
-              protege datos.
-            </div>
-            <label className="field-label" htmlFor="pin">
-              PIN de demostración
-            </label>
-            <input
-              id="pin"
-              className="text-input"
-              type="password"
-              inputMode="numeric"
-              value={pin}
-              onChange={(event) => {
-                setPin(event.target.value)
-                setPinError("")
-              }}
-              placeholder="Escribe 2580"
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  if (pin === "2580") setView("admin")
-                  else
-                    setPinError("Ese PIN no coincide. Para esta demo usa 2580.")
-                }
-              }}
-            />
-            {pinError && (
-              <p className="error-text" role="alert">
-                {pinError}
-              </p>
-            )}
-            <button
-              className="primary-button full"
-              onClick={() => {
-                if (pin === "2580") setView("admin")
-                else
-                  setPinError("Ese PIN no coincide. Para esta demo usa 2580.")
-              }}
-            >
-              Entrar a la demostración <Icon name="arrow" />
-            </button>
-          </section>
-        </main>
-      </div>
-    )
-  }
-
-  if (view === "admin") {
-    return (
-      <div className="app admin-app precision-theme">
-        <Header
-          onHome={() => setView("home")}
-          onAdmin={goHome}
-          admin
-        />
-        <main className="admin-main">
-          <div className="admin-title-row">
-            <div>
-              <div className="eyebrow">Configuración del prototipo</div>
-              <h1>Catálogo y promociones</h1>
-              <p>Solo se muestra al cliente lo que actives aquí.</p>
-            </div>
-            <button className="primary-button" onClick={goHome}>
-              <Icon name="eye" /> Previsualizar cliente
-            </button>
-          </div>
-          <div className="admin-note">
-            Los cambios se conservan mientras mantengas abierta esta
-            demostración. No se guardan datos reales.
-          </div>
-          <div className="admin-list">
-            {models.map((model) => (
-              <section className="admin-model" key={model.id}>
-                <div className="admin-model-heading">
-                  <div>
-                    <span>{model.family}</span>
-                    <h2>{model.name}</h2>
-                  </div>
-                  <span>{model.services.length} servicios</span>
-                </div>
-                {model.services.map((service) => {
-                  const key = `${model.id}-${service}`
-                  const isScreen = service === "screen"
-                  return (
-                    <div className="admin-service" key={service}>
-                      <div className="admin-service-top">
-                        <div>
-                          <b>{SERVICES[service].title}</b>
-                          <small>
-                            {isScreen
-                              ? "2 opciones de pantalla"
-                              : "Servicio general"}
-                          </small>
-                        </div>
-                        <label className="switch">
-                          <input
-                            type="checkbox"
-                            checked={config.enabled[key] !== false}
-                            onChange={(event) =>
-                              setConfig((old) => ({
-                                ...old,
-                                enabled: {
-                                  ...old.enabled,
-                                  [key]: event.target.checked,
-                                },
-                              }))
-                            }
-                          />
-                          <span /> Visible
-                        </label>
-                      </div>
-                      {(isScreen
-                        ? ["incell", "oled"] as OptionId[]
-                        : [null]
-                      ).map((option) => {
-                        const priceKey = `${key}${option ? `-${option}` : ""}`
-                        return (
-                          <div className="price-editor" key={priceKey}>
-                            <b>
-                              {option
-                                ? OPTIONS[option].technical
-                                : "Precio del servicio"}
-                            </b>
-                            <label>
-                              Precio regular
-                              <span className="money-input">
-                                RD$
-                                <input
-                                  inputMode="decimal"
-                                  placeholder="Sin definir"
-                                  value={config.prices[priceKey] ?? ""}
-                                  onChange={(event) =>
-                                    setConfig((old) => ({
-                                      ...old,
-                                      prices: {
-                                        ...old.prices,
-                                        [priceKey]: event.target.value.replace(
-                                          /[^\d.,]/g,
-                                          "",
-                                        ),
-                                      },
-                                    }))
-                                  }
-                                />
-                              </span>
-                            </label>
-                            <label>
-                              Precio promocional
-                              <span className="money-input">
-                                RD$
-                                <input
-                                  inputMode="decimal"
-                                  placeholder="Sin definir"
-                                  value={config.promoPrices[priceKey] ?? ""}
-                                  onChange={(event) =>
-                                    setConfig((old) => ({
-                                      ...old,
-                                      promoPrices: {
-                                        ...old.promoPrices,
-                                        [priceKey]: event.target.value.replace(
-                                          /[^\d.,]/g,
-                                          "",
-                                        ),
-                                      },
-                                    }))
-                                  }
-                                />
-                              </span>
-                            </label>
-                            <label className="switch promotion-switch">
-                              <input
-                                type="checkbox"
-                                checked={config.promoActive[priceKey] ?? false}
-                                onChange={(event) =>
-                                  setConfig((old) => ({
-                                    ...old,
-                                    promoActive: {
-                                      ...old.promoActive,
-                                      [priceKey]: event.target.checked,
-                                    },
-                                  }))
-                                }
-                              />
-                              <span /> Promoción activa
-                            </label>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )
-                })}
-              </section>
-            ))}
-          </div>
-        </main>
-      </div>
-    )
+  function openAdmin() {
+    window.location.assign("/admin.html")
   }
 
   return (
@@ -1176,7 +953,7 @@ function App() {
       ) : (
         <Header
           onHome={goHome}
-          onAdmin={() => setView("pin")}
+          onAdmin={openAdmin}
           query={query}
           onQueryChange={setQuery}
         />
@@ -1626,7 +1403,7 @@ function App() {
       <footer className="site-footer">
         <Logo />
         <p>Ayuda clara para cuidar tu equipo.</p>
-        <button onClick={() => setView("pin")}>Acceso tienda</button>
+        <button onClick={openAdmin}>Acceso tienda</button>
       </footer>
     </div>
   )
