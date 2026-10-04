@@ -32,7 +32,7 @@ $('loginForm').addEventListener('submit',async event=>{
  event.preventDefault();$('loginButton').disabled=true;status('loginStatus','Entrando…');
  try{
   const user=await CelvisAPI.signIn($('email').value.trim(),$('password').value);
-  $('password').value='';await loadPrices();
+  $('password').value='';await loadPrices();await loadPromotion();
   $('sessionUser').textContent=user.email;
   $('loginBox').hidden=true;$('panel').hidden=false;$('logout').hidden=false;
   status('loginStatus','');
@@ -82,8 +82,8 @@ $('reload').addEventListener('click',async()=>{
  try{await loadPrices();status('panelStatus','Precios actualizados.');}catch(error){status('panelStatus',error.message,true);sessionError(error);}finally{$('reload').disabled=false;}
 });
 $('logout').addEventListener('click',async()=>{
- if(unsaved && !confirm('¿Cerrar sesión y descartar los cambios sin guardar?'))return;
- await CelvisAPI.signOut();prices=[];unsaved=false;$('rows').innerHTML='';$('sessionUser').textContent='';$('panel').hidden=true;$('loginBox').hidden=false;$('logout').hidden=true;
+ if((unsaved||promoDirty) && !confirm('¿Cerrar sesión y descartar los cambios sin guardar?'))return;
+ await CelvisAPI.signOut();prices=[];unsaved=false;promoDirty=false;promotion=null;$('rows').innerHTML='';$('sessionUser').textContent='';$('panel').hidden=true;$('loginBox').hidden=false;$('logout').hidden=true;
 });
 window.addEventListener('beforeunload',event=>{if(unsaved){event.preventDefault();event.returnValue='';}});
 if(!CelvisAPI.configured()){$('loginButton').disabled=true;status('loginStatus','El panel todavía necesita conectar su proyecto de precios.',true);}

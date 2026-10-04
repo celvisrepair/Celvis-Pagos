@@ -1,5 +1,13 @@
-LOGO CELVIS EN EL ENCABEZADO
+CELVIS · PROMOCIONES
 
-Reemplaza/sube los cuatro archivos de este ZIP en la raíz de celvisrepair/Celvis-Pagos. Conserva los archivos del panel y los iconos existentes.
+1. Descomprime este ZIP y sube los 10 archivos de la página a la raíz de celvisrepair/Celvis-Pagos. Reemplaza los archivos existentes y agrega promotions.js y promotions-admin.js.
+2. Cuando Vercel termine de publicar, abre admin.html e inicia sesión con tu cuenta habitual.
+3. Baja a Promociones. Cambia el nombre y el descuento, selecciona modelos y servicios o marca Todos.
+4. Puedes dejar las fechas vacías y encender/apagar la oferta cuando quieras. Si eliges fechas, se usa la hora de República Dominicana. La fecha final marca la hora exacta en que termina.
+5. Revisa la vista previa y pulsa Guardar promoción. El interruptor también debe guardarse.
 
-El símbolo C reemplaza el texto CR. La imagen original se conserva íntegra; el encuadre se hace en la página con CSS. En tema oscuro el símbolo se muestra en blanco. Los precios y el acceso al panel se mantienen.
+La base de datos ya está configurada; no ejecutes archivos SQL.
+Una promoción a la vez. Comienza desactivada. Los precios originales no se modifican. Los servicios Cotizar quedan fuera; Desde mantiene su condición. El monto final nunca baja de RD$0.
+Los clientes ven los cambios al actualizar o volver a la página. Una ficha abierta revisa las fechas cada 30 segundos.
+
+Se verificaron cálculo, selección, fechas, precios originales, bloqueo a visitantes y guardado autorizado. No se comprobó visualmente en un navegador esta versión.

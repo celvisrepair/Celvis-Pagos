@@ -70,5 +70,14 @@
     if(row.price_mode === "quote") return "Cotizar";
     return (row.price_mode === "from" ? "Desde " : "") + "RD$ " + Number(row.amount).toLocaleString("en-US",{maximumFractionDigits:2});
   }
-  window.CelvisAPI={configured,signIn,signOut,publicPrices,adminPrices,savePrice,priceLabel};
+  async function publicPromotion(){const rows=await request('/rest/v1/repair_promotions?select=*&id=eq.1');return rows[0]||null;}
+  async function adminPromotion(){const rows=await request('/rest/v1/repair_promotions?select=*&id=eq.1',{token:await accessToken()});return rows[0]||null;}
+  async function savePromotion(p){
+    CelvisPromotions.validate(p);
+    const body={name:p.name.trim(),enabled:p.enabled,discount_type:p.discount_type,value:p.value,models:p.models,services:p.services,starts_at:p.starts_at,ends_at:p.ends_at};
+    const rows=await request(`/rest/v1/repair_promotions?id=eq.1&version=eq.${encodeURIComponent(p.version)}`,{method:'PATCH',body,token:await accessToken(),prefer:'return=representation'});
+    if(!rows?.length)throw Error('La promoción cambió. Recarga antes de guardar.');
+    return rows[0];
+  }
+  window.CelvisAPI={publicPromotion,adminPromotion,savePromotion,configured,signIn,signOut,publicPrices,adminPrices,savePrice,priceLabel};
 })();

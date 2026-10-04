@@ -1,5 +1,5 @@
-const CACHE_NAME = "celvis-precios-v10";
-const APP_SHELL = ["./", "./index.html", "./celvis-logo.png", "./config.js", "./catalog-api.js", "./manifest.webmanifest?v=10", "./apple-touch-icon.png?v=10", "./icon-192.png?v=10", "./icon-512.png?v=10"];
+const CACHE_NAME = "celvis-precios-v11";
+const APP_SHELL = ["./", "./index.html", "./celvis-logo.png", "./config.js", "./catalog-api.js", "./promotions.js", "./manifest.webmanifest?v=11", "./apple-touch-icon.png?v=11", "./icon-192.png?v=11", "./icon-512.png?v=11"];
 self.addEventListener("install", event => {
  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
  self.skipWaiting();

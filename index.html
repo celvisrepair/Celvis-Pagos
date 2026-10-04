@@ -8,10 +8,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Celvis">
-  <link rel="manifest" href="./manifest.webmanifest?v=10">
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=10">
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=10">
-  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png?v=10">
+  <link rel="manifest" href="./manifest.webmanifest?v=11">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=11">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=11">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png?v=11">
 
 <title>Lista de precios | Celvis Reparaciones</title>
 
@@ -31,7 +31,8 @@
     @media(max-width:680px){.model-list{grid-template-columns:1fr}.model-row{padding:18px 16px}#detailsModal .modal-body{padding:18px}#detailsModal .modal-head{padding:14px 18px}.device-heading{gap:16px;padding:20px 0}.device-photo{padding:12px;min-height:135px}.device-photo img{height:120px}.repair-option{padding:14px 12px;grid-template-columns:26px 1fr auto;gap:9px}.repair-copy strong{font-size:.81rem}.repair-price{font-size:.82rem}.repair-price .arrow{margin-left:5px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.model-row{transition:none}}
     .logo{position:relative;display:block;width:52px;height:52px;flex:0 0 52px;background:transparent;border-radius:0;overflow:hidden}.logo img{position:absolute;width:132px;height:132px;max-width:none;left:-38px;top:-31px;mix-blend-mode:multiply}body.dark .logo img{filter:invert(1);mix-blend-mode:screen}
-  </style>
+  .original-price{display:block;font-size:.72rem;color:var(--muted);font-weight:400;margin-bottom:5px}.promo-badge{color:var(--success)!important;font-weight:700}
+</style>
 </head>
 
 <body>
@@ -1212,6 +1213,7 @@
 ]
   </script>
   <script src="config.js"></script>
+  <script src="promotions.js"></script>
   <script src="catalog-api.js"></script>
   <script>
     /* ==========================================================
@@ -1394,7 +1396,9 @@
     function showDetails(index){
       const item = repairData[index];
       if(!item) return;
+      const preservedScroll = selectedModelName===item.model && detailsModal.open ? detailsModal.scrollTop : 0;
       selectedModelName = item.model;
+      item.services.forEach(service=>{if(service.raw){const discounted=CelvisPromotions.discount(service.raw,service.promotion);service.price=CelvisAPI.priceLabel(discounted||service.raw);service.originalPrice=discounted?CelvisAPI.priceLabel(service.raw):null;service.promotionName=discounted?service.promotion.name:null;}});
       modalTitle.textContent = "Reparaciones de iPhone";
       const photo = MODEL_PHOTOS[item.model];
       const modelMessage = `Hola, quisiera consultar una reparación para ${item.model}.`;
@@ -1409,14 +1413,14 @@
         <div class="repair-options">${item.services.map(service => `
           <a class="repair-option" href="${escapeHTML(repairWhatsAppURL(item,service))}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML('Consultar ' + service.name + ' para ' + item.model + ': ' + service.price)}">
             <span class="repair-icon">${serviceIcon(service.name)}</span>
-            <span class="repair-copy"><strong>${escapeHTML(service.name)}</strong><small>${escapeHTML(service.warranty)}</small></span>
-            <span class="repair-price">${escapeHTML(service.price)}<span class="arrow" aria-hidden="true">›</span></span>
+            <span class="repair-copy"><strong>${escapeHTML(service.name)}</strong><small>${escapeHTML(service.warranty)}</small>${service.promotionName?`<small class="promo-badge">${escapeHTML(service.promotionName)}</small>`:""}</span>
+            <span class="repair-price">${service.originalPrice?`<del class="original-price">${escapeHTML(service.originalPrice)}</del>`:""}${escapeHTML(service.price)}<span class="arrow" aria-hidden="true">›</span></span>
           </a>`).join("") || '<div class="empty">Consulta los servicios disponibles para este modelo por WhatsApp.</div>'}</div>
         <a class="model-wa" href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(modelMessage)}" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
         <p class="detail-note">Precios en RD$. Confirma disponibilidad, tiempo de entrega y garantía antes de reparar.</p>
         ${photo ? '<a class="detail-source" href="https://support.apple.com/en-us/108044" target="_blank" rel="noopener noreferrer">Imagen del modelo: Apple</a>' : ''}`;
       if(!detailsModal.open) detailsModal.showModal();
-      detailsModal.scrollTop = 0;
+      detailsModal.scrollTop = preservedScroll;
     }
     detailsModal.addEventListener("close", () => { selectedModelName = ""; });
 
@@ -1511,11 +1515,12 @@
     async function refreshPrices(){
       if(!CelvisAPI.configured()) return;
       try {
-        const rows = await CelvisAPI.publicPrices();
+        const [rows, promotion] = await Promise.all([CelvisAPI.publicPrices(),CelvisAPI.publicPromotion()]);
         const grouped = new Map();
         rows.forEach(row => {
           if(!grouped.has(row.model)) grouped.set(row.model, {category:"iPhone",model:row.model,services:[]});
-          grouped.get(row.model).services.push({name:row.service,price:CelvisAPI.priceLabel(row),warranty:row.note});
+          const discounted=CelvisPromotions.discount(row,promotion);
+          grouped.get(row.model).services.push({name:row.service,price:CelvisAPI.priceLabel(discounted||row),warranty:row.note,originalPrice:discounted?CelvisAPI.priceLabel(row):null,promotionName:discounted?promotion.name:null,raw:row,promotion});
         });
         repairData = MODEL_NAMES.map(model => grouped.get(model) || {category:"iPhone",model,services:[]});
         grouped.forEach((item,model) => { if(!MODEL_NAMES.includes(model)) repairData.push(item); });
@@ -1534,6 +1539,7 @@
         document.querySelector(".notice").textContent = "Precios en línea temporalmente no disponibles.";
       }
     }
+    setInterval(()=>{if(detailsModal.open && selectedModelName){const i=repairData.findIndex(x=>x.model===selectedModelName);if(i>=0)showDetails(i);}},30000);
     refreshPrices();
     window.addEventListener("pageshow", event => { if(event.persisted) refreshPrices(); });
     document.addEventListener("visibilitychange", () => { if(document.visibilityState === "visible") refreshPrices(); });
