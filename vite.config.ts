@@ -3,7 +3,11 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
 
-import siteConfiguration from './.figma/make/site.json'
+const siteConfiguration = {
+  title: 'Celvis Reparaciones',
+  language: 'es',
+  icons: { icon: '/icon-192.png' },
+}
 
 
 // Vite config — https://vitejs.dev/config/

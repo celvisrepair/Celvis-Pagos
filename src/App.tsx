@@ -143,7 +143,9 @@ const OPTIONS: Record<OptionId, {
   },
 }
 
-const DATA_SOURCE = "https://celvis-pagos.vercel.app"
+const DATA_SOURCE = import.meta.env.DEV
+  ? "https://celvis-pagos.vercel.app"
+  : window.location.origin
 const WHATSAPP_NUMBER = "18099319939"
 const MODEL_PHOTOS: Record<string, string> = {
   "iPhone XR": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-xr/identify-iphone-xr-colors.jpg",
