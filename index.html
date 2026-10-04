@@ -3,669 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#07090d">
+  <meta name="theme-color" content="#fafaf8">
   <meta name="description" content="Catálogo de precios y servicios de Celvis Reparaciones.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Celvis">
-  <link rel="manifest" href="./manifest.webmanifest?v=5">
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=5">
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=5">
-  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png?v=5">
+  <link rel="manifest" href="./manifest.webmanifest?v=8">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=8">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=8">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png?v=8">
 
 <title>Lista de precios | Celvis Reparaciones</title>
 
   <style>
-    :root{
-      --bg:#07090d;
-      --panel:rgba(17,22,30,.82);
-      --panel-solid:#11161e;
-      --panel-2:#171e29;
-      --text:#f7f9fc;
-      --muted:#9aa6b7;
-      --accent:#42a5ff;
-      --accent-2:#785cff;
-      --success:#2bd18b;
-      --warning:#ffbf47;
-      --border:rgba(255,255,255,.09);
-      --shadow:0 24px 70px rgba(0,0,0,.38);
-      --radius:24px;
-    }
-
-    *{box-sizing:border-box}
-
-    html{scroll-behavior:smooth}
-
-    body{
-      margin:0;
-      min-height:100vh;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 10% -5%, rgba(66,165,255,.20), transparent 30rem),
-        radial-gradient(circle at 105% 18%, rgba(120,92,255,.17), transparent 30rem),
-        var(--bg);
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    body.light{
-      --bg:#eef3f9;
-      --panel:rgba(255,255,255,.82);
-      --panel-solid:#ffffff;
-      --panel-2:#f4f7fb;
-      --text:#101724;
-      --muted:#697588;
-      --border:rgba(16,23,36,.09);
-      --shadow:0 24px 70px rgba(38,56,82,.15);
-      background:
-        radial-gradient(circle at 10% -5%, rgba(66,165,255,.22), transparent 30rem),
-        radial-gradient(circle at 105% 18%, rgba(120,92,255,.16), transparent 30rem),
-        var(--bg);
-    }
-
-    button,input{font:inherit}
-    button{color:inherit}
-
-    .page{
-      width:min(1180px, calc(100% - 28px));
-      margin:auto;
-      padding:18px 0 112px;
-    }
-
-    .topbar{
-      position:sticky;
-      top:10px;
-      z-index:50;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:12px 14px;
-      border:1px solid var(--border);
-      border-radius:20px;
-      background:var(--panel);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-      box-shadow:0 12px 40px rgba(0,0,0,.18);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:11px;
-      min-width:0;
-    }
-
-    .logo{
-      width:44px;
-      height:44px;
-      flex:0 0 44px;
-      display:grid;
-      place-items:center;
-      border-radius:15px;
-      font-weight:900;
-      letter-spacing:-1px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      box-shadow:0 10px 28px rgba(66,165,255,.28);
-    }
-
-    .brand strong{display:block;font-size:.98rem}
-    .brand span{display:block;color:var(--muted);font-size:.76rem;margin-top:2px}
-
-    .icon-btn{
-      width:44px;
-      height:44px;
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:var(--panel-2);
-      cursor:pointer;
-      display:grid;
-      place-items:center;
-      transition:.2s ease;
-    }
-
-    .icon-btn:hover{transform:translateY(-2px)}
-
-    .hero{
-      padding:68px 4px 34px;
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:28px;
-      align-items:center;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      background:var(--panel);
-      color:#bcdcff;
-      font-size:.78rem;
-      font-weight:800;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-    }
-
-    .eyebrow::before{
-      content:"";
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:var(--success);
-      box-shadow:0 0 18px var(--success);
-    }
-
-    h1{
-      margin:18px 0 14px;
-      max-width:760px;
-      font-size:clamp(2.5rem,7vw,5.3rem);
-      line-height:.94;
-      letter-spacing:-.065em;
-    }
-
-    .gradient{
-      background:linear-gradient(100deg,#fff 5%,#8ac7ff 48%,#a28dff 92%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    body.light .gradient{
-      background:linear-gradient(100deg,#101724 5%,#1686ef 48%,#6946e8 92%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .hero p{
-      margin:0;
-      max-width:670px;
-      color:var(--muted);
-      font-size:clamp(1rem,2vw,1.15rem);
-      line-height:1.65;
-    }
-
-    .hero-card{
-      position:relative;
-      overflow:hidden;
-      min-height:290px;
-      padding:26px;
-      border:1px solid var(--border);
-      border-radius:32px;
-      background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
-      box-shadow:var(--shadow);
-    }
-
-    .hero-card::after{
-      content:"";
-      position:absolute;
-      width:210px;height:210px;
-      right:-70px;bottom:-90px;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      filter:blur(8px);
-      opacity:.65;
-    }
-
-    .device{
-      position:absolute;
-      right:28px;
-      top:30px;
-      width:116px;
-      height:228px;
-      border:7px solid rgba(255,255,255,.85);
-      border-radius:28px;
-      transform:rotate(8deg);
-      box-shadow:0 24px 60px rgba(0,0,0,.34);
-      background:
-        radial-gradient(circle at 50% 35%,rgba(255,255,255,.25),transparent 28%),
-        linear-gradient(160deg,#14263e,#301f63 58%,#151923);
-    }
-
-    .device::before{
-      content:"";
-      position:absolute;
-      width:42px;height:10px;
-      left:50%;top:7px;
-      transform:translateX(-50%);
-      background:#05070a;
-      border-radius:20px;
-    }
-
-    .metric{
-      position:relative;
-      z-index:2;
-      max-width:180px;
-      margin-bottom:22px;
-    }
-
-    .metric b{display:block;font-size:2.1rem;letter-spacing:-.05em}
-    .metric span{color:var(--muted);font-size:.86rem}
-
-    .controls{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:12px;
-      margin-top:10px;
-    }
-
-    .search{
-      position:relative;
-    }
-
-    .search input{
-      width:100%;
-      min-height:58px;
-      padding:0 18px 0 50px;
-      color:var(--text);
-      border:1px solid var(--border);
-      outline:none;
-      border-radius:18px;
-      background:var(--panel);
-      box-shadow:0 12px 35px rgba(0,0,0,.12);
-    }
-
-    .search input:focus{
-      border-color:rgba(66,165,255,.65);
-      box-shadow:0 0 0 4px rgba(66,165,255,.11);
-    }
-
-    .search::before{
-      content:"⌕";
-      position:absolute;
-      left:18px;
-      top:50%;
-      transform:translateY(-54%);
-      font-size:1.45rem;
-      color:var(--muted);
-    }
-
-    .quote-btn{
-      min-height:58px;
-      padding:0 22px;
-      border:0;
-      border-radius:18px;
-      color:#fff;
-      font-weight:850;
-      cursor:pointer;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      box-shadow:0 14px 34px rgba(66,165,255,.24);
-      transition:.2s ease;
-    }
-
-    .quote-btn:hover{transform:translateY(-2px)}
-
-    .chips{
-      display:flex;
-      gap:9px;
-      overflow:auto;
-      padding:18px 1px 12px;
-      scrollbar-width:none;
-    }
-
-    .chips::-webkit-scrollbar{display:none}
-
-    .chip{
-      flex:0 0 auto;
-      padding:10px 15px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      background:var(--panel);
-      cursor:pointer;
-      color:var(--muted);
-      font-weight:750;
-      transition:.2s ease;
-    }
-
-    .chip.active{
-      color:#fff;
-      border-color:transparent;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      box-shadow:0 8px 24px rgba(66,165,255,.20);
-    }
-
-    .section-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:16px;
-      margin:25px 2px 16px;
-    }
-
-    .section-head h2{
-      margin:0;
-      font-size:clamp(1.55rem,4vw,2.15rem);
-      letter-spacing:-.04em;
-    }
-
-    .section-head p{
-      margin:4px 0 0;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-
-    .count{
-      color:var(--muted);
-      font-size:.85rem;
-      white-space:nowrap;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:14px;
-    }
-
-    .card{
-      position:relative;
-      overflow:hidden;
-      padding:20px;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      background:var(--panel);
-      box-shadow:0 12px 38px rgba(0,0,0,.12);
-      transition:.22s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(66,165,255,.35);
-      box-shadow:var(--shadow);
-    }
-
-    .card-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .model{
-      margin:0;
-      font-size:1.12rem;
-      letter-spacing:-.025em;
-    }
-
-    .category{
-      display:inline-block;
-      margin-top:5px;
-      color:var(--muted);
-      font-size:.76rem;
-    }
-
-    .badge{
-      padding:7px 9px;
-      border-radius:999px;
-      font-size:.68rem;
-      font-weight:900;
-      color:#cce8ff;
-      background:rgba(66,165,255,.12);
-      border:1px solid rgba(66,165,255,.20);
-    }
-
-    .services{
-      display:grid;
-      gap:10px;
-      margin:18px 0 4px;
-    }
-
-    .service{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 13px;
-      border-radius:15px;
-      background:var(--panel-2);
-    }
-
-    .service span{
-      color:var(--muted);
-      font-size:.83rem;
-    }
-
-    .service strong{
-      font-size:.88rem;
-      text-align:right;
-    }
-
-    .card-actions{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:9px;
-      margin-top:15px;
-    }
-
-    .details,.whatsapp{
-      min-height:43px;
-      border-radius:14px;
-      cursor:pointer;
-      font-weight:800;
-    }
-
-    .details{
-      border:1px solid var(--border);
-      background:var(--panel-2);
-    }
-
-    .whatsapp{
-      width:45px;
-      border:0;
-      color:#061a10;
-      background:var(--success);
-    }
-
-    .empty{
-      grid-column:1/-1;
-      padding:46px 22px;
-      text-align:center;
-      border:1px dashed var(--border);
-      border-radius:24px;
-      color:var(--muted);
-      background:var(--panel);
-    }
-
-    .notice{
-      margin-top:22px;
-      padding:16px 18px;
-      border:1px solid rgba(255,191,71,.20);
-      border-radius:18px;
-      color:var(--muted);
-      background:rgba(255,191,71,.07);
-      line-height:1.55;
-      font-size:.86rem;
-    }
-
-    footer{
-      padding:38px 4px 0;
-      color:var(--muted);
-      font-size:.82rem;
-      text-align:center;
-    }
-
-    .floating-wa{
-      position:fixed;
-      z-index:60;
-      right:18px;
-      bottom:18px;
-      display:flex;
-      align-items:center;
-      gap:9px;
-      padding:14px 17px;
-      border:0;
-      border-radius:999px;
-      color:#071c12;
-      font-weight:900;
-      background:var(--success);
-      box-shadow:0 16px 45px rgba(43,209,139,.30);
-      cursor:pointer;
-    }
-
-    dialog{
-      width:min(620px,calc(100% - 24px));
-      max-height:88vh;
-      padding:0;
-      color:var(--text);
-      border:1px solid var(--border);
-      border-radius:28px;
-      background:var(--panel-solid);
-      box-shadow:var(--shadow);
-    }
-
-    dialog::backdrop{
-      background:rgba(2,5,10,.72);
-      backdrop-filter:blur(7px);
-    }
-
-    .modal-head{
-      position:sticky;
-      top:0;
-      z-index:2;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:14px;
-      padding:19px 20px;
-      border-bottom:1px solid var(--border);
-      background:var(--panel-solid);
-    }
-
-    .modal-head h3{margin:0;font-size:1.25rem}
-
-    .close{
-      width:39px;height:39px;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:var(--panel-2);
-      cursor:pointer;
-    }
-
-    .modal-body{padding:20px}
-
-    .modal-service{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:8px 16px;
-      padding:15px 0;
-      border-bottom:1px solid var(--border);
-    }
-
-    .modal-service:last-child{border-bottom:0}
-    .modal-service span{color:var(--muted);font-size:.82rem}
-    .modal-service strong{grid-row:1/3;grid-column:2;text-align:right}
-
-
-
-    .install-banner{
-      display:none;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin:14px 0 0;
-      padding:14px 15px;
-      border:1px solid var(--border);
-      border-radius:18px;
-      background:var(--panel);
-      box-shadow:0 12px 35px rgba(0,0,0,.10);
-    }
-    .install-banner.show{display:flex}
-    .install-copy strong{display:block;font-size:.9rem}
-    .install-copy span{display:block;margin-top:3px;color:var(--muted);font-size:.78rem;line-height:1.4}
-    .install-btn{
-      flex:0 0 auto;
-      border:0;
-      border-radius:14px;
-      padding:10px 13px;
-      color:#fff;
-      font-weight:850;
-      cursor:pointer;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    }
-
-    .family-wrap{
-      margin:10px 0 8px;
-      padding:16px;
-      border:1px solid var(--border);
-      border-radius:22px;
-      background:var(--panel);
-      box-shadow:0 12px 35px rgba(0,0,0,.10);
-    }
-    .family-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:12px;
-    }
-    .family-head strong{font-size:.9rem;letter-spacing:-.01em}
-    .family-head span{color:var(--muted);font-size:.75rem}
-    .families{
-      display:flex;
-      gap:10px;
-      overflow:auto;
-      scrollbar-width:none;
-      padding:1px;
-    }
-    .families::-webkit-scrollbar{display:none}
-    .family{
-      min-width:112px;
-      flex:0 0 auto;
-      padding:14px 14px 13px;
-      border:1px solid var(--border);
-      border-radius:18px;
-      background:var(--panel-2);
-      cursor:pointer;
-      text-align:left;
-      transition:.2s ease;
-    }
-    .family:hover{
-      transform:translateY(-2px);
-      border-color:rgba(66,165,255,.35);
-    }
-    .family.active{
-      color:#fff;
-      border-color:transparent;
-      background:
-        radial-gradient(circle at 85% 15%,rgba(255,255,255,.20),transparent 32%),
-        linear-gradient(135deg,var(--accent),var(--accent-2));
-      box-shadow:0 10px 28px rgba(66,165,255,.22);
-    }
-    .family small{
-      display:block;
-      margin-bottom:5px;
-      opacity:.75;
-      font-size:.67rem;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      font-weight:850;
-    }
-    .family b{
-      display:block;
-      font-size:1rem;
-      letter-spacing:-.03em;
-    }
-
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr}
-      .hero-card{display:none}
-      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .hero{padding-top:48px}
-    }
-
-    @media(max-width:620px){
-      .page{width:min(100% - 18px,1180px)}
-      .topbar{top:7px}
-      .brand span{display:none}
-      .hero{padding:42px 2px 24px}
-      .controls{grid-template-columns:1fr}
-      .quote-btn{display:none}
-      .grid{grid-template-columns:1fr}
-      .section-head{align-items:start}
-      .floating-wa span{display:none}
-      .floating-wa{width:56px;height:56px;padding:0;justify-content:center;font-size:1.25rem}
-    }
+    :root{--bg:#fafaf8;--panel:#fff;--panel-solid:#fff;--panel-2:#f3f3ef;--text:#171917;--muted:#656b65;--border:#e2e5de;--success:#19764a;--accent:#171917;--accent-2:#171917;--radius:12px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{color:inherit;cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #4b936b;outline-offset:3px}
+    body.dark{--bg:#131613;--panel:#1c201c;--panel-solid:#1c201c;--panel-2:#272d27;--text:#f1f3ed;--muted:#adb5ab;--border:#363e35;--success:#86d4a3;--accent:#f1f3ed}
+    .page{width:min(1120px,calc(100% - 40px));margin:auto;padding-bottom:88px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 0;border-bottom:1px solid var(--border)}.brand{display:flex;align-items:center;gap:12px}.logo{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:var(--text);color:var(--bg);font-weight:850;letter-spacing:-1px}.brand strong{display:block;font-size:1rem}.brand span{display:block;color:var(--muted);font-size:.75rem;margin-top:3px}.header-actions{display:flex;align-items:center;gap:18px}.header-link{font-size:.85rem;text-decoration:none}.icon-btn,.close{width:40px;height:40px;border:1px solid var(--border);border-radius:8px;background:var(--panel);font-size:1.1rem}
+    .hero{padding:42px 0 30px;max-width:720px}.eyebrow{color:var(--success);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08;letter-spacing:-.05em;margin:12px 0}.hero p{color:var(--muted);line-height:1.6;font-size:.95rem;margin:0}.controls{display:grid;grid-template-columns:1fr 230px;gap:12px}.search{position:relative}.search input,.service-select{width:100%;height:48px;border:1px solid var(--border);border-radius:9px;background:var(--panel);color:var(--text);padding:0 14px}.search input{padding-left:42px}.search::before{content:"⌕";position:absolute;left:15px;top:10px;font-size:1.4rem;color:var(--muted)}.service-select{cursor:pointer}
+    .chips,.families{display:flex;gap:8px;overflow:auto;padding:14px 0 2px;scrollbar-width:thin}.chip,.family{white-space:nowrap;padding:9px 14px;border:1px solid var(--border);border-radius:7px;background:transparent;font-size:.82rem;color:var(--muted)}.chip.active,.family.active{background:var(--text);color:var(--bg);border-color:var(--text)}.family-wrap{margin-top:14px}.family-head{display:flex;align-items:center;justify-content:space-between;font-size:.76rem;color:var(--muted)}.family-head strong{font-weight:500}.families{padding-top:8px}.family small{display:none}.family b{font-weight:550}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:28px 0 14px}.section-head h2{font-size:1.15rem;margin:0;letter-spacing:-.025em}.section-head p{font-size:.8rem;color:var(--muted);margin:5px 0 0}.count{color:var(--muted);font-size:.76rem;white-space:nowrap}
+    .price-list{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--panel)}.price-table{border-collapse:collapse;width:100%;text-align:left}.price-table th{padding:13px 18px;background:var(--panel-2);font-size:.67rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:650}.price-table td{padding:16px 18px;border-top:1px solid var(--border);font-size:.85rem;vertical-align:middle}.price-table tr:hover td{background:var(--panel-2)}.model-name{font-weight:700}.service-name{display:block;font-weight:550}.service-note{display:block;color:var(--muted);font-size:.73rem;margin-top:4px}.price{font-weight:750;white-space:nowrap}.price-table th:last-child,.price-table td:last-child{text-align:right}.consult{display:inline-flex;align-items:center;justify-content:center;gap:6px;color:var(--success);font-size:.76rem;font-weight:650;text-decoration:none;border:1px solid var(--border);border-radius:7px;padding:9px 12px;white-space:nowrap}.consult:hover{border-color:var(--success)}.empty{text-align:center;padding:38px 20px;color:var(--muted);line-height:1.6}.notice{margin:20px 0 0;color:var(--muted);font-size:.78rem;line-height:1.6}.notice strong{color:var(--text)}footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:15px;color:var(--muted);font-size:.75rem}.floating-wa{position:fixed;bottom:20px;right:20px;z-index:20;background:#19764a;color:#fff;border:0;border-radius:30px;padding:14px 20px;box-shadow:0 4px 18px #0002;font-size:.85rem;font-weight:650}
+    .install-banner{display:none;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:12px 14px;background:var(--panel-2);border-radius:8px}.install-banner.show{display:flex}.install-copy strong{display:block;font-size:.8rem}.install-copy span{display:block;font-size:.72rem;color:var(--muted);margin-top:3px}.install-btn,.quote-btn{border:0;border-radius:7px;padding:10px 14px;background:var(--text);color:var(--bg);font-weight:650;font-size:.78rem}
+    dialog{width:min(620px,calc(100% - 24px));max-height:88vh;padding:0;color:var(--text);border:1px solid var(--border);border-radius:16px;background:var(--panel-solid)}dialog::backdrop{background:#0009}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px;border-bottom:1px solid var(--border)}.modal-head h3{margin:0}.modal-body{padding:18px}.modal-service{display:grid;grid-template-columns:1fr auto;gap:8px;padding:15px 0;border-bottom:1px solid var(--border)}.modal-service span{color:var(--muted);font-size:.8rem}.modal-service strong{grid-column:2;grid-row:1/3}
+    .edit-link{border:0;background:transparent;color:var(--muted);text-decoration:underline;padding:4px 0;font-size:.75rem}.editor-help{font-size:.8rem;line-height:1.6;color:var(--muted);margin:0 0 14px}.editor-label{display:block;font-size:.8rem;margin:12px 0 6px}.editor-row{padding:14px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 130px;gap:8px}.editor-row label{font-size:.72rem;color:var(--muted)}.editor-row input{display:block;width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;background:var(--panel);color:var(--text);margin-top:4px}.editor-row .condition-field{grid-column:1/-1}.editor-actions{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 12px}#editorStatus{font-size:.8rem;color:var(--success);line-height:1.5}#priceEditor .modal-head{position:sticky;top:0;background:var(--panel-solid);z-index:2}
+    @media(max-width:680px){.page{width:calc(100% - 28px)}.topbar{padding:18px 0}.brand span{font-size:.68rem}.header-link{display:none}.hero{padding:28px 0 24px}.controls{grid-template-columns:1fr}.family-head span{display:none}.section-head{align-items:flex-start}.section-head p{max-width:230px}.price-table thead{display:none}.price-table,.price-table tbody{display:block}.price-table tr{display:grid;grid-template-columns:1fr auto;padding:16px;gap:7px 14px;border-top:1px solid var(--border)}.price-table tr:first-child{border-top:0}.price-table td{display:block;border:0;padding:0;font-size:.85rem}.price-table td:first-child{grid-column:1;grid-row:1}.price-table td:nth-child(2){grid-column:1;grid-row:2}.price-table td:nth-child(3){grid-column:2;grid-row:1;text-align:right}.price-table td:nth-child(4){grid-column:2;grid-row:2;align-self:end}.price-table tr:hover td{background:transparent}.service-name{font-size:.79rem}.service-note{font-size:.7rem;line-height:1.4}.consult{font-size:.7rem;padding:7px 9px}footer{flex-direction:column;line-height:1.5}.floating-wa{bottom:14px;right:14px;padding:12px 17px}}
   </style>
 </head>
 
@@ -679,35 +40,21 @@
           <span>Servicio técnico especializado</span>
         </div>
       </div>
-      <button class="icon-btn" id="themeButton" aria-label="Cambiar tema">☀️</button>
+      <div class="header-actions"><a class="header-link" href="#catalogo">Lista de precios</a><button class="icon-btn" id="themeButton" aria-label="Activar tema oscuro" aria-pressed="false">◐</button></div>
     </header>
 
     <section class="hero">
-      <div>
-        <span class="eyebrow">Catálogo actualizado</span>
-        <h1>Precios claros.<br><span class="gradient">Reparaciones premium.</span></h1>
-        <p>Consulta rápidamente el precio de pantallas, baterías, tapas, Face ID, microsoldadura y otros servicios.</p>
-      </div>
-
-      <aside class="hero-card">
-        <div class="metric">
-          <b>+30</b>
-          <span>Modelos y servicios organizados en un solo lugar.</span>
-        </div>
-        <div class="metric">
-          <b>RD$</b>
-          <span>Precios visibles, rápidos y fáciles de actualizar.</span>
-        </div>
-        <div class="device"></div>
-      </aside>
+      <span class="eyebrow">Celvis · Servicio técnico</span>
+      <h1>Precios de reparaciones.</h1>
+      <p>Encuentra tu modelo, compara los servicios y consulta tu reparación por WhatsApp.</p>
     </section>
 
-    <section>
+    <section id="catalogo">
       <div class="controls">
         <label class="search">
-          <input id="searchInput" type="search" placeholder="Buscar modelo o servicio..." autocomplete="off">
+          <input aria-label="Buscar modelo o servicio" id="searchInput" type="search" placeholder="Buscar modelo o servicio..." autocomplete="off">
         </label>
-        <button class="quote-btn" onclick="openGeneralWhatsApp()">Solicitar cotización</button>
+        <select id="serviceFilter" class="service-select" aria-label="Filtrar por reparación"><option value="Todos">Todas las reparaciones</option><option value="pantalla">Pantallas</option><option value="bateria">Baterías</option><option value="tapa">Tapas traseras</option><option value="face id">Face ID</option><option value="sim">SIM física</option><option value="placa">Placa y microsoldadura</option><option value="otros">Otros servicios</option></select>
       </div>
 
       <div class="chips" id="categoryChips"></div>
@@ -731,21 +78,21 @@
 
       <div class="section-head">
         <div>
-          <h2>Servicios disponibles</h2>
-          <p>Selecciona un equipo para ver todos los detalles.</p>
+          <h2>Lista de precios</h2>
+          <p>Precios en pesos dominicanos · Consulta las condiciones de cada servicio.</p>
         </div>
-        <span class="count" id="resultCount"></span>
+        <span class="count" id="resultCount" role="status" aria-live="polite"></span>
       </div>
 
-      <div class="grid" id="priceGrid"></div>
+      <div class="price-list" id="priceGrid"></div>
 
       <div class="notice">
-        Los precios pueden variar según la calidad de la pieza, disponibilidad y diagnóstico del equipo. Confirma la cotización antes de llevar el dispositivo.
+        <strong>Antes de reparar:</strong> confirma disponibilidad, tiempo de entrega y duración de la garantía. Los servicios indicados «Desde» o «Cotizar» requieren confirmar el precio según el equipo y su diagnóstico.
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> Celvis Reparaciones · Santo Domingo, República Dominicana
+      <span>© <span id="year"></span> Celvis Reparaciones</span><span>Santo Domingo, República Dominicana · <a class="edit-link" href="admin.html">Administrar precios</a></span>
     </footer>
   </main>
 
@@ -761,6 +108,1107 @@
     <div class="modal-body" id="modalBody"></div>
   </dialog>
 
+  <script type="application/json" id="catalogData">
+[
+  {
+    "category": "iPhone",
+    "model": "iPhone XR",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "RD$ 2,800",
+        "warranty": "Garantía incluida"
+      },
+      {
+        "name": "Batería",
+        "price": "RD$ 2,000",
+        "warranty": "Instalación incluida"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Desde RD$ 2,500",
+        "warranty": "Según color"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 11",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "RD$ 2,800",
+        "warranty": "Garantía incluida"
+      },
+      {
+        "name": "Batería",
+        "price": "RD$ 2,200",
+        "warranty": "Instalación incluida"
+      },
+      {
+        "name": "Face ID",
+        "price": "Desde RD$ 3,500",
+        "warranty": "Requiere diagnóstico"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 11 Pro",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 11 Pro Max",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 12",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 12 Mini",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 12 Pro",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 12 Pro Max",
+    "services": [
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "RD$ 6,500",
+        "warranty": "Garantía incluida"
+      },
+      {
+        "name": "Batería Premium",
+        "price": "RD$ 3,500",
+        "warranty": "Instalación incluida"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Desde RD$ 3,500",
+        "warranty": "Según color"
+      },
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 13",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 13 Mini",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 13 Pro",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 13 Pro Max",
+    "services": [
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "RD$ 8,000",
+        "warranty": "Garantía incluida"
+      },
+      {
+        "name": "Batería",
+        "price": "RD$ 3,800",
+        "warranty": "Instalación incluida"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Desde RD$ 3,500",
+        "warranty": "Según diagnóstico"
+      },
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 14",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 14 Plus",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 14 Pro",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 14 Pro Max",
+    "services": [
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "RD$ 9,500",
+        "warranty": "Garantía incluida"
+      },
+      {
+        "name": "Batería",
+        "price": "RD$ 4,500",
+        "warranty": "Instalación incluida"
+      },
+      {
+        "name": "Conversión SIM física",
+        "price": "Cotizar",
+        "warranty": "Servicio especializado"
+      },
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 15",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 15 Plus",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 15 Pro",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 15 Pro Max",
+    "services": [
+      {
+        "name": "Pantalla",
+        "price": "Cotizar",
+        "warranty": "Varias calidades"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Según disponibilidad"
+      },
+      {
+        "name": "Conversión SIM física",
+        "price": "Desde RD$ 3,500",
+        "warranty": "Servicio especializado"
+      },
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 16",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 16 Plus",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 16 Pro",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 16 Pro Max",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 17",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 17 Air",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 17 Pro",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 17 Pro Max",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 18 Pro",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  },
+  {
+    "category": "iPhone",
+    "model": "iPhone 18 Pro Max",
+    "services": [
+      {
+        "name": "Pantalla Incell",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Pantalla Soft OLED",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Batería",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Tapa trasera",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Face ID",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      },
+      {
+        "name": "Microsoldadura",
+        "price": "Cotizar",
+        "warranty": "Confirmar disponibilidad"
+      }
+    ]
+  }
+]
+  </script>
+  <script src="config.js"></script>
+  <script src="catalog-api.js"></script>
   <script>
     /* ==========================================================
        CONFIGURACIÓN RÁPIDA
@@ -771,113 +1219,11 @@
 
     const WHATSAPP_NUMBER = "18099319939";
 
-    const repairData = [
-      {
-        category:"iPhone",
-        model:"iPhone XR",
-        badge:"Popular",
-        services:[
-          {name:"Pantalla Incell", price:"RD$ 2,800", warranty:"Garantía incluida"},
-          {name:"Pantalla Incell", price:"RD$ 2,800", warranty:"Garantía incluida"},
-          {name:"Batería", price:"RD$ 2,000", warranty:"Instalación incluida"},
-          {name:"Tapa trasera", price:"Desde RD$ 2,500", warranty:"Según color"}
-        ]
-      },
-      {
-        category:"iPhone",
-        model:"iPhone 11",
-        badge:"Popular",
-        services:[
-          {name:"Pantalla Incell", price:"RD$ 2,800", warranty:"Garantía incluida"},
-          {name:"Batería", price:"RD$ 2,200", warranty:"Instalación incluida"},
-          {name:"Face ID", price:"Desde RD$ 3,500", warranty:"Requiere diagnóstico"}
-        ]
-      },
-      {
-        category:"iPhone",
-        model:"iPhone 12 Pro Max",
-        badge:"Recomendado",
-        services:[
-          {name:"Pantalla Soft OLED", price:"RD$ 6,500", warranty:"Garantía incluida"},
-          {name:"Batería Premium", price:"RD$ 3,500", warranty:"Instalación incluida"},
-          {name:"Tapa trasera", price:"Desde RD$ 3,500", warranty:"Según color"}
-        ]
-      },
-      {
-        category:"iPhone",
-        model:"iPhone 13 Pro Max",
-        badge:"Premium",
-        services:[
-          {name:"Pantalla Soft OLED", price:"RD$ 8,000", warranty:"Garantía incluida"},
-          {name:"Batería", price:"RD$ 3,800", warranty:"Instalación incluida"},
-          {name:"Microsoldadura", price:"Desde RD$ 3,500", warranty:"Según diagnóstico"}
-        ]
-      },
-      {
-        category:"iPhone",
-        model:"iPhone 14 Pro Max",
-        badge:"Premium",
-        services:[
-          {name:"Pantalla Soft OLED", price:"RD$ 9,500", warranty:"Garantía incluida"},
-          {name:"Batería", price:"RD$ 4,500", warranty:"Instalación incluida"},
-          {name:"Conversión SIM física", price:"Cotizar", warranty:"Servicio especializado"}
-        ]
-      },
-      {
-        category:"iPhone",
-        model:"iPhone 15 Pro Max",
-        badge:"Nuevo",
-        services:[
-          {name:"Pantalla", price:"Cotizar", warranty:"Varias calidades"},
-          {name:"Tapa trasera", price:"Cotizar", warranty:"Según disponibilidad"},
-          {name:"Conversión SIM física", price:"Desde RD$ 3,500", warranty:"Servicio especializado"}
-        ]
-      },
-      {
-        category:"Samsung",
-        model:"Samsung Galaxy A Series",
-        badge:"Android",
-        services:[
-          {name:"Cambio de pantalla", price:"Desde RD$ 2,500", warranty:"Según modelo"},
-          {name:"Batería", price:"Desde RD$ 1,800", warranty:"Según modelo"},
-          {name:"Centro de carga", price:"Desde RD$ 1,500", warranty:"Requiere diagnóstico"}
-        ]
-      },
-      {
-        category:"MacBook",
-        model:"MacBook",
-        badge:"Laboratorio",
-        services:[
-          {name:"Diagnóstico", price:"Cotizar", warranty:"Evaluación técnica"},
-          {name:"Reparación de placa", price:"Desde RD$ 4,500", warranty:"Según avería"},
-          {name:"Mantenimiento", price:"Desde RD$ 2,500", warranty:"Limpieza y pasta térmica"}
-        ]
-      },
-      {
-        category:"Consolas",
-        model:"PlayStation",
-        badge:"Gaming",
-        services:[
-          {name:"Mantenimiento", price:"Desde RD$ 2,000", warranty:"Limpieza completa"},
-          {name:"Fuente de poder", price:"Cotizar", warranty:"Según modelo"},
-          {name:"Reparación HDMI", price:"Desde RD$ 3,500", warranty:"Requiere diagnóstico"}
-        ]
-      },
-      {
-        category:"Microsoldadura",
-        model:"Reparación de placa",
-        badge:"Especialidad",
-        services:[
-          {name:"Equipo no enciende", price:"Cotizar", warranty:"Diagnóstico previo"},
-          {name:"Falla de carga", price:"Desde RD$ 2,500", warranty:"Según avería"},
-          {name:"Recuperación de datos", price:"Cotizar", warranty:"Sujeto a evaluación"}
-        ]
-      }
-    ];
-
+    let repairData = JSON.parse(document.getElementById("catalogData").textContent);
     const grid = document.getElementById("priceGrid");
     const chips = document.getElementById("categoryChips");
     const searchInput = document.getElementById("searchInput");
+    const serviceFilter = document.getElementById("serviceFilter");
     const resultCount = document.getElementById("resultCount");
     const familyWrap = document.getElementById("familyWrap");
     const modelFamilies = document.getElementById("modelFamilies");
@@ -895,7 +1241,10 @@
       {id:"12", label:"Serie 12", hint:"12"},
       {id:"13", label:"Serie 13", hint:"13"},
       {id:"14", label:"Serie 14", hint:"14"},
-      {id:"15", label:"Serie 15", hint:"15"}
+      {id:"15", label:"Serie 15", hint:"15"},
+      {id:"16", label:"Serie 16", hint:"16"},
+      {id:"17", label:"Serie 17", hint:"17"},
+      {id:"18", label:"Serie 18", hint:"18"}
     ];
 
     const categories = ["Todos", ...new Set(repairData.map(item => item.category))];
@@ -966,43 +1315,43 @@
       });
     }
 
-    function renderCards(){
-      const items = getFilteredData();
-      resultCount.textContent = `${items.length} resultado${items.length === 1 ? "" : "s"}`;
+    function matchesService(service){
+      const name = normalized(service.name);
+      const selected = serviceFilter.value;
+      const groups = {
+        pantalla: /pantalla/, bateria: /bateria/, tapa: /tapa/,
+        "face id": /face id/, sim: /sim/,
+        placa: /microsoldadura|placa|no enciende|recuperacion de datos/
+      };
+      if(selected === "Todos") return true;
+      if(selected === "otros") return !Object.values(groups).some(pattern => pattern.test(name));
+      return groups[selected]?.test(name) || false;
+    }
 
-      if(!items.length){
-        grid.innerHTML = `<div class="empty">No encontré ese modelo o servicio. Prueba con otro nombre.</div>`;
+    function escapeHTML(value){
+      return String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+    }
+
+    function repairWhatsAppURL(item, service){
+      const message = `Hola, quisiera consultar ${service.name} para ${item.model}. Precio publicado: ${service.price}. ¿Me confirmas disponibilidad, garantía y tiempo de entrega?`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    }
+
+    function renderCards(){
+      const term = normalized(searchInput.value.trim());
+      const rows = getFilteredData().flatMap(item => item.services
+        .filter(service => matchesService(service) && (!term || normalized(item.model + " " + item.category).includes(term) || normalized(service.name).includes(term)))
+        .map(service => ({item, service})));
+      resultCount.textContent = `${rows.length} servicio${rows.length === 1 ? "" : "s"}`;
+      if(!rows.length){
+        grid.innerHTML = `<div class="empty">No hay servicios para esta búsqueda.<br>Prueba otro modelo o cambia los filtros.</div>`;
         return;
       }
-
-      grid.innerHTML = items.map((item) => {
-        const originalIndex = repairData.indexOf(item);
-        return `
-          <article class="card">
-            <div class="card-top">
-              <div>
-                <h3 class="model">${item.model}</h3>
-                <span class="category">${item.category}</span>
-              </div>
-              <span class="badge">${item.badge}</span>
-            </div>
-
-            <div class="services">
-              ${item.services.slice(0,3).map(service => `
-                <div class="service">
-                  <span>${service.name}</span>
-                  <strong>${service.price}</strong>
-                </div>
-              `).join("")}
-            </div>
-
-            <div class="card-actions">
-              <button class="details" onclick="showDetails(${originalIndex})">Ver detalles</button>
-              <button class="whatsapp" onclick="openWhatsApp(${originalIndex})" aria-label="Cotizar por WhatsApp">↗</button>
-            </div>
-          </article>
-        `;
-      }).join("");
+      grid.innerHTML = `<table class="price-table"><caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Precios de reparación de Celvis</caption><thead><tr><th scope="col">Modelo</th><th scope="col">Reparación / repuesto</th><th scope="col">Precio RD$</th><th scope="col">Consulta</th></tr></thead><tbody>${rows.map(({item, service}) => `
+        <tr><td class="model-name">${escapeHTML(item.model)}</td>
+        <td><span class="service-name">${escapeHTML(service.name)}</span><span class="service-note">${escapeHTML(service.warranty)}</span></td>
+        <td class="price">${escapeHTML(service.price)}</td>
+        <td><a class="consult" target="_blank" rel="noopener noreferrer" href="${escapeHTML(repairWhatsAppURL(item, service))}" aria-label="${escapeHTML('Consultar ' + service.name + ' para ' + item.model)}">Consultar ↗</a></td></tr>`).join("")}</tbody></table>`;
     }
 
     function showDetails(index){
@@ -1035,18 +1384,21 @@
     }
 
     searchInput.addEventListener("input", renderCards);
+    serviceFilter.addEventListener("change", renderCards);
 
-    document.getElementById("themeButton").addEventListener("click", () => {
-      document.body.classList.toggle("light");
-      const isLight = document.body.classList.contains("light");
-      document.getElementById("themeButton").textContent = isLight ? "🌙" : "☀️";
-      localStorage.setItem("celvis-theme", isLight ? "light" : "dark");
-    });
-
-    if(localStorage.getItem("celvis-theme") === "light"){
-      document.body.classList.add("light");
-      document.getElementById("themeButton").textContent = "🌙";
+    const themeButton = document.getElementById("themeButton");
+    function applyTheme(dark){
+      document.body.classList.toggle("dark", dark);
+      themeButton.setAttribute("aria-pressed", String(dark));
+      themeButton.setAttribute("aria-label", dark ? "Activar tema claro" : "Activar tema oscuro");
+      document.querySelector('meta[name="theme-color"]').content = dark ? "#131613" : "#fafaf8";
     }
+    try { applyTheme(localStorage.getItem("celvis-theme") === "dark"); } catch (_) {}
+    themeButton.addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark");
+      applyTheme(dark);
+      try { localStorage.setItem("celvis-theme", dark ? "dark" : "light"); } catch (_) {}
+    });
 
     detailsModal.addEventListener("click", event => {
       const box = detailsModal.getBoundingClientRect();
@@ -1102,9 +1454,35 @@
     });
 
 
+
+    if(CelvisAPI.configured()) repairData = [];
     renderChips();
     renderFamilies();
     renderCards();
+    if(CelvisAPI.configured()) grid.innerHTML = '<div class="empty">Consultando precios actualizados…</div>';
+    async function refreshPrices(){
+      if(!CelvisAPI.configured()) return;
+      try {
+        const rows = await CelvisAPI.publicPrices();
+        const grouped = new Map();
+        rows.forEach(row => {
+          if(!grouped.has(row.model)) grouped.set(row.model, {category:"iPhone",model:row.model,services:[]});
+          grouped.get(row.model).services.push({name:row.service,price:CelvisAPI.priceLabel(row),warranty:row.note});
+        });
+        repairData = [...grouped.values()];
+        renderCards();
+        document.querySelector(".notice").innerHTML = "<strong>Antes de reparar:</strong> confirma disponibilidad, tiempo de entrega y garantía. Precios consultados en línea.";
+      } catch (_) {
+        // Do not present embedded old prices as current once cloud mode is enabled.
+        repairData = [];
+        renderCards();
+        grid.innerHTML = '<div class="empty">No pudimos consultar los precios actualizados. Intenta de nuevo o escríbenos por WhatsApp.</div>';
+        document.querySelector(".notice").textContent = "Precios en línea temporalmente no disponibles.";
+      }
+    }
+    refreshPrices();
+    window.addEventListener("pageshow", event => { if(event.persisted) refreshPrices(); });
+    document.addEventListener("visibilitychange", () => { if(document.visibilityState === "visible") refreshPrices(); });
   </script>
 </body>
 </html>

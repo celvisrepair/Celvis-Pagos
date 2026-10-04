@@ -1,0 +1,31 @@
+CELVIS — PANEL PRIVADO DE PRECIOS
+
+Estado: base de datos conectada y catálogo de 30 iPhones cargado. Falta crear y autorizar la cuenta de acceso y subir los archivos web.
+
+1. CREAR TU ACCESO
+En Supabase, abre tu proyecto > Authentication > Users > Add user > Create new user.
+Correo: elvissanchezrx@gmail.com.
+Define tú mismo la contraseña; no la compartas por chat. Activa Auto Confirm User si aparece.
+Después avisa en esta conversación para que se autorice la cuenta. Crear un usuario por sí solo no da permisos de administración.
+
+2. PUBLICAR UNA SOLA VEZ
+En celvisrepair/Celvis-Pagos reemplaza/sube los archivos index.html, admin.html, admin.js, config.js, catalog-api.js, service-worker.js y manifest.webmanifest. Mantén los iconos existentes. No hace falta subir supabase-setup.sql.
+Si Vercel está conectado a main, el commit iniciará el despliegue.
+
+3. EDITAR PRECIOS
+Abre tu página > Administrar precios > entra con tu correo y contraseña.
+Elige un iPhone. Escribe el precio y pulsa Guardar en esa reparación.
+Usa Precio fijo, Desde o Cotizar. Puedes ocultar servicios y agregar reparaciones.
+Los precios se guardan en línea: ya no necesitas subir archivos cada vez que cambies precios.
+
+SUPABASE
+La migración ya se aplicó al proyecto conectado. El SQL adjunto es una referencia para reinstalar el esquema; no lo ejecutes de nuevo salvo que haga falta.
+Para autorizar tu usuario confirmado desde SQL Editor:
+insert into public.celvis_admins(user_id)
+select id from auth.users where lower(email)='elvissanchezrx@gmail.com' and email_confirmed_at is not null
+on conflict do nothing;
+
+VERIFICACIÓN
+30 modelos y 183 servicios. Precios existentes preservados.
+Lectura pública funciona; escrituras anónimas bloqueadas; cuentas no autorizadas no actualizan filas; prueba de cuenta administradora en una transacción revertida funciona.
+Guardado, validación y conflictos de versiones probados. Falta verificar el inicio de sesión con tu cuenta real y revisar visualmente el despliegue.
